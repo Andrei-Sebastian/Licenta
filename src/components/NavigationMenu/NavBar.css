@@ -2,13 +2,36 @@
     position: fixed;
     width: 100%;
     top: 0px;
-    margin-bottom: 200px;
+    /* margin-bottom: 200px; */
+    display: flex;
+    /* justify-content: space-around; */
 }
 
 .mr-sm-2 {
-    width: 500px;
+    width: 500px !important;
 }
 
-.body {
-    line-height: 0;
+.search {
+    
 }
+
+.idk {
+    /* background-color: red; */
+    /* margin-right: 20px; */
+}
+/* 
+.search {
+    background-color: red;
+}
+
+.d {
+    background-color: blue;
+}
+
+.right {
+    background-color: green;
+}
+
+.mr-auto {
+    background-color: yellow;   
+} */
