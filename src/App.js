@@ -1,7 +1,7 @@
 import './App.css';
 import React ,{Component} from 'react';
-import PostComponent from './PostComponent/PostComponsnt';
-import NavBar from './NavigationMenu/NavBar'
+import Post from './components/Posts/Posts';
+import NavBar from './components/NavigationMenu/NavBar';
 
 class App extends Component{
   state = { 
@@ -75,11 +75,8 @@ class App extends Component{
 
     return (
       <div className="App">
-        {/* <NavBar/> */}
-        <PostComponent/>
-        <PostComponent/>
-        <PostComponent/>
-        <PostComponent/>
+        <NavBar/>
+        <Post/>
         <h1>.</h1>
       </div>
     );

@@ -1,7 +1,6 @@
 .App {
   text-align: center;
-  background-color: #f5f9ff;
-
+  background-color: #8a9ebd;
 }
 
 .red {
@@ -10,5 +9,9 @@
 
 .bolt {
   font-weight: bold;
+}
+
+*, ::after, ::before {
+  box-sizing: unset;
 }
 

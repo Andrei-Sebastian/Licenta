@@ -1,0 +1,14 @@
+.navBar {
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    margin-bottom: 200px;
+}
+
+.mr-sm-2 {
+    width: 500px;
+}
+
+.body {
+    line-height: 0;
+}
