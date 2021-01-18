@@ -11,6 +11,10 @@
     width: 500px !important;
 }
 
+.refreshIcon {
+    cursor: pointer !important;
+}
+
 .search {
     
 }

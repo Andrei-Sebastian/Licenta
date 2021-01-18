@@ -15,8 +15,105 @@ const data = [
         numberOfLikes: 47,
         comment: "Ha ha ha! This haircut looks insane"
     },
-    {name: "Andrei Vasilescu", profileImage: image1, postImage: image, liked: false, numberOfLikes: 5},
-    {name: "George Ion", profileImage: image, postImage: image3, liked: true, numberOfLikes: 100000000},
+    {
+        name: "Andrei Vasilescu", 
+        profileImage: image1, 
+        postImage: image, 
+        liked: false, 
+        numberOfLikes: 5
+    },
+    {
+        name: "George Ion", 
+        profileImage: image, 
+        postImage: image3, 
+        liked: true, 
+        numberOfLikes: 100000000
+    },
+    {
+        name: "Alexandru Ion",
+        profileImage: image,
+        postImage: image2,
+        liked: true,
+        numberOfLikes: 47,
+        comment: "Ha ha ha! This haircut looks insane"
+    },
+    {
+        name: "Andrei Vasilescu", 
+        profileImage: image1, 
+        postImage: image, 
+        liked: false, 
+        numberOfLikes: 5
+    },
+    {
+        name: "George Ion", 
+        profileImage: image, 
+        postImage: image3, 
+        liked: true, 
+        numberOfLikes: 100000000
+    },{
+        name: "Alexandru Ion",
+        profileImage: image,
+        postImage: image2,
+        liked: true,
+        numberOfLikes: 47,
+        comment: "Ha ha ha! This haircut looks insane"
+    },
+    {
+        name: "Andrei Vasilescu", 
+        profileImage: image1, 
+        postImage: image, 
+        liked: false, 
+        numberOfLikes: 5
+    },
+    {
+        name: "George Ion", 
+        profileImage: image, 
+        postImage: image3, 
+        liked: true, 
+        numberOfLikes: 100000000
+    },{
+        name: "Alexandru Ion",
+        profileImage: image,
+        postImage: image2,
+        liked: true,
+        numberOfLikes: 47,
+        comment: "Ha ha ha! This haircut looks insane"
+    },
+    {
+        name: "Andrei Vasilescu", 
+        profileImage: image1, 
+        postImage: image, 
+        liked: false, 
+        numberOfLikes: 5
+    },
+    {
+        name: "George Ion", 
+        profileImage: image, 
+        postImage: image3, 
+        liked: true, 
+        numberOfLikes: 100000000
+    },{
+        name: "Alexandru Ion",
+        profileImage: image,
+        postImage: image2,
+        liked: true,
+        numberOfLikes: 47,
+        comment: "Ha ha ha! This haircut looks insane"
+    },
+    {
+        name: "Andrei Vasilescu", 
+        profileImage: image1, 
+        postImage: image, 
+        liked: false, 
+        numberOfLikes: 5
+    },
+    {
+        name: "George Ion", 
+        profileImage: image, 
+        postImage: image3, 
+        liked: true, 
+        numberOfLikes: 100000000
+    },
 ];
 
 class posts extends Component {

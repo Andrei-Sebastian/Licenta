@@ -15,6 +15,7 @@
     }
 
     .post {
+        /* pointer-events: none; */
         margin: 16px auto;
         /* height: 700px; */
         background-color: rgb(240, 235, 235);
@@ -37,6 +38,7 @@
         font-family: arial;
         font-size: 20px;
         padding-left: 10px;
+        color: rgb(75, 75, 75);
         /* text-decoration: underline; */
     }
 

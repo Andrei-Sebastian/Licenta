@@ -3,8 +3,11 @@
 
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
     .posts {
       padding: 0 10px;
+    }
+    .menu {
+      visibility: hidden;
     }
   }

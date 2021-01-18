@@ -1,0 +1,36 @@
+.menu {
+    background-color: #364450;
+    width: 500px;
+    height: 100%;
+    /* margin-top: 20px !important; */
+    margin-top: 0px;
+    position: fixed;
+    border-right: 1px solid rgb(107, 106, 106);
+    background-size: contain;
+    /* position: absolute; */
+    /* top: 0px; */
+}
+
+.userNamee {
+    text-indent: 5px;
+    font-family: arial;
+    font-size: 20px;
+    padding-left: 10px;
+    color: whitesmoke;
+    /* text-decoration: underline; */
+}
+
+.userProfile {
+    padding: 20px;
+    border-bottom: 1px solid rgb(107, 106, 106);
+}
+
+.userProfile:hover {
+    background-color: #404e5a;
+}
+
+@media only screen and (max-width: 1000px) {
+    .menu {
+      visibility: hidden;
+    }
+  }
