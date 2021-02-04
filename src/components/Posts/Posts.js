@@ -5,6 +5,9 @@ import image from '../../Images/img.png';
 import image1 from '../../Images/img1.png';
 import image2 from '../../Images/img2.png';
 import image3 from '../../Images/img3.png';
+import axios from 'axios';
+
+
 
 const data = [
     {
@@ -116,25 +119,38 @@ const data = [
     },
 ];
 
+
 class posts extends Component {
+    state = {posts: []}
+
     onClickHandle = (index) => {
-        data[index].liked = !data[index].liked;
-        data[index].numberOfLikes = !data[index].liked ? data[index].numberOfLikes -= 1 : data[index].numberOfLikes += 1; 
-        this.setState(data);
+        //this.state[index].likes = ! this.state[index].likes;
+        this.state.posts[index].likes = parseInt(this.state.posts[index].likes) + 1;  //this.state[index].liked ?  this.state[index].numberOfLikes -= 1 :  this.state[index].numberOfLikes += 1; 
+        this.setState(this.state.posts);
     }
 
+    componentDidMount = () => {
+        axios.get(`http://localhost:3000/get/allPost`)
+        .then(res => {
+        let posts = res.data;
+        this.setState({posts});
+        });
+
+    }
+    
     render() { 
+        console.log(this.state)
         return (
             <div className="posts">
-                {data.map( (post, i) => (
+                {this.state.posts.map( (post, i) => (
                     <Post 
                         key={i}
-                        name={post.name}
-                        liked={post.liked}
-                        numberOfLikes={post.numberOfLikes}
-                        comment={post.comment}
-                        profileImage={post.profileImage}
-                        postImage={post.postImage}
+                        name="asf"
+                        liked={false}
+                        numberOfLikes={post.likes}
+                        comment={post.description}
+                        profileImage={post.photo_url}
+                        postImage={post.photo_url}
                         onClickHandle={() => this.onClickHandle(i)}
                     />
                 ))}
