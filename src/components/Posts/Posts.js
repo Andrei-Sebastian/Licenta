@@ -1,124 +1,7 @@
 import React, { Component } from 'react';
 import './Posts.css';
 import Post from './Post/Post';
-import image from '../../Images/img.png';
-import image1 from '../../Images/img1.png';
-import image2 from '../../Images/img2.png';
-import image3 from '../../Images/img3.png';
 import axios from 'axios';
-
-
-
-const data = [
-    {
-        name: "Alexandru Ion",
-        profileImage: image,
-        postImage: image2,
-        liked: true,
-        numberOfLikes: 47,
-        comment: "Ha ha ha! This haircut looks insane"
-    },
-    {
-        name: "Andrei Vasilescu", 
-        profileImage: image1, 
-        postImage: image, 
-        liked: false, 
-        numberOfLikes: 5
-    },
-    {
-        name: "George Ion", 
-        profileImage: image, 
-        postImage: image3, 
-        liked: true, 
-        numberOfLikes: 100000000
-    },
-    {
-        name: "Alexandru Ion",
-        profileImage: image,
-        postImage: image2,
-        liked: true,
-        numberOfLikes: 47,
-        comment: "Ha ha ha! This haircut looks insane"
-    },
-    {
-        name: "Andrei Vasilescu", 
-        profileImage: image1, 
-        postImage: image, 
-        liked: false, 
-        numberOfLikes: 5
-    },
-    {
-        name: "George Ion", 
-        profileImage: image, 
-        postImage: image3, 
-        liked: true, 
-        numberOfLikes: 100000000
-    },{
-        name: "Alexandru Ion",
-        profileImage: image,
-        postImage: image2,
-        liked: true,
-        numberOfLikes: 47,
-        comment: "Ha ha ha! This haircut looks insane"
-    },
-    {
-        name: "Andrei Vasilescu", 
-        profileImage: image1, 
-        postImage: image, 
-        liked: false, 
-        numberOfLikes: 5
-    },
-    {
-        name: "George Ion", 
-        profileImage: image, 
-        postImage: image3, 
-        liked: true, 
-        numberOfLikes: 100000000
-    },{
-        name: "Alexandru Ion",
-        profileImage: image,
-        postImage: image2,
-        liked: true,
-        numberOfLikes: 47,
-        comment: "Ha ha ha! This haircut looks insane"
-    },
-    {
-        name: "Andrei Vasilescu", 
-        profileImage: image1, 
-        postImage: image, 
-        liked: false, 
-        numberOfLikes: 5
-    },
-    {
-        name: "George Ion", 
-        profileImage: image, 
-        postImage: image3, 
-        liked: true, 
-        numberOfLikes: 100000000
-    },{
-        name: "Alexandru Ion",
-        profileImage: image,
-        postImage: image2,
-        liked: true,
-        numberOfLikes: 47,
-        comment: "Ha ha ha! This haircut looks insane"
-    },
-    {
-        name: "Andrei Vasilescu", 
-        profileImage: image1, 
-        postImage: image, 
-        liked: false, 
-        numberOfLikes: 5
-    },
-    {
-        name: "George Ion", 
-        profileImage: image, 
-        postImage: image3, 
-        liked: true, 
-        numberOfLikes: 100000000
-    },
-];
-
 
 class posts extends Component {
     state = {posts: []}
@@ -130,9 +13,22 @@ class posts extends Component {
     }
 
     componentDidMount = () => {
-        axios.get(`http://localhost:3000/get/allPost`)
+        if (!localStorage.getItem('user-info')) {
+            
+        }
+        let data = {
+            arrayUids: [1,2,3,4,5,6]
+        }
+        axios.get(`http://localhost:8080/welcome`,
+        {
+            params : data,
+            headers: {
+                Authorization: localStorage.getItem("user-info"),
+            }
+        })
         .then(res => {
         let posts = res.data;
+        console.log(posts)
         this.setState({posts});
         });
 
