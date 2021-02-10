@@ -27,21 +27,23 @@ class posts extends Component {
             }
         })
         .then(res => {
-        let posts = res.data;
-        console.log(posts)
-        this.setState({posts});
+            console.log(res.data);
+            let posts = res.data.posts;
+            this.setState({posts});
+        })
+        .catch(() => {
+            localStorage.removeItem('user-info');
         });
 
     }
     
     render() { 
-        console.log(this.state)
         return (
             <div className="posts">
                 {this.state.posts.map( (post, i) => (
                     <Post 
                         key={i}
-                        name="asf"
+                        name="Ion"
                         liked={false}
                         numberOfLikes={post.likes}
                         comment={post.description}
