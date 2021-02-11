@@ -4,57 +4,43 @@ import Post from './Post/Post';
 import axios from 'axios';
 
 class posts extends Component {
-    state = {posts: []}
+    state = {posts: this.props.posts};
 
-    onClickHandle = (index) => {
-        //this.state[index].likes = ! this.state[index].likes;
-        this.state.posts[index].likes = parseInt(this.state.posts[index].likes) + 1;  //this.state[index].liked ?  this.state[index].numberOfLikes -= 1 :  this.state[index].numberOfLikes += 1; 
-        this.setState(this.state.posts);
+    onClickHandle(index) {
+        console.log(this.state[0])
+        try {
+            console.log(this.state.posts[index].liked);
+        this.state.posts[index].liked = !this.state.posts[index].liked;
+        this.state.posts[index].likes = !this.state.posts[index].liked ? this.state.posts[index].likes -= 1 : this.state.posts[index].likes += 1; 
+        this.setState({posts: this.state.posts});
+        }
+        catch (err) {
+
+        }
+        
     }
 
-    componentDidMount = () => {
-        if (!localStorage.getItem('user-info')) {
-            
-        }
-        let data = {
-            arrayUids: [1,2,3,4,5,6]
-        }
-        axios.get(`http://localhost:8080/welcome`,
-        {
-            params : data,
-            headers: {
-                Authorization: localStorage.getItem("user-info"),
-            }
-        })
-        .then(res => {
-            console.log(res.data);
-            let posts = res.data.posts;
-            this.setState({posts});
-        })
-        .catch(() => {
-            localStorage.removeItem('user-info');
-        });
-
-    }
-    
-    render() { 
+    render() {
+        console.log(this.state);
         return (
             <div className="posts">
-                {this.state.posts.map( (post, i) => (
+                {this.props.posts.map( (post, i) => (
                     <Post 
                         key={i}
-                        name="Ion"
-                        liked={false}
+                        name={post.name}
+                        liked={post.liked}
                         numberOfLikes={post.likes}
                         comment={post.description}
-                        profileImage={post.photo_url}
+                        profileImage={post.url_photo}
                         postImage={post.photo_url}
+                        postId={post.uid}
                         onClickHandle={() => this.onClickHandle(i)}
                     />
                 ))}
             </div>
         )
-    };
+    }
+      
 };
 
 export default posts;
