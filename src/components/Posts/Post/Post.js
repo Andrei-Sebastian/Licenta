@@ -10,7 +10,6 @@ const post = (props) => {
                 <div className="aboutPost">
                     <img className="circular_image" src={props.profileImage}/>
                     <a className="userName" target="_blank">{props.name}</a>
-                    <label className="id" >UID: {props.postId}</label>
                 </div>
                 <div className="divImage" >
                     <img className='image' src={props.postImage} alt='Not Found'/>

@@ -4,6 +4,7 @@ import Post from '../Posts/Posts';
 import Loading from '../Loading/Loading';
 import NavBar from '../NavigationMenu/NavBar';
 import LeftMenu from '../LeftMenu/LeftMenu';
+import TopWelcome from '../TopWelcome/TopWelcome';
 import axios from 'axios';
 import {Redirect} from "react-router-dom";
 
@@ -51,6 +52,7 @@ class Welcome extends Component  {
           <Loading/> : 
           <div className="page">
             <LeftMenu user={this.state.user}/>
+            <TopWelcome user={this.state.user}/>
             <Post posts={this.state.posts}/>
           </div>
         }

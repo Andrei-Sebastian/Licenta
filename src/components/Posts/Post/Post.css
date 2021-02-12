@@ -22,7 +22,7 @@
         border-radius: 10px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         box-sizing: border-box;
-        min-height: 300px;
+        /* min-height: 300px; this sets min height of component */
         max-height: fit-content;       
     }
 
@@ -46,7 +46,7 @@
     @media (min-width: 600px) {
         .post {
             width: 600px;
-            min-height: 500px;
+            /* min-height: 500px; */
             /* max-height: 300px; */
         }
 
@@ -88,6 +88,3 @@
         margin: 1px;
     }
     
-    .id {
-        margin-left: 100px;
-    }
