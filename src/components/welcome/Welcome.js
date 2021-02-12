@@ -1,23 +1,19 @@
 import './Welcome.css';
-import React, {Component, useEffect}  from 'react';
+import React, {Component}  from 'react';
 import Post from '../Posts/Posts';
+import Loading from '../Loading/Loading';
 import NavBar from '../NavigationMenu/NavBar';
 import LeftMenu from '../LeftMenu/LeftMenu';
-import {useHistory} from "react-router-dom";
 import axios from 'axios';
-import Login from '../Login/Login';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect
-} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
 class Welcome extends Component  {
-    //const history = useHistory();
     state = {
-      posts: [], 
-      isLogin: true};
+      posts: [],
+      user: [], 
+      isLogin: true,
+      isLoading: true
+    };
 
 
     componentDidMount = () => {
@@ -29,10 +25,11 @@ class Welcome extends Component  {
           }
         })
         .then(res => {
-          this.isLogin = true; 
-          let data = res.data.posts;
-          console.log(data);
-          this.setState({posts: data, isLogin: true});
+          this.setState({
+            posts: res.data.posts,
+            user: res.data.userDetails, 
+            isLogin: true, 
+            isLoading: false});
         })
         .catch(() => {
           localStorage.removeItem('user-info');
@@ -40,29 +37,26 @@ class Welcome extends Component  {
         });
       } else {
         this.setState({isLogin: false});
-        
       }
     }
 
-
     render() {
-      console.log( this.state.posts)
       if (this.state.isLogin === false) {
         return <Redirect to='/login' />
       }
       return (
         <div className="App">
         <NavBar/>
-        <div className="page">
-          <LeftMenu/>
-          <Post posts={this.state.posts}/>
-        </div>
-        <h1>.</h1> 
+        {this.state.isLoading ? 
+          <Loading/> : 
+          <div className="page">
+            <LeftMenu user={this.state.user}/>
+            <Post posts={this.state.posts}/>
+          </div>
+        }
       </div> 
     );
-    }
-    
-    
+    } 
 }
 
 export default Welcome;

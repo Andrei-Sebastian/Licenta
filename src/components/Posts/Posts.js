@@ -4,24 +4,36 @@ import Post from './Post/Post';
 import axios from 'axios';
 
 class posts extends Component {
-    state = {posts: this.props.posts};
+    state = {posts: []};
+    
+    componentDidMount() {
+        this.setState({posts: this.props.posts});
+    }
 
     onClickHandle(index) {
-        console.log(this.state[0])
-        try {
-            console.log(this.state.posts[index].liked);
         this.state.posts[index].liked = !this.state.posts[index].liked;
         this.state.posts[index].likes = !this.state.posts[index].liked ? this.state.posts[index].likes -= 1 : this.state.posts[index].likes += 1; 
-        this.setState({posts: this.state.posts});
+        let params = {
+            nid: this.state.posts[index].nid,
+            liked: this.state.posts[index].liked
         }
-        catch (err) {
-
-        }
-        
+         axios.post(`http://localhost:8080/like`,
+            params,
+            {
+                headers: {
+                    Authorization: localStorage.getItem("user-info"),
+                }
+            }
+        )
+        .then(() => {
+            this.setState({posts: this.state.posts});
+        })
+        .catch((err) => {
+            console.log("bad");
+        });
     }
 
     render() {
-        console.log(this.state);
         return (
             <div className="posts">
                 {this.props.posts.map( (post, i) => (

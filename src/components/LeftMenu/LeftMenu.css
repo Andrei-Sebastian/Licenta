@@ -1,11 +1,11 @@
 .menu {
-    background-color: #364450;
-    width: 500px;
-    height: 100%;
+    /* background-color: #364450; */
+    width: 400px;
+    /* height: 100%; */
     /* margin-top: 20px !important; */
     margin-top: 0px;
     position: fixed;
-    border-right: 1px solid rgb(107, 106, 106);
+    border-right: 1px solid rgb(173, 170, 170);
     background-size: contain;
     /* position: absolute; */
     /* top: 0px; */
@@ -14,20 +14,26 @@
 .userNamee {
     text-indent: 5px;
     font-family: arial;
-    font-size: 20px;
+    font-size: 15px;
     padding-left: 10px;
-    color: whitesmoke;
+    color: rgb(36, 32, 32);
     /* text-decoration: underline; */
 }
 
 .userProfile {
+    cursor: pointer;
     padding: 20px;
-    border-bottom: 1px solid rgb(107, 106, 106);
+    border-bottom:  1px solid rgb(173, 170, 170);
+    text-align:  left;
 }
 
 .userProfile:hover {
     background-color: #404e5a;
+    color: whitesmoke;
+    border-radius: 5px;
 }
+
+
 
 @media only screen and (max-width: 1000px) {
     .menu {

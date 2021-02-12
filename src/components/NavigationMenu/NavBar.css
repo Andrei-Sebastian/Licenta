@@ -2,40 +2,13 @@
     position: fixed;
     width: 100%;
     top: 0px;
-    /* margin-bottom: 200px; */
-    display: flex;
-    /* justify-content: space-around; */
+    /* display: flex; */
 }
 
 .mr-sm-2 {
     width: 500px !important;
 }
 
-.refreshIcon {
+.iconBar {
     cursor: pointer !important;
 }
-
-.search {
-    
-}
-
-.idk {
-    /* background-color: red; */
-    /* margin-right: 20px; */
-}
-/* 
-.search {
-    background-color: red;
-}
-
-.d {
-    background-color: blue;
-}
-
-.right {
-    background-color: green;
-}
-
-.mr-auto {
-    background-color: yellow;   
-} */

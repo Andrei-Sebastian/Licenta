@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Post.css';
 import like from '../../../Images/like.png';
 import likedd from '../../../Images/liked.png';
@@ -9,7 +9,7 @@ const post = (props) => {
             <div className="post">
                 <div className="aboutPost">
                     <img className="circular_image" src={props.profileImage}/>
-                    <a className="userName"href="https://www.w3schools.com/" target="_blank">{props.name}</a>
+                    <a className="userName" target="_blank">{props.name}</a>
                     <label className="id" >UID: {props.postId}</label>
                 </div>
                 <div className="divImage" >

@@ -28,22 +28,25 @@ class navBarComponent extends Component {
           //   </div>
           // </Navbar>
           <Navbar className="navBar" collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <CircularImage className="refreshIcon" image={logo} onClick={ () =>{window.location.reload(false); window.scrollTo(0, 0); } }/>
+            <div className="iconBar">
+              <CircularImage  image={logo} onClick={ () =>{window.location.reload(false); window.scrollTo(0, 0); } }/>
+            </div>
+            
             <Navbar.Toggle className="idk" aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
 
               <Nav className="mr-auto">
-                <Nav.Link href="#features">Features</Nav.Link>
-                <Nav.Link href="#pricing">Pricing</Nav.Link>
+                {/* <Nav.Link href="#features">Features</Nav.Link> */}
+                {/* <Nav.Link href="#pricing">Pricing</Nav.Link> */}
               </Nav>
 
               <Nav>
-                <Nav.Link href="#deets" >More deets</Nav.Link>
-                <Nav.Link eventKey={2} href="#memes">Dank memes</Nav.Link>
+                {/* <Nav.Link href="#deets" >More deets</Nav.Link> */}
+                {/* <Nav.Link eventKey={2} href="#memes">Dank memes</Nav.Link> */}
                 <NavDropdown title="More" id="collasible-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                  {/* <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item> */}
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={()=>{window.location.reload(); localStorage.removeItem('user-info')}}>Log out</NavDropdown.Item>
                 </NavDropdown>
