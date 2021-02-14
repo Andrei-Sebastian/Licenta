@@ -88,3 +88,16 @@
         margin: 1px;
     }
     
+    .description{
+        text-align: left;
+        margin: 10px 15px auto;
+    }
+
+    .seeMore {
+        color:rgb(75, 75, 75)
+    }
+    .seeMore:hover {
+        text-decoration: underline;
+        color: rgb(73, 70, 70);
+        cursor: pointer;
+    }

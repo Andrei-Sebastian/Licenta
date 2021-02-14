@@ -1,5 +1,6 @@
 import React from 'react';
 import './Post.css';
+import Text from '../../LongText/LongText';
 import like from '../../../Images/like.png';
 import likedd from '../../../Images/liked.png';
 
@@ -14,7 +15,9 @@ const post = (props) => {
                 <div className="divImage" >
                     <img className='image' src={props.postImage} alt='Not Found'/>
                 </div>
-                <p className="description">{props.comment ? props.comment : "~"} </p>
+                <div className="description">
+                    <Text text={props.comment} maxLength={150}/>
+                </div>
                 <hr className="line"/>
                 <div className='likeBtn' onClick={props.onClickHandle}>
                     { !props.liked ?

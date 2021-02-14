@@ -4,13 +4,13 @@ import Post from './Post/Post';
 import axios from 'axios';
 
 class posts extends Component {
-    state = {posts: []};
+    state = {posts: this.props.posts};
     
-    componentDidMount() {
-        this.setState({posts: this.props.posts});
-    }
+    // componentDidMount() {
+    //     this.setState({posts: this.props.posts});
+    // }
 
-    onClickHandle(index) {
+    onClickHandleLike(index) {
         this.state.posts[index].liked = !this.state.posts[index].liked;
         this.state.posts[index].likes = !this.state.posts[index].liked ? this.state.posts[index].likes -= 1 : this.state.posts[index].likes += 1; 
         let params = {
@@ -46,7 +46,7 @@ class posts extends Component {
                         profileImage={post.url_photo}
                         postImage={post.photo_url}
                         postId={post.uid}
-                        onClickHandle={() => this.onClickHandle(i)}
+                        onClickHandle={() => this.onClickHandleLike(i)}
                     />
                 ))}
             </div>

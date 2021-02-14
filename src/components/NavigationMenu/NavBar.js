@@ -12,7 +12,8 @@ class navBarComponent extends Component {
         return (
           <Navbar className="navBar" collapseOnSelect expand="lg" bg="dark" variant="dark">
             <div className="iconBar">
-              <CircularImage  image={logo} onClick={ () =>{window.location.reload(false); window.scrollTo(0, 0); } }/>
+              <CircularImage  image={logo} onClick={ () =>{window.location.reload(false);  } }/>
+              {/* window.scrollTo(0, 0); */}
             </div>
             
             <Navbar.Toggle className="idk" aria-controls="responsive-navbar-nav" />
