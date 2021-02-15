@@ -13,7 +13,10 @@ const post = (props) => {
                     <a className="userName" target="_blank">{props.name}</a>
                 </div>
                 <div className="divImage" >
-                    <img className='image' src={props.postImage} alt='Not Found'/>
+                    {
+                        props.postImage ?  <img className='image' src={props.postImage} alt='Not Found'/> : null
+                    }
+                   
                 </div>
                 <div className="description">
                     <Text text={props.comment} maxLength={150}/>

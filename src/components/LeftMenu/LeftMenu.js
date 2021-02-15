@@ -30,6 +30,13 @@ class LeftMenu extends Component {
                 <CircularImage image="https://www.vhv.rs/dpng/d/2-23844_google-map-vector-png-transparent-png.png"/>
                 <label className="userNamee">Map</label>
             </div>
+            <div className="prog">
+                <CircularImage image="https://w7.pngwing.com/pngs/317/713/png-transparent-scissors-computer-icons-scissors-scissors-icon-text-logo-symbol.png" style={{width: '25px', height: '25px'}}/>
+                <label className="progText">Your appointment</label>
+                <div>
+                    {this.props.user.app ? null : <label className="red">No yet</label> }
+                </div> 
+            </div>
 
         </div>
     }

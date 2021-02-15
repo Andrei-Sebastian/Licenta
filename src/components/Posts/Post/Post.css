@@ -69,13 +69,12 @@
         width: 200px;
         height: 30px;
         margin: 1px auto;
-        padding-bottom: 2x;
       }
 
        .likeBtn:hover{
         border-radius: 20px;
-        background-color: #d8e1e4;
-        border: 1px solid #95c6d5;
+        background-color: #d8dcdd;
+        border: 1px solid #9b9b9b;
         cursor: pointer;
       }
 
