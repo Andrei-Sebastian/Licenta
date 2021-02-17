@@ -11,7 +11,8 @@ import {Redirect} from "react-router-dom";
 class Welcome extends Component  {
     state = {
       posts: [],
-      user: [], 
+      user: [],
+      appointment:{}, 
       isLogin: true,
       isLoading: true
     };
@@ -28,7 +29,8 @@ class Welcome extends Component  {
         .then(res => {
           this.setState({
             posts: res.data.posts,
-            user: res.data.userDetails, 
+            user: res.data.userDetails,
+            appointment: res.data.appointment,
             isLogin: true, 
             isLoading: false});
         })
@@ -51,7 +53,7 @@ class Welcome extends Component  {
         {this.state.isLoading ? 
           <Loading/> : 
           <div className="page">
-            <LeftMenu user={this.state.user}/>
+            <LeftMenu user={this.state.user} appointment={this.state.appointment}/>
             <TopWelcome user={this.state.user}/>
             <Post posts={this.state.posts}/>
           </div>

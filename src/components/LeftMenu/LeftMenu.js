@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CircularImage from '../CircularImage/CircularImage';
+import Appointment from './Appointment/Appointment'; 
 import './LeftMenu.css';
 
 class LeftMenu extends Component {
@@ -31,11 +32,12 @@ class LeftMenu extends Component {
                 <label className="userNamee">Map</label>
             </div>
             <div className="prog">
-                <CircularImage image="https://w7.pngwing.com/pngs/317/713/png-transparent-scissors-computer-icons-scissors-scissors-icon-text-logo-symbol.png" style={{width: '25px', height: '25px'}}/>
+                {/* <CircularImage image="https://w7.pngwing.com/pngs/317/713/png-transparent-scissors-computer-icons-scissors-scissors-icon-text-logo-symbol.png" style={{width: '25px', height: '25px'}}/>
                 <label className="progText">Your appointment</label>
                 <div>
-                    {this.props.user.app ? null : <label className="red">No yet</label> }
-                </div> 
+                    {this.props.user.app ? null : <label className="red">Not yet</label> }
+                </div>  */}
+                <Appointment appointment={this.props.appointment}/>
             </div>
 
         </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Navbar, Button, FormControl, Form, Nav, Link, NavDropdown} from 'react-bootstrap'
+import {Navbar, Button, FormControl, Form, Nav, Link, NavDropdown} from 'react-bootstrap';
 import './NavBar.css';
 import CircularImage from '../CircularImage/CircularImage';
 import logo from '../../Images/logo.png';
