@@ -32,11 +32,6 @@ class LeftMenu extends Component {
                 <label className="userNamee">Map</label>
             </div>
             <div className="prog">
-                {/* <CircularImage image="https://w7.pngwing.com/pngs/317/713/png-transparent-scissors-computer-icons-scissors-scissors-icon-text-logo-symbol.png" style={{width: '25px', height: '25px'}}/>
-                <label className="progText">Your appointment</label>
-                <div>
-                    {this.props.user.app ? null : <label className="red">Not yet</label> }
-                </div>  */}
                 <Appointment appointment={this.props.appointment}/>
             </div>
 
