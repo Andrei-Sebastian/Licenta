@@ -45,7 +45,7 @@ class Text extends Component {
 
     render() {
         return (
-            <label className="descriptionText">
+            <label className="descriptionText" style={this.props.style}>
                 {this.state.text}
                 {this.state.addLabel}
             </label>          

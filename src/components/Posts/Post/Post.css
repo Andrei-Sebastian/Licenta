@@ -90,6 +90,8 @@
     .description{
         text-align: left;
         margin: 10px 15px auto;
+        object-fit: contain;
+        box-sizing: border-box;
     }
 
     .seeMore {

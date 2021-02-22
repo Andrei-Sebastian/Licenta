@@ -51,7 +51,7 @@ class Welcome extends Component  {
         <div className="App">
         <NavBar/>
         {this.state.isLoading ? 
-          <Loading/> : 
+          <Loading style={{marginTop: '70px'}}/> : 
           <div className="page">
             <LeftMenu user={this.state.user} appointment={this.state.appointment}/>
             <TopWelcome user={this.state.user}/>

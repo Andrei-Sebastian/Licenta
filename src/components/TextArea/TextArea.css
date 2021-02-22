@@ -1,0 +1,20 @@
+.textarea{
+	box-sizing: border-box;
+	border: none;
+	border-radius: 15px;
+	resize: none;
+	/* font-size: 20px; */
+	/* line-height: 24px; */
+	overflow: auto;
+	height: auto;
+	padding: 10px;
+	box-shadow: 0px 4px 10px -8px black;
+    width: 570px;
+}
+.textarea::placeholder {
+	color: gainsboro;
+}
+	
+.textarea:focus {
+	outline: none;
+}
