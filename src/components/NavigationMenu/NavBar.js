@@ -8,17 +8,31 @@ import logo from '../../Images/logo.png';
 
 class navBarComponent extends Component {
   state = {
-    addPost: false
+    addPost: false,
+    goToWelcome: false
   }
+
 
     render() { 
       if (this.state.addPost) {
-        return <Redirect to='/add/post' />
+        if (window.location.pathname == '/add/post') {
+          window.location.reload()
+        } else {
+          return <Redirect to='/add/post' />
+        }
       } 
+      if (this.state.goToWelcome) {
+        if (window.location.pathname == '/welcome') {
+          window.location.reload()
+        } else {
+          return <Redirect to='/welcome' />
+        }
+      }
         return (
           <Navbar className="navBar" collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <div className="iconBar">
-              <CircularImage  image={logo} onClick={ () =>{window.location.reload(false);  } }/>
+            <div className="iconBar" onClick={ () =>{ this.state.goToWelcome = true; this.setState(this.state); }}>
+              <CircularImage  image={logo} />
+              <label className="logoText">HairCut</label>
               {/* window.scrollTo(0, 0); */}
             </div>
             

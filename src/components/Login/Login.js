@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./Login.css";
 import axios from 'axios';
+import $ from 'jquery';
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -47,7 +48,8 @@ function Login() {
 
   return (
     <div className="Login">
-      <Form onSubmit={handleSubmit}>
+      <p>Login</p>
+      <Form >
         <Form.Group size="lg" controlId="email">
           <Form.Label>Email</Form.Label>
           <Form.Control
@@ -55,6 +57,7 @@ function Login() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
           />
         </Form.Group>
         <Form.Group size="lg" controlId="password">
@@ -63,10 +66,14 @@ function Login() {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
           />
         </Form.Group>
-        <Button type="submit" disabled={!validateForm()} > 
+        <Button disabled={!validateForm()} onClick={handleSubmit}> 
           Login
+        </Button>
+        <Button onClick={() => {history.push("/register");}}> 
+          Register
         </Button>
       </Form>
     </div>

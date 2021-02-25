@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import {Redirect} from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../Loading/Loading';
 import TextArea from '../TextArea/TextArea';
 import './AddPost.css';
+import './Emoji.css';
 import { Picker } from 'emoji-mart';
-import './AddPost.css';
+import Navbar  from '../NavigationMenu/NavBar';
 
 class AddPost extends Component {
     state = {
@@ -14,26 +16,30 @@ class AddPost extends Component {
         readyForPost: false,
         loading: false,
         showEmoji: false, 
-        rows: 3,
-        minRows: 3,
+        rows: 4,
+        minRows: 4,
         maxRows: 10,
     };
 
     uploadImage = (e) => {
-        const reader = new FileReader();
-        reader.onload = () => {
-            if(reader.readyState === 2){
-                this.setState({
-                    image: reader.result, 
-                    file: e.target.files[0],
-                    description: this.state.description, 
-                    readyForPost: false});
+        try {
+            const reader = new FileReader();
+            reader.onload = () => {
+                if(reader.readyState === 2){
+                    this.setState({
+                        image: reader.result, 
+                        file: e.target.files[0],
+                        description: this.state.description, 
+                        readyForPost: false});
+                }
             }
-        }
-        reader.readAsDataURL(e.target.files[0]);
-        
+            reader.readAsDataURL(e.target.files[0]);
+        } catch(err) {
+            // error when close file explorer
+        }   
     }
 
+    // create new post and add in mongo
     onClickHandlePost = async () => {
         this.state.loading = true;
         this.setState(this.state);
@@ -66,7 +72,7 @@ class AddPost extends Component {
     
     clickEmojiShow = () => {
         this.state.showEmoji = !this.state.showEmoji;
-        this.setState(this.state)
+        this.setState(this.state);
     }
 	
 	handleChange = (event) => {
@@ -92,45 +98,49 @@ class AddPost extends Component {
 	};
 
     render() {
+        if (localStorage.getItem('user-info') === null) {
+            return  <Redirect to='/login' />
+        }
         return (
-            <div className="newPost">
-                <div className="post">
-                <div className="aboutPost" style={{cursor: 'default', textAlign: 'center'}}>
-                    <p>New post</p>
-                </div>
-                <div className="divImage" >
-                    {
-                        this.state.image !== '' ?  
-                            <img className='image' src={this.state.image} alt='Not Found'/> : 
+            <>
+                <Navbar/>
+                <div className="newPost">
+                    <div className="post">
+                        <div className="new-post-title">
+                            <p>New post</p>
+                        </div>
+                        {this.state.image !== '' ? 
+                            <div> 
+                                <img className='image' src={this.state.image} alt='Not Found'/>
+                                <button className="choose-photo-button" onClick={() => this.fileInput.click()}>Choose another photo</button>
+                            </div> : 
                             <img className='image' style={{cursor: 'pointer'}} src='https://res.cloudinary.com/dm3pamnau/image/upload/v1613636290/folder_p/select-image_wl1bfc.webp' alt='Not Found' onClick={() => this.fileInput.click()}></img>
-                    }
-                </div>
-                <div className="description">
-                        <div className="form-group">
-                        {this.state.showEmoji ? <span><Picker onSelect={this.addEmoji}/></span> : null}
-                        <img className='emojiIco' src="https://cdn4.iconfinder.com/data/icons/users-29/32/165-01-512.png" onClick={this.clickEmojiShow.bind(this)}></img>
-                        <img className='emojiIco' src="https://cdn3.iconfinder.com/data/icons/pyconic-icons-1-2/512/text-uppercase-512.png" onClick={this.clickEmojiShow.bind(this)}></img>
-                        <TextArea 
-                            description={this.state.description}
-                            rows={this.state.rows}
-                            onChange={(e)=>this.handleChange(e)}
-                        />
+                        }
+                        <div className="description">
+                                {this.state.showEmoji ? <span><Picker onSelect={this.addEmoji}/></span> : null}
+                                <img className='show-emoji-icon' src="https://cdn4.iconfinder.com/data/icons/users-29/32/165-01-512.png" onClick={this.clickEmojiShow.bind(this)}></img>
+                                <img className='show-emoji-icon' src="https://cdn3.iconfinder.com/data/icons/pyconic-icons-1-2/512/text-uppercase-512.png" onClick={this.clickEmojiShow.bind(this)}></img>
+                                <TextArea 
+                                    description={this.state.description}
+                                    rows={this.state.rows}
+                                    onChange={(e)=>this.handleChange(e)}
+                                />
+                        </div>
+                        <hr className="line"/>
+                        {this.state.loading ? <Loading/> : <button className='upload-post-button' onClick={this.onClickHandlePost.bind(this)}>UPLOAD</button>}
+                    
                     </div>
+                    <input
+                        type="file"
+                        name="file"
+                        placeholder="Upload an image"
+                        style={{display: 'none'}}
+                        onChange={this.uploadImage}
+                        ref={fileInput => this.fileInput = fileInput}
+                    />
                 </div>
-                <hr className="line"/>
-                {this.state.loading ? <Loading/> : <button className='postBtn' onClick={this.onClickHandlePost.bind(this)}>UPLOAD</button>}
-                
-            </div>
-                <input
-                    type="file"
-                    name="file"
-                    placeholder="Upload an image"
-                    style={{display: 'none'}}
-                    onChange={this.uploadImage}
-                    ref={fileInput => this.fileInput = fileInput}
-                />
-            </div>
-        )
+            </>
+        );
     }  
 }
 

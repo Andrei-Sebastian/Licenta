@@ -5,12 +5,12 @@ const register = (props) => {
         return (
             <div className="container register">
                 <div className="row">
-                    <div className="col-md-3 register-left">
+                    {/* <div className="col-md-3 register-left">
                         <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
                         <h3>Welcome</h3>
                         <p>You are 30 seconds away from earning your own money!</p>
                         <input type="submit" name="" value="Login"/><br/>
-                    </div>
+                    </div> */}
                     <div className="col-md-9 register-right">
                         <ul className="nav nav-tabs nav-justified" id="myTab" role="tablist">
                             <li className="nav-item">
