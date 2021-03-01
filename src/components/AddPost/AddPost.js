@@ -127,7 +127,7 @@ class AddPost extends Component {
                                 />
                         </div>
                         <hr className="line"/>
-                        {this.state.loading ? <Loading/> : <button className='upload-post-button' onClick={this.onClickHandlePost.bind(this)}>UPLOAD</button>}
+                        {this.state.loading ? <Loading/> : <button className='upload-post-button' disabled={this.state.image === ''} onClick={this.onClickHandlePost.bind(this)}>UPLOAD</button>}
                     
                     </div>
                     <input

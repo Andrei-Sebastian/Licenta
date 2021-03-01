@@ -38,23 +38,26 @@ class navBarComponent extends Component {
             
             <Navbar.Toggle className="idk" aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
-
+            
               <Nav className="mr-auto">
-                {/* <Nav.Link href="#features">Features</Nav.Link> */}
-                {/* <Nav.Link href="#pricing">Pricing</Nav.Link> */}
+                {/* <Nav.Link href="#features">Features</Nav.Link>
+                <Nav.Link href="#pricing">Pricing</Nav.Link> */}
               </Nav>
 
-              <Nav>
-                {/* <Nav.Link href="#deets" >More deets</Nav.Link> */}
-                {/* <Nav.Link eventKey={2} href="#memes">Dank memes</Nav.Link> */}
-                {/* <NavDropdown title="More" id="collasible-nav-dropdown"> */}
-                  {/* <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item> */}
+              {/* <Nav>
+                <NavDropdown id="collasible-nav-dropdown"> 
+                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                   <Nav.Link onClick={()=>{this.setState({addPost: true})}}>Add post</Nav.Link>
                   <Nav.Link onClick={()=>{window.location.reload(); localStorage.removeItem('user-info')}}>Log out</Nav.Link>
-                  {/* <NavDropdown.Divider />
-                  <NavDropdown.Item onClick={()=>{window.location.reload(); localStorage.removeItem('user-info')}}>Log out</NavDropdown.Item> */}
-                {/* </NavDropdown> */}
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item onClick={()=>{window.location.reload(); localStorage.removeItem('user-info')}}>Log out</NavDropdown.Item>
+                </NavDropdown>
+              </Nav> */}
+
+              <Nav>
+                  <Nav.Link onClick={()=>{this.setState({addPost: true})}}>Add post</Nav.Link>
+                  <Nav.Link onClick={()=>{window.location.reload(); localStorage.removeItem('user-info')}}>Log out</Nav.Link>
               </Nav>
 
             </Navbar.Collapse>
