@@ -2,6 +2,8 @@ import React ,{Component} from 'react';
 import Welcome from './components/Welcome/Welcome';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
+import ForgotPassword from './components/ForgotPassword/ForgotPassword';
+import NewPassword from './components/NewPassword/NewPassword';
 import AddPost from './components/AddPost/AddPost';
 import {
   BrowserRouter as Router,
@@ -21,12 +23,20 @@ class App extends Component{
               <Login />
             </Route>
 
-            <Route path="/welcome">
-              <Welcome />
-            </Route>
-
             <Route path="/register">
               <Register />
+            </Route>
+
+            <Route path="/forgotpassword">
+              <ForgotPassword />
+            </Route>
+
+            <Route exact path="/resetpassword/:id"
+               component={NewPassword}
+            />
+
+            <Route path="/welcome">
+              <Welcome />
             </Route>
 
             <Route path="/add/post">

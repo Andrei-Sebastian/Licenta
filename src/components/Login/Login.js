@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {Redirect} from "react-router-dom";
+import ForgotPassword from "../ForgotPassword/ForgotPassword";
 import "./Login.css";
 import axios from 'axios';
 import $ from 'jquery';
@@ -12,6 +13,7 @@ class Login extends Component{
     password: '',
     logged: false,
     resgiser: false,
+    forgot: false,
     wrongEmail: false,
     wrongPassword: false,
   }
@@ -41,7 +43,6 @@ class Login extends Component{
       this.setState(this.state);
     })
     .catch (err => {
-      console.log("here")
       this.state.wrongEmail = true;
       this.state.wrongPassword = true;
       this.setState(this.state);
@@ -60,8 +61,12 @@ class Login extends Component{
       return <Redirect to="/welcome"/>
     }
 
-  if (this.state.resgiser) {
+    if (this.state.resgiser) {
       return <Redirect to="/register"/>
+    }
+
+    if (this.state.forgot) {
+      return <Redirect to="/forgotpassword"/>
     }
 
     return (
@@ -83,9 +88,6 @@ class Login extends Component{
                 onChange={(e) => {
                   this.state.email = e.target.value;
                   this.setState(this.state);
-                  if (this.state.email.length > 0) {
-
-                  }
                 }}
                 placeholder="Email"
               />
@@ -108,9 +110,9 @@ class Login extends Component{
               />
             </Form.Group>
             <button className="login-button" disabled={!this.validateForm()} onClick={this.handleSubmit}> 
-              SING IN
+              SIGN IN
             </button>
-            <p className="login-forgot-password" onClick={() => {console.log("FORGOT PASSWORD")}}>Forgot password?</p>
+            <p className="login-forgot-password" onClick={() => {this.state.forgot = true; this.setState(this.state); }}>Forgot password?</p>
             <hr></hr>
             <div className="sing-up-div">
               <label>Don’t have an account?</label> 

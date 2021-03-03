@@ -134,6 +134,8 @@ class AddPost extends Component {
                         type="file"
                         name="file"
                         placeholder="Upload an image"
+                        // accept="audio/*,video/*,image/*"
+                        accept="image/*"
                         style={{display: 'none'}}
                         onChange={this.uploadImage}
                         ref={fileInput => this.fileInput = fileInput}
