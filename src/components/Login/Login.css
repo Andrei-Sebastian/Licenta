@@ -109,3 +109,19 @@
   text-align: center;
 }
 
+.login-or-text {
+  color: rgb(87, 85, 85);
+  text-align: center;
+}
+
+.login-hr {
+  margin: 0;
+}
+
+.login-google-button {
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  width: 93;
+  height: 45;
+}

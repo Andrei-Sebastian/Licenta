@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import {Redirect} from "react-router-dom";
-import ForgotPassword from "../ForgotPassword/ForgotPassword";
-import "./Login.css";
 import axios from 'axios';
-import $ from 'jquery';
+import "./Login.css";
+import GoogleAccount from '../GoogleAccount/GoogleAccount';
 
 class Login extends Component{
   state = {
@@ -113,7 +111,11 @@ class Login extends Component{
               SIGN IN
             </button>
             <p className="login-forgot-password" onClick={() => {this.state.forgot = true; this.setState(this.state); }}>Forgot password?</p>
-            <hr></hr>
+            <hr className= "login-hr"></hr>
+            <p className="login-or-text">or</p>
+            <div className="login-google-button">
+              <GoogleAccount/>
+            </div>
             <div className="sing-up-div">
               <label>Don’t have an account?</label> 
               <label className="sing-up-label" onClick={() => {

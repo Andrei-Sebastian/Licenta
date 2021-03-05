@@ -3,17 +3,32 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {Redirect} from "react-router-dom";
 import "./NewPassword.css";
+import ExpiredToken from '../ExpiredToken/ExpiredToken'; 
 import axios from 'axios';
 import $ from 'jquery';
 
-class Login extends Component{
+class NewPassword extends Component{
   state = {
     newPassword: '',
     confirmPassword: '',
+    resetLink: this.props.match.params.id,
     login: false,
     resgiser: false,
     wrongNewPassword: false,
     wrongConfirmPassword: false,
+    expiredToken: false
+  }
+
+  constructor(props) {
+    super(props);
+    let params = {
+      resetToken: this.props.match.params.id
+    }
+    axios.get(`http://localhost:8080/verify/token`,{params})
+    .catch (err => {
+      this.state.expiredToken = true;
+      this.setState(this.state);
+    });
   }
 
   validateForm =  (() => {
@@ -65,19 +80,27 @@ class Login extends Component{
   });
 
   componentDidMount() {
-    if(localStorage.getItem('user-info')) {
+    if (localStorage.getItem('user-info')) {
       this.state.logged = true;
       this.setState(this.state);
     }
   };
 
   render() {
-    if (this.state.login) {
-      return <Redirect to="/login"/>
+    if (this.state.logged) {
+      return <Redirect to="/welcome"/>;
     }
 
-  if (this.state.resgiser) {
-      return <Redirect to="/register"/>
+    if (this.state.login) {
+      return <Redirect to="/login"/>;
+    }
+
+    if (this.state.resgiser) {
+        return <Redirect to="/register"/>;
+    }
+
+    if (this.state.expiredToken) {
+      return <ExpiredToken/>;
     }
 
     return (
@@ -136,4 +159,4 @@ class Login extends Component{
  
 }
 
-export default Login;
+export default NewPassword;
