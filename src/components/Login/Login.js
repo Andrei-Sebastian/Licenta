@@ -4,6 +4,7 @@ import {Redirect} from "react-router-dom";
 import axios from 'axios';
 import "./Login.css";
 import GoogleAccount from '../GoogleAccount/GoogleAccount';
+import FacebookAccount from '../FacebookAccount/FacebookAccount';
 
 class Login extends Component{
   state = {
@@ -115,6 +116,7 @@ class Login extends Component{
             <p className="login-or-text">or</p>
             <div className="login-google-button">
               <GoogleAccount/>
+              <FacebookAccount/>
             </div>
             <div className="sing-up-div">
               <label>Don’t have an account?</label> 

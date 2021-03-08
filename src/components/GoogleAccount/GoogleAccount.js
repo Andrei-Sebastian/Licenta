@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import GoogleLogin from 'react-google-login'
+import React, { Component } from 'react';
+import GoogleLogin from 'react-google-login';
 export class GoogleAccount extends Component {
 
   responseFailureGoogle=(response)=>{
@@ -13,6 +13,10 @@ export class GoogleAccount extends Component {
   }
   
   render() {
+    let style = {
+      width: '100px !important',
+      'margin-left': '20px'
+    }
     return (
       <div>
         <GoogleLogin
@@ -21,7 +25,8 @@ export class GoogleAccount extends Component {
         onSuccess={this.responseSuccessGoogle}
         onFailure={this.responseFailureGoogle}
         cookiePolicy={'single_host_origin'}
-        
+        style={style}
+
         />
       </div>
     )
