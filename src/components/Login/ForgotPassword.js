@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
-// import Button from "react-bootstrap/Button";
 import {Redirect} from "react-router-dom";
-import "./ForgotPassword.css";
 import axios from 'axios';
+import Layout from "./layout";
 
 class Login extends Component{
   state = {
@@ -64,17 +63,14 @@ class Login extends Component{
     }
 
     return (
-      <div className="login-page-div">
-        <div className="login-form">
-        
-          
-          <p className="login-title">SEND EMAIL</p>
+      <Layout title="SEND EMAIL">
           <Form >
             <Form.Group size="lg" controlId="email">
               <Form.Label 
                 className="email-label"
                 style={this.state.email.length > 0 ? {display: 'block'} :  {display: 'none'}}
               >Email</Form.Label>
+              
               <Form.Control
                 className="input-form input-email"
                 autoFocus
@@ -89,17 +85,22 @@ class Login extends Component{
               />
             </Form.Group>
             
-            <button className="login-button" disabled={!this.validateForm()} onClick={this.handleSubmit}> 
+            <button className="submit-button" disabled={!this.validateForm()} onClick={this.handleSubmit}> 
               SEND EMAIL
             </button>
           </Form>
-          <hr style={{width: '100%', margin:'20px 0 20px 0'}}></hr>
+
+          <hr/>
+
           <div className='back-to-login-div' onClick={() => {this.state.login=true; this.setState(this.state);}}>
-            <img className='back-to-login-icon' src='https://cdn2.iconfinder.com/data/icons/pittogrammi/142/27-512.png'></img>
+            <img 
+              className='back-to-login-icon' 
+              src='https://cdn2.iconfinder.com/data/icons/pittogrammi/142/27-512.png'
+              loading="lazy"
+            />
           <label className='back-to-login-label'>Back to login</label>
         </div>
-        </div>
-      </div>
+      </Layout>
     );
   }
  

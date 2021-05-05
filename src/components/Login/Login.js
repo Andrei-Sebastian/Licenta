@@ -1,31 +1,35 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
-import {Redirect} from "react-router-dom";
 import axios from 'axios';
-import "./Login.css";
-import GoogleAccount from '../GoogleAccount/GoogleAccount';
-import FacebookAccount from '../FacebookAccount/FacebookAccount';
+import GoogleAccount from './GoogleAccount';
+import FacebookAccount from './FacebookAccount';
+import Layout from "./layout";
 
-class Login extends Component{
-  state = {
-    email: '',
-    password: '',
-    logged: false,
-    resgiser: false,
-    forgot: false,
-    wrongEmail: false,
-    wrongPassword: false,
-  }
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [logged, setLogged] = useState(false);
+  const [resgiser, setResgiser] = useState(false);
+  const [forgot, setForgot] = useState(false);
+  const [wrongEmail, setWrongEmail] = useState(false);
+  const [wrongPassword, setWrongPassword] = useState(false);
 
-  validateForm =  (() => {
+  // useEffect(() => {
+  //   if(localStorage.getItem('user-info')) {
+  //     window.location.href = '/welcome';
+  //   }  
+  // });
+
+
+ const validateForm =  () => {
     return true;
-  });
+  };
 
-  handleSubmit = ((event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     let params = {
-      email: this.state.email,
-      password: this.state.password,
+      email: email,
+      password: password,
     };
     
     axios.post(`http://localhost:8080/login`,
@@ -38,99 +42,73 @@ class Login extends Component{
       })
     .then( response => {
       localStorage.setItem('user-info', response.data.accessToken);
-      this.state.logged = true;
-      this.setState(this.state);
+      window.location.href='/welcome';
     })
     .catch (err => {
-      this.state.wrongEmail = true;
-      this.state.wrongPassword = true;
-      this.setState(this.state);
+      setWrongEmail(true);
+      setWrongPassword(true);
     });
-  });
+  }; 
 
-  componentDidMount() {
-    if(localStorage.getItem('user-info')) {
-      this.state.logged = true;
-      this.setState(this.state);
-    }
-  };
+  return (
+    <Layout title="Login">
+        <Form >
+          <Form.Group size="lg" controlId="email">
+            <Form.Label 
+              className="email-label"
+              style={email.length > 0 ? {display: 'block'} :  {display: 'none'}}
+            >Email</Form.Label>
+            <Form.Control
+              className="input-form input-email"
+              autoFocus
+              type="email"
+              value={email}
+              style={wrongEmail ? {borderColor: 'red'} : {}}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+            />
+          </Form.Group>
+          <Form.Group size="lg" controlId="password">
+            <Form.Label 
+              className="password-label"
+              style={password.length > 0 ? {display: 'block'} :  {display: 'none'}}
+            >Password</Form.Label>
+            <Form.Control
+              className="input-form input-password"
+              type="password"
+              value={password}
+              style={wrongPassword ? {borderColor: 'red'} : {}}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+            />
+          </Form.Group>
+          <button 
+            className="submit-button"
+            onClick={handleSubmit}
+          > 
+            SIGN IN
+          </button>
 
-  render() {
-    if (this.state.logged) {
-      return <Redirect to="/welcome"/>
-    }
+          <p className="login-forgot-password" >
+            <a href="/forgotpassword">Forgot password?</a>
+          </p>
 
-    if (this.state.resgiser) {
-      return <Redirect to="/register"/>
-    }
+          <hr className= "login-hr"></hr>
 
-    if (this.state.forgot) {
-      return <Redirect to="/forgotpassword"/>
-    }
+          <p className="login-or-text">or</p>
 
-    return (
-      <div className="login-page-div">
-        <div className="login-form">
-          <p className="login-title">Login</p>
-          <Form >
-            <Form.Group size="lg" controlId="email">
-              <Form.Label 
-                className="email-label"
-                style={this.state.email.length > 0 ? {display: 'block'} :  {display: 'none'}}
-              >Email</Form.Label>
-              <Form.Control
-                className="input-form input-email"
-                autoFocus
-                type="email"
-                value={this.state.email}
-                style={this.state.wrongEmail ? {borderColor: 'red'} : {}}
-                onChange={(e) => {
-                  this.state.email = e.target.value;
-                  this.setState(this.state);
-                }}
-                placeholder="Email"
-              />
-            </Form.Group>
-            <Form.Group size="lg" controlId="password">
-              <Form.Label 
-                className="password-label"
-                style={this.state.password.length > 0 ? {display: 'block'} :  {display: 'none'}}
-              >Password</Form.Label>
-              <Form.Control
-                className="input-form input-password"
-                type="password"
-                value={this.state.password}
-                style={this.state.wrongPassword ? {borderColor: 'red'} : {}}
-                onChange={(e) => {
-                  this.state.password = e.target.value;
-                  this.setState(this.state);
-                }}
-                placeholder="Password"
-              />
-            </Form.Group>
-            <button className="login-button" disabled={!this.validateForm()} onClick={this.handleSubmit}> 
-              SIGN IN
-            </button>
-            <p className="login-forgot-password" onClick={() => {this.state.forgot = true; this.setState(this.state); }}>Forgot password?</p>
-            <hr className= "login-hr"></hr>
-            <p className="login-or-text">or</p>
-            <div className="login-google-button">
-              <GoogleAccount/>
-              <FacebookAccount/>
-            </div>
-            <div className="sing-up-div">
-              <label>Don’t have an account?</label> 
-              <label className="sing-up-label" onClick={() => {
-                this.state.resgiser = true;
-                this.setState(this.state);
-              }}>Sign up</label> 
-            </div>
-          </Form>
-           
-        </div>
-      </div>
-    );
-  }
+          <div className="login-google-button">
+            <GoogleAccount/>
+            <FacebookAccount/>
+          </div>
+          
+          <div className="sing-up-div">
+            <label>Don’t have an account? <a href="/register">Sign up</a></label> 
+          </div>
+        </Form>
+          
+      </Layout>
+  );
  
 }
 

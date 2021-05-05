@@ -1,9 +1,9 @@
 import React ,{Component} from 'react';
 import Welcome from './components/welcome/Welcome';
 import Login from './components/Login/Login';
-import Register from './components/Register/Register';
-import ForgotPassword from './components/ForgotPassword/ForgotPassword';
-import NewPassword from './components/NewPassword/NewPassword';
+import Register from './components/Login/Register';
+import ForgotPassword from './components/Login/ForgotPassword';
+import NewPassword from './components/Login/NewPassword';
 import AddPost from './components/AddPost/AddPost';
 import Schadule from './components/profile-stylist/profile-stylist';
 import {

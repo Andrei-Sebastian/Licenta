@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import {Redirect} from "react-router-dom";
-import "./NewPassword.css";
-import ExpiredToken from '../ExpiredToken/ExpiredToken'; 
+import ExpiredToken from './ExpiredToken'; 
 import axios from 'axios';
 
 class NewPassword extends Component{
