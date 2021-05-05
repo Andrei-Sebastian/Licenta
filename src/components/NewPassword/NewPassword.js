@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import {Redirect} from "react-router-dom";
 import "./NewPassword.css";
 import ExpiredToken from '../ExpiredToken/ExpiredToken'; 
 import axios from 'axios';
-import $ from 'jquery';
 
 class NewPassword extends Component{
   state = {
@@ -118,7 +116,7 @@ class NewPassword extends Component{
                 autoFocus
                 type="password"
                 // value={this.state.email}
-                style={this.state.wrongNewPassword ? {'border-color': 'red'} : {}}
+                style={this.state.wrongNewPassword ? {borderColor: 'red'} : {}}
                 onChange={(e) => {
                   this.state.newPassword = e.target.value;
                   this.setState(this.state);
@@ -135,7 +133,7 @@ class NewPassword extends Component{
                 className="input-form input-password"
                 type="password"
                 // value={this.state.password}
-                style={this.state.wrongConfirmPassword ? {'border-color': 'red'} : {}}
+                style={this.state.wrongConfirmPassword ? {borderColor: 'red'} : {}}
                 onChange={(e) => {
                   this.state.confirmPassword = e.target.value;
                   this.setState(this.state);
@@ -149,7 +147,12 @@ class NewPassword extends Component{
           </Form>
           <hr style={{width: '100%', margin:'20px 0 20px 0'}}></hr>
           <div className='back-to-login-div' onClick={() => {this.state.login=true; this.setState(this.state);}}>
-            <img className='back-to-login-icon' src='https://cdn2.iconfinder.com/data/icons/pittogrammi/142/27-512.png'></img>
+            <img 
+              className='back-to-login-icon' 
+              alt="Back to login"
+              loading="lazy"
+              src='https://cdn2.iconfinder.com/data/icons/pittogrammi/142/27-512.png'
+            />
           <label className='back-to-login-label'>Back to login</label>
         </div>
         </div>

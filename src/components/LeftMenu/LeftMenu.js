@@ -7,7 +7,7 @@ class LeftMenu extends Component {
 
     render () {
         return <div className="menu">
-            <div className="userProfile">
+            {/* <div className="userProfile">
                 <CircularImage image={this.props.user.url_photo}/>
                 <label className="userNamee">{this.props.user.name}</label>
             </div>
@@ -30,7 +30,7 @@ class LeftMenu extends Component {
             <div className="userProfile">
                 <CircularImage image="https://www.vhv.rs/dpng/d/2-23844_google-map-vector-png-transparent-png.png"/>
                 <label className="userNamee">Map</label>
-            </div>
+            </div> */}
             <div className="prog">
                 <Appointment appointment={this.props.appointment}/>
             </div>

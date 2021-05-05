@@ -5,10 +5,6 @@ import axios from 'axios';
 
 class posts extends Component {
     state = {posts: this.props.posts};
-    
-    // componentDidMount() {
-    //     this.setState({posts: this.props.posts});
-    // }
 
     onClickHandleLike(index) {
         this.state.posts[index].liked = !this.state.posts[index].liked;

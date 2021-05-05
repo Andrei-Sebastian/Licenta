@@ -11,15 +11,4 @@
 .bolt {
   font-weight: bold;
 }
-/* 
-*, ::after, ::before {
-  box-sizing: unset;
-} */
 
-.page {
-  /* display: flex; */
-}
-
-body {
-  /* background-image: none !important; */
-}

@@ -1,0 +1,30 @@
+.welcome-user {
+    margin: auto;
+    margin-top: 70px;
+    background-color: rgb(240, 235, 235);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-sizing: border-box;   
+    text-align: center;
+    width: 600px;
+    padding-bottom: 5px;
+
+    @media (max-width: 600px) {
+        width: 97%;
+    }
+
+    div {
+        padding: 5px 0 0 5px;
+        // cursor: pointer;
+    }
+
+    hr {
+        margin: 10px;
+    }
+    
+    
+}
+
+
+
+
