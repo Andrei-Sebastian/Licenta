@@ -2,11 +2,11 @@ import './Welcome.css';
 import React, {Component}  from 'react';
 import Post from '../Posts/Posts';
 import Loading from '../Loading/Loading';
-import NavBar from '../NavigationMenu/NavBar';
 import LeftMenu from '../LeftMenu/LeftMenu';
-import TopWelcome from '../TopWelcome/TopWelcome';
+import TopWelcome from '../TopWelcome/top-welcome';
 import axios from 'axios';
 import {Redirect} from "react-router-dom";
+import Layout from "../layout";
 
 class Welcome extends Component  {
     state = {
@@ -48,17 +48,16 @@ class Welcome extends Component  {
         return <Redirect to='/login' />
       }
       return (
-        <div className="App">
-        <NavBar/>
-        {this.state.isLoading ? 
-          <Loading style={{marginTop: '70px'}}/> : 
-          <div className="page">
-            <LeftMenu user={this.state.user} appointment={this.state.appointment}/>
-            <TopWelcome user={this.state.user}/>
-            <Post posts={this.state.posts}/>
-          </div>
-        }
-      </div> 
+        <Layout>
+          {this.state.isLoading ? 
+            <Loading style={{marginTop: '70px', textAlign: 'center'}}/> : 
+            <div className="page">
+              <LeftMenu user={this.state.user} appointment={this.state.appointment}/>
+              <TopWelcome user={this.state.user}/>
+              <Post posts={this.state.posts}/>
+            </div>
+          }
+        </Layout>
     );
     } 
 }

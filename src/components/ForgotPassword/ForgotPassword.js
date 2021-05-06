@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 import {Redirect} from "react-router-dom";
 import "./ForgotPassword.css";
 import axios from 'axios';
-import $ from 'jquery';
 
 class Login extends Component{
   state = {
@@ -81,7 +80,7 @@ class Login extends Component{
                 autoFocus
                 type="email"
                 value={this.state.email}
-                style={this.state.wrongEmail ? {'border-color': 'red'} : {}}
+                style={this.state.wrongEmail ? {borderColor: 'red'} : {}}
                 onChange={(e) => {
                   this.state.email = e.target.value;
                   this.setState(this.state);

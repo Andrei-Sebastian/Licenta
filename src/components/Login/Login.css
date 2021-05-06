@@ -24,8 +24,6 @@
 
 .login-page-div {
   background-image: url('https://wallpaperaccess.com/full/3717112.jpg');
-
-  /* background-image: url('https://res.cloudinary.com/dm3pamnau/image/upload/v1614673318/static/login-background_p71yn3.jpg'); */
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -78,9 +76,6 @@
   border-radius: 20px;
 }
 
-.input-form:focus {
-  
-}
 
 .login-forgot-password {
   color: rgb(87, 85, 85);

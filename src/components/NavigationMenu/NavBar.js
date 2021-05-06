@@ -1,36 +1,24 @@
 import React, { Component } from 'react';
-import {Navbar, Button, FormControl, Form, Nav, Link, NavDropdown} from 'react-bootstrap';
-import {Redirect} from "react-router-dom";
+import {
+  Navbar, 
+  // Button, 
+  // FormControl, 
+  // Form, 
+  Nav, 
+  // Link, 
+  // NavDropdown
+} from 'react-bootstrap';
+// import {Redirect} from "react-router-dom";
 import './NavBar.css';
 import CircularImage from '../CircularImage/CircularImage';
-import logo from '../../Images/logo.png';
+import logo from '../../images/logo.png';
 
 
 class navBarComponent extends Component {
-  state = {
-    addPost: false,
-    goToWelcome: false
-  }
-
-
-    render() { 
-      if (this.state.addPost) {
-        if (window.location.pathname == '/add/post') {
-          window.location.reload()
-        } else {
-          return <Redirect to='/add/post' />
-        }
-      } 
-      if (this.state.goToWelcome) {
-        if (window.location.pathname == '/welcome') {
-          window.location.reload()
-        } else {
-          return <Redirect to='/welcome' />
-        }
-      }
+    render() {
         return (
           <Navbar className="navBar" collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <div className="iconBar" onClick={ () =>{ this.state.goToWelcome = true; this.setState(this.state); }}>
+            <div className="iconBar" onClick={ () =>{ window.location.href="/welcome" }}>
               <CircularImage  image={logo} />
               <label className="logoText">HairCut</label>
               {/* window.scrollTo(0, 0); */}
@@ -56,7 +44,8 @@ class navBarComponent extends Component {
               </Nav> */}
 
               <Nav>
-                  <Nav.Link onClick={()=>{this.setState({addPost: true})}}>Add post</Nav.Link>
+                  <Nav.Link onClick={()=>{ window.location.href="/add/post" }}>Add post</Nav.Link>
+                  <Nav.Link onClick={()=>{ window.location.href="/schadule" }}>Schadule</Nav.Link>
                   <Nav.Link onClick={()=>{window.location.reload(); localStorage.removeItem('user-info')}}>Log out</Nav.Link>
               </Nav>
 

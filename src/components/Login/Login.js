@@ -83,7 +83,7 @@ class Login extends Component{
                 autoFocus
                 type="email"
                 value={this.state.email}
-                style={this.state.wrongEmail ? {'border-color': 'red'} : {}}
+                style={this.state.wrongEmail ? {borderColor: 'red'} : {}}
                 onChange={(e) => {
                   this.state.email = e.target.value;
                   this.setState(this.state);
@@ -100,7 +100,7 @@ class Login extends Component{
                 className="input-form input-password"
                 type="password"
                 value={this.state.password}
-                style={this.state.wrongPassword ? {'border-color': 'red'} : {}}
+                style={this.state.wrongPassword ? {borderColor: 'red'} : {}}
                 onChange={(e) => {
                   this.state.password = e.target.value;
                   this.setState(this.state);

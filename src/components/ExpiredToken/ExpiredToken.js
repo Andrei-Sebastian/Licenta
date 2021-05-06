@@ -28,7 +28,7 @@ class Login extends Component{
           <p className="login-forgot-password" onClick={() => {this.state.forgot = true; this.setState(this.state); }}>Resend now</p>
           <hr style={{width: '100%', margin:'20px 0 20px 0'}}></hr>
           <div className='back-to-login-div' onClick={() => {this.state.login=true; this.setState(this.state);}}>
-            <img className='back-to-login-icon' src='https://cdn2.iconfinder.com/data/icons/pittogrammi/142/27-512.png'></img>
+            <img className='back-to-login-icon' src='https://cdn2.iconfinder.com/data/icons/pittogrammi/142/27-512.png' loading="lazy"/>
           <label className='back-to-login-label'>Back to login</label>
         </div>
         </div>

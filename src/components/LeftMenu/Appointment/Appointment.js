@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import './Appointment.css';
+
+import './appointment.scss';
+
+import barberImg from '../../../images/welcome/barber.svg'
+import CalendarImg from '../../../images/welcome/calendar.svg'
+import LocationImg from '../../../images/welcome/location-map.svg'
 
 class Appointment extends Component {
 
@@ -9,26 +14,48 @@ class Appointment extends Component {
             <p className="appointmentTitle">Your appointment</p>
             <div>
                 <div className="appointmentTime">
-                    <img className="appointmentIcon" src="https://res.cloudinary.com/dm3pamnau/image/upload/v1613555493/folder_p/calendar_n3dviy.svg"/>
+                    <img 
+                        className="appointmentIcon" 
+                        src={CalendarImg}
+                        width="512px"
+                        height="512px"
+                        alt="Data"
+                        loading="lazy"
+                        />
                     <div>
-                        <label className='appointmentText' style={{'marginBottom': 0}}>Date:</label> 
-                        <label className='appointmentText1' style={{'marginBottom': 0}}>{this.props.appointment.date ? this.props.appointment.date : "N/A"}</label>
-                        <br/>
-                        <label className='appointmentText'>Time:</label>
-                        <label className='appointmentText1'>{this.props.appointment.time ? this.props.appointment.time : "N/A"}</label>
+                        <div className="data-time-div">
+                            <strong>Date:</strong> 
+                            <label  >{this.props.appointment.date ? this.props.appointment.date : "N/A"}</label>
+                        </div>
+                        <strong>Time:</strong>
+                        <label >{this.props.appointment.time ? this.props.appointment.time : "N/A"}</label>
                     </div>
                     
                 </div>
 
                 <div>
-                <img className="appointmentIcon" src="https://res.cloudinary.com/dm3pamnau/image/upload/v1613555635/folder_p/barber_evuu5d.svg"/>
-                    <label className='appointmentText'>Hair-Stylist:</label>
-                    <label className='appointmentText1'>{this.props.appointment.name ? this.props.appointment.name : "N/A"}</label>
+                    <img 
+                        className="appointmentIcon" 
+                        src={barberImg}
+                        width="512px"
+                        height="512px"
+                        alt='Stylist'
+                        loading="lazy"
+                    />
+                    <strong>Hair-Stylist:</strong>
+                    <label >{this.props.appointment.name ? this.props.appointment.name : "N/A"}</label>
                 </div>
                 <div>
-                <img className="appointmentIcon" src="https://res.cloudinary.com/dm3pamnau/image/upload/v1613555807/folder_p/location-map_ffyqrl.svg"/>
-                    <label className='appointmentText'>Location: </label>
-                    <label className='appointmentText1'>{this.props.appointment.location ? this.props.appointment.location : "N/A"}</label>
+                    <img 
+                        className="appointmentIcon" 
+                        src={LocationImg}
+                        width="512px"
+                        height="512px"
+                        alt='Location'
+                        loading="lazy"
+                    />
+                    <strong>Location:</strong>
+                    <label >{this.props.appointment.location ? this.props.appointment.location : "N/A"}</label>
                 </div>
                 <div></div>
             </div>

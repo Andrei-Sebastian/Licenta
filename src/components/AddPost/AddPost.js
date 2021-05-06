@@ -6,7 +6,7 @@ import TextArea from '../TextArea/TextArea';
 import './AddPost.css';
 import './Emoji.css';
 import { Picker } from 'emoji-mart';
-import Navbar  from '../NavigationMenu/NavBar';
+import Layout from '../layout';
 
 class AddPost extends Component {
     state = {
@@ -102,8 +102,8 @@ class AddPost extends Component {
             return  <Redirect to='/login' />
         }
         return (
-            <>
-                <Navbar/>
+            <Layout>
+                {/* <Navbar/> */}
                 <div className="newPost">
                     <div className="post">
                         <div className="new-post-title">
@@ -141,7 +141,7 @@ class AddPost extends Component {
                         ref={fileInput => this.fileInput = fileInput}
                     />
                 </div>
-            </>
+            </Layout>
         );
     }  
 }

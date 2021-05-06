@@ -1,20 +1,27 @@
 import React from 'react';
 import './Post.css';
 import Text from '../../LongText/LongText';
-import like from '../../../Images/like.png';
-import likedd from '../../../Images/liked.png';
+import like from '../../../images/like.png';
+import liked from '../../../images/liked.png';
 
 
 const post = (props) => {
     return (
         <div className="post">
             <div className="aboutPost">
-                <img className="circular_image" src={props.profileImage}/>
-                <a className="userName" target="_blank">{props.name}</a>
+                <img 
+                    className="circular_image" 
+                    alt="User profile" 
+                    src={props.profileImage} 
+                    loading="lazy"
+                    width="300px"
+                    height="300px"
+                />
+                <a className="userName" target="_blank" href='/welcome'>{props.name}</a>
             </div>
             <div className="divImage" >
                 {
-                    props.postImage ?  <img className='image' src={props.postImage} alt='Not Found'/> : null
+                    props.postImage ?  <img className='image' src={props.postImage} alt='Not Found' loading="lazy"/> : null
                 }
                 
             </div>
@@ -24,7 +31,20 @@ const post = (props) => {
             <hr className="line"/>
             <div className='likeBtn' onClick={props.onClickHandle}>
                 { !props.liked ?
-                    <img className="imageLike" src={like}></img> : <img src={likedd}></img>
+                    <img
+                        src={like} 
+                        alt="Like"
+                        width="32px"
+                        height="32px"
+                        loading="lazy"
+                    /> :
+                    <img 
+                        src={liked} 
+                        alt="Liked" 
+                        width="32px"
+                        height="32px"
+                        loading="lazy"
+                    />
                 }
                 <label className="numberOfLikes">{props.numberOfLikes}</label>  
             </div>
