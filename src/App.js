@@ -6,7 +6,11 @@ import ForgotPassword from './components/ForgotPassword/ForgotPassword';
 import NewPassword from './components/NewPassword/NewPassword';
 import AddPost from './components/AddPost/AddPost';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import GoogleMaps from './components/GoogleMaps/GoogleMaps';
+=======
+import Schadule from './components/profile-stylist/profile-stylist';
+>>>>>>> f764dfe93c8592e4e838a64e4b6bd946468ec505
 =======
 import Schadule from './components/profile-stylist/profile-stylist';
 >>>>>>> f764dfe93c8592e4e838a64e4b6bd946468ec505
@@ -49,8 +53,13 @@ class App extends Component{
             </Route>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             <Route path="/map">
               <GoogleMaps />
+=======
+            <Route path="/schadule">
+              <Schadule />
+>>>>>>> f764dfe93c8592e4e838a64e4b6bd946468ec505
 =======
             <Route path="/schadule">
               <Schadule />
