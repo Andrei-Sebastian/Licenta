@@ -5,6 +5,7 @@ import Register from './components/Register/Register';
 import ForgotPassword from './components/ForgotPassword/ForgotPassword';
 import NewPassword from './components/NewPassword/NewPassword';
 import AddPost from './components/AddPost/AddPost';
+import GoogleMaps from './components/GoogleMaps/GoogleMaps';
 import {
   BrowserRouter as Router,
   Switch,
@@ -41,6 +42,10 @@ class App extends Component{
 
             <Route path="/add/post">
               <AddPost />
+            </Route>
+
+            <Route path="/map">
+              <GoogleMaps />
             </Route>
 
             <Route>
