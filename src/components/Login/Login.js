@@ -1,25 +1,24 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import axios from 'axios';
-import GoogleAccount from './GoogleAccount';
-import FacebookAccount from './FacebookAccount';
+import GoogleAccount from './button-google-account';
+import FacebookAccount from './button-facebook-account';
 import Layout from "./layout";
+import {
+  Navbar, 
+  Button, 
+  // FormControl, 
+  // Form, 
+  Nav, 
+  // Link, 
+  // NavDropdown
+} from 'react-bootstrap';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [logged, setLogged] = useState(false);
-  const [resgiser, setResgiser] = useState(false);
-  const [forgot, setForgot] = useState(false);
   const [wrongEmail, setWrongEmail] = useState(false);
   const [wrongPassword, setWrongPassword] = useState(false);
-
-  // useEffect(() => {
-  //   if(localStorage.getItem('user-info')) {
-  //     window.location.href = '/welcome';
-  //   }  
-  // });
-
 
  const validateForm =  () => {
     return true;
@@ -27,11 +26,12 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    
     let params = {
       email: email,
       password: password,
     };
-    
+
     axios.post(`http://localhost:8080/login`,
       params,
       {
@@ -53,7 +53,7 @@ const Login = () => {
   return (
     <Layout title="Login">
         <Form >
-          <Form.Group size="lg" controlId="email">
+          <Form.Group size="lg" controlId="email" >
             <Form.Label 
               className="email-label"
               style={email.length > 0 ? {display: 'block'} :  {display: 'none'}}
@@ -83,11 +83,22 @@ const Login = () => {
             />
           </Form.Group>
           <button 
+            variant="primary" 
+            type="submit"
             className="submit-button"
             onClick={handleSubmit}
           > 
             SIGN IN
           </button>
+{/* 
+          <Button 
+            variant="primary" 
+            type="submit"
+            className="submit-button"
+            onClick={handleSubmit}
+          >
+            SIGN IN
+          </Button> */}
 
           <p className="login-forgot-password" >
             <a href="/forgotpassword">Forgot password?</a>
@@ -103,7 +114,7 @@ const Login = () => {
           </div>
           
           <div className="sing-up-div">
-            <label>Don’t have an account? <a href="/register">Sign up</a></label> 
+            <label>Don’t have an account? <a href="/newAccount">Sign up</a></label> 
           </div>
         </Form>
           

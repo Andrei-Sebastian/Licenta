@@ -1,9 +1,11 @@
 import React ,{Component} from 'react';
 import Welcome from './components/welcome/Welcome';
-import Login from './components/Login/Login';
-import Register from './components/Login/Register';
-import ForgotPassword from './components/Login/ForgotPassword';
-import NewPassword from './components/Login/NewPassword';
+import Login from './components/Login/login';
+import SetProfile from './components/Login/set-profile';
+import Register from './components/Login/register';
+import NewAccount from './components/Login/new-account';
+import ForgotPassword from './components/Login/forgot-password';
+import NewPassword from './components/Login/new-password';
 import AddPost from './components/AddPost/AddPost';
 import Schadule from './components/profile-stylist/profile-stylist';
 import {
@@ -22,6 +24,10 @@ class App extends Component{
 
             <Route path="/login">
               <Login />
+            </Route>
+
+            <Route path="/setProfile">
+              <SetProfile />
             </Route>
 
             <Route path="/register">
@@ -47,6 +53,11 @@ class App extends Component{
             <Route path="/schadule">
               <Schadule />
             </Route>
+
+            <Route path="/newAccount">
+              <NewAccount />
+            </Route>
+
 
             <Route>
               <Redirect to="/welcome" />
