@@ -7,7 +7,8 @@ import profileImg from "../../images/profile.png"
 import maleImg from "../../images/male.png";
 import femaleImg from "../../images/female.png";
 
-import PhoneInput from 'react-phone-input-2'
+import PhoneInput from 'react-phone-input-2';
+import GoogleMaps from "../google-maps/google-maps";
 // import 'react-phone-input-2/lib/style.css'
 
 const Register = (props) => {
@@ -17,7 +18,7 @@ const Register = (props) => {
     const [middleName, setMiddleName] = useState('');
     const [profilePhoto, setProfilePhoto] = useState('');
     const [role, setRole] = useState('stylist');
-    const [address, setAddress] = useState('');
+    const [address, setAddress] = useState('47.64496610136732, 26.255682705745027');
     const [phoneNumber, setPhoneNumber] = useState();
     const [gender, setGender] = useState("");
     // const [profilePhoto, setprofilePhoto] = useState("");
@@ -184,9 +185,10 @@ const Register = (props) => {
                             type="text" 
                             className="form-control" 
                             placeholder="Address *" 
-                            value={address}
+                            value="47.64496610136732, 26.255682705745027"
                             onChange={e => setAddress(e.target.value)} 
                         />
+                        <GoogleMaps/>
                          </div>
                     </div>
 
