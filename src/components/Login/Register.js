@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './register.scss';
 import './test.css'
 import Layout from './layout';
@@ -6,10 +6,11 @@ import profileImg from "../../images/profile.png"
 
 import maleImg from "../../images/male.png";
 import femaleImg from "../../images/female.png";
+import regularUserImg from "../../images/regular-user-role.png";
+import stylistImg from "../../images/stylist-role.png";
 
 import PhoneInput from 'react-phone-input-2';
 import GoogleMaps from "../google-maps/google-maps";
-// import 'react-phone-input-2/lib/style.css'
 
 const Register = (props) => {
     const fileInput = useRef(null) ;
@@ -17,12 +18,17 @@ const Register = (props) => {
     const [lastName, setLastName] = useState('');
     const [middleName, setMiddleName] = useState('');
     const [profilePhoto, setProfilePhoto] = useState('');
-    const [role, setRole] = useState('stylist');
+    const [role, setRole] = useState();
     const [address, setAddress] = useState('47.64496610136732, 26.255682705745027');
     const [phoneNumber, setPhoneNumber] = useState();
     const [gender, setGender] = useState("");
     // const [profilePhoto, setprofilePhoto] = useState("");
     const [file, setFile] = useState("");
+
+    useEffect(()=>{
+        console.log(address);
+        console.log("hree")
+    });
 
 
     const changeGender = (gender) => {
@@ -46,34 +52,39 @@ const Register = (props) => {
         }   
     }
 
+    const setLocation = (location) => {
+        setAddress(location)
+    }
+
     // create new post and add in mongo
-    // onClickHandlePost = async () => {
-    //     this.state.loading = true;
-    //     this.setState(this.state);
-    //     const data = new FormData();
-    //     data.append('file', this.state.file);
-    //     data.append('upload_preset', 'folder_p');
-    //     const res = await axios.post('https://api.cloudinary.com/v1_1/dm3pamnau/image/upload', data, {onUploadProgress: progressEvent => {
-    //         console.log(`Process: ${Math.round(progressEvent.loaded / progressEvent.total) * 100}%`)
-    //     }});
-    //     // await axios.post(`http://localhost:8080/add/post`,
-    //     //     {
-    //     //         photo_url: res.data.secure_url,
-    //     //         description: this.state.description
-    //     //     },
-    //     //     {
-    //     //         headers: {
-    //     //             Authorization: localStorage.getItem("user-info"),
-    //     //         }
-    //     //     }
-    //     // );
-    //     // this.state.loading = false;
-    //     // this.setState(this.state);
-    // }
+    const onClickHandlePost = async () => {
+        // this.state.loading = true;
+        // this.setState(this.state);
+        // const data = new FormData();
+        // data.append('file', this.state.file);
+        // data.append('upload_preset', 'folder_p');
+        // const res = await axios.post('https://api.cloudinary.com/v1_1/dm3pamnau/image/upload', data, {onUploadProgress: progressEvent => {
+        //     console.log(`Process: ${Math.round(progressEvent.loaded / progressEvent.total) * 100}%`)
+        // }});
+        // await axios.post(`http://localhost:8080/add/post`,
+        //     {
+        //         photo_url: res.data.secure_url,
+        //         description: this.state.description
+        //     },
+        //     {
+        //         headers: {
+        //             Authorization: localStorage.getItem("user-info"),
+        //         }
+        //     }
+        // );
+        // this.state.loading = false;
+        // this.setState(this.state);
+    }
 
 
         return (
-            <>
+            <React.Fragment>
+                
                 <Layout title="Set profile" additionalClass="layout-form-profile">
 
 
@@ -157,38 +168,38 @@ const Register = (props) => {
                             </div>
                         </div>
 
-                    {/* <div className="right-register">
-                        <div className="form-group">
-                            <input type="text" className="form-control" placeholder="First Name *" value="" />
-                        </div>
-                        <div className="form-group">
-                            <input type="text" className="form-control" placeholder="Last Name *" value="" />
-                        </div>
-                        <div className="form-group">
-                            <input type="password" className="form-control" placeholder="Password *" value="" />
-                        </div>
-                        <div className="form-group">
-                            <input type="password" className="form-control"  placeholder="Confirm Password *" value="" />
-                        </div>
-                    </div> */}
+                
                     </div>
                     
                     <hr/>
                     
+                    <p className="layout-title">Select your account type</p>
+                    <div className="choose-role-div">
+                        <div className={`regular-user-role ${role=="user" ? "role-selected" : ""}`} onClick={()=>{setRole("user")}}>
+                            <img  src={regularUserImg}></img>
+                            <p>Regular user</p>
+                        </div>
+                        <div className={`stylist-role ${role=="stylist" ? "role-selected" : ""}`} onClick={()=>{setRole("stylist")}}>
+                            <img  src={stylistImg}></img>
+                            <p>Stylist</p>
+                        </div>
+                    </div>
+                    <hr/>
+
                     
 
                     <p className="layout-title">Set location</p>
 
                     <div className="location-div">
                     <div className="form-group">
-                        <input 
+                        {/* <input 
                             type="text" 
                             className="form-control" 
                             placeholder="Address *" 
                             value="47.64496610136732, 26.255682705745027"
                             onChange={e => setAddress(e.target.value)} 
-                        />
-                        <GoogleMaps/>
+                        /> */}
+                        {/* <GoogleMaps onSelectedLocation={setLocation}/> */}
                          </div>
                     </div>
 
@@ -203,9 +214,11 @@ const Register = (props) => {
 
                 </Layout>
 
+             
+
 
                 
-            </>              
+            </React.Fragment>              
         )
 };
 

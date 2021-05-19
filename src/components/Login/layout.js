@@ -10,7 +10,7 @@ const Layout = ({children, title, additionalClass}) => {
 
     return (
         <div className="layout-page-div">
-             <div className={"layout-form " + additionalClass}>
+             <div className={"layout-form " + (additionalClass ? additionalClass: "")}>
                 <p className="layout-title">{title}</p>
                 {children}
             </div>

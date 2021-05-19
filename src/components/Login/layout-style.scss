@@ -11,30 +11,46 @@
     width: 100%;
     height: 100%;
 
+
     .layout-form-profile {
       position:relative;
       width: 800px !important;
       justify-content: center;
-      max-height: 90%;
+      max-height: 99%;
+      max-width: 99%;
+      border-radius: 0 !important;
+
       // overflow: scroll;
       overflow: auto;
       margin-top: 70px;
       // top: 30px;
+
+      @media (max-width: 605px) {
+        height: 98%px;
+      }
     }
 
     .layout-form {
       background: rgba(167, 167, 168, 0.9) !important;
-      width: 400px;
-      position: absolute;
-      top: 40%;
-      left: 50%;
-      -ms-transform: translateX(-50%) translateY(-50%);
-      -webkit-transform: translate(-50%,-50%);
-      transform: translate(-50%,-50%);
+      
       // opacity: 0.9;
       border-radius: 10px;
       padding: 20px 0;
       text-align: center;
+
+      @media (min-width: 600px) {
+        width: 400px;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        -ms-transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+      }
+
+      @media (max-width: 600px) {
+        margin: 2px auto;
+      }
 
       form {
         margin: 0 auto;

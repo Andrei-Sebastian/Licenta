@@ -7,7 +7,7 @@ import { Descriptions } from 'antd';
 const { MarkerWithLabel } = require("react-google-maps/lib/components/addons/MarkerWithLabel");
 
 
-Geocode.setApiKey("AIzaSyALVjLwOIM1gf7EzdJJVmWLKdLP-yZGTcw");
+Geocode.setApiKey("AIzaSyA-3TAV8f1KDzKRVQLgsMYIN788GjEjkfM");
 Geocode.enableDebug();
 
 class LocationSearchModal extends React.Component {
@@ -31,8 +31,10 @@ class LocationSearchModal extends React.Component {
 
 
     componentDidMount() {
+        console.log("component maps")
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
+                
                 this.setState({
                     mapPosition: {
                         lat: position.coords.latitude,
@@ -46,13 +48,14 @@ class LocationSearchModal extends React.Component {
                     () => {
                         Geocode.fromLatLng(position.coords.latitude, position.coords.longitude).then(
                             response => {
-                                console.log(response)
+                                // console.log(response)
+
                                 const address = response.results[0].formatted_address,
                                     addressArray = response.results[0].address_components,
                                     city = this.getCity(addressArray),
                                     area = this.getArea(addressArray),
                                     state = this.getState(addressArray);
-                                console.log('city', city, area, state);
+                                // console.log('city', city, area, state);
                                 this.setState({
                                     address: (address) ? address : '',
                                     area: (area) ? area : '',
@@ -67,6 +70,8 @@ class LocationSearchModal extends React.Component {
 
                     })
             });
+
+            // console.log(this.state.markerPosition)
         } else {
             console.error("Geolocation is not supported by this browser!");
         }
@@ -132,6 +137,9 @@ class LocationSearchModal extends React.Component {
         let newLat = event.latLng.lat(),
             newLng = event.latLng.lng();
 
+            // console.log("here in maps")
+                this.props.onSelectedLocation(event.latLng.lat() + "/" + event.latLng.lng());
+
         Geocode.fromLatLng(newLat, newLng).then(
             response => {
                 const address = response.results[0].formatted_address,
@@ -155,13 +163,14 @@ class LocationSearchModal extends React.Component {
                 })
             },
             error => {
+                console.log("error on drag")
                 console.error(error);
             }
         );
     };
 
     onPlaceSelected = (place) => {
-        console.log('plc', place);
+        // console.log('plc', place);
         const address = place.formatted_address,
             addressArray = place.address_components,
             city = this.getCity(addressArray),
@@ -170,8 +179,8 @@ class LocationSearchModal extends React.Component {
             latValue = place.geometry.location.lat(),
             lngValue = place.geometry.location.lng();
 
-        console.log('latvalue', latValue)
-        console.log('lngValue', lngValue)
+        // console.log('latvalue', latValue)
+        // console.log('lngValue', lngValue)
 
         // Set these values in the state.
         this.setState({
@@ -203,6 +212,7 @@ class LocationSearchModal extends React.Component {
     //     <GoogleMap
 
     render() {
+        // console.log(this.state.mapPosition, this.state.markerPosition)
         const AsyncMap = withScriptjs(
             withGoogleMap(
                 props => (
@@ -232,7 +242,7 @@ class LocationSearchModal extends React.Component {
 
                         {/* <MarkerWithLabel
                             position={{ lat: -34.397, lng: 150.644 }}
-                            labelAnchor={new google.maps.Point(0, 0)}
+                            // labelAnchor={new google.maps.Point(0, 0)}
                             labelStyle={{ backgroundColor: "yellow", fontSize: "32px", padding: "16px" }}
                         >
                             <div>Hello There!</div>
@@ -258,7 +268,6 @@ class LocationSearchModal extends React.Component {
 
         return (
             <div style={{ padding: '1rem', margin: '0 auto', maxWidth: 1000 }}>
-                <h1>Google Map Basic</h1>
                 <Descriptions bordered>
                     <Descriptions.Item label="City">{this.state.city}</Descriptions.Item>
                     <Descriptions.Item label="Area">{this.state.area}</Descriptions.Item>

@@ -97,18 +97,42 @@
 .register-form {
     display: flex;
     justify-content: space-evenly;
+    
+
+    @media (max-width: 600px) {
+        display: block;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .form-group {
+        @media (max-width: 600px) {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
 
     
 }
 .layout-form-profile .submit-button {
     width: 320px !important;
     text-align: center !important;
+    max-width: 90%;
+
+    
+}
+
+.layout-form {
+    @media (min-width: 600px) {
+        top: 37%;
+      }
 }
 
 .photo-form {
     // display: inline;
     text-align: center;
     align-self: center;
+    margin-bottom: 10px;
 
     // width: 40%;
     // height: 100px;
@@ -148,6 +172,7 @@
 
 .register-form .form-group {
     width: 300px;
+    max-width: 90%;
 }
 
 .gender {
@@ -183,7 +208,52 @@
 
 .location-div {
     width: 80%;
-    height: 500px;
+    height: 520px;
     border: 1px solid black;
     margin-left: 10%;
+}
+
+
+
+.choose-role-div {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 20px;
+    :hover {
+        background-color: gray;
+     }
+    .regular-user-role, .stylist-role {
+        border: 1px solid black;
+        cursor: pointer;
+        width: 150px;
+        height: 200px;
+        border-radius: 10px;
+
+    }
+    
+    .regular-user-role {
+        img {
+            width: 90%;
+            height: 80%;
+        }
+        
+    }
+    
+    .stylist-role {
+        img {
+            padding-top: 5px;
+            width: 80%;
+            height: 80%;
+        }
+    
+    }
+
+    p{
+        margin-top: 10px;
+        font-weight: bold 
+    }
+}
+
+.role-selected {
+    background-color:rgb(121, 111, 111);
 }
