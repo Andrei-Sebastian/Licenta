@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import {Redirect} from "react-router-dom";
 import ExpiredToken from './expired-token'; 
 import axios from 'axios';
+import Layout from "./layout";
 
 class NewPassword extends Component{
   state = {
@@ -101,9 +102,7 @@ class NewPassword extends Component{
     }
 
     return (
-      <div className="login-page-div">
-        <div className="login-form">
-          <p className="login-title">Change password</p>
+          <Layout title="Change password">
           <Form >
             <Form.Group size="lg" controlId="password">
               <Form.Label 
@@ -140,7 +139,7 @@ class NewPassword extends Component{
                 placeholder="Confirm password"
               />
             </Form.Group>
-            <button className="login-button" disabled={!this.validateForm()} onClick={this.handleSubmit}> 
+            <button className="submit-button" disabled={!this.validateForm()} onClick={this.handleSubmit}> 
               CHANGE
             </button>
           </Form>
@@ -154,8 +153,7 @@ class NewPassword extends Component{
             />
           <label className='back-to-login-label'>Back to login</label>
         </div>
-        </div>
-      </div>
+      </Layout>
     );
   }
  

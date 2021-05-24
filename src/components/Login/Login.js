@@ -41,8 +41,15 @@ const Login = () => {
         }
       })
     .then( response => {
-      localStorage.setItem('user-info', response.data.accessToken);
-      window.location.href='/welcome';
+      // localStorage.setItem('user-info', response.data.accessToken);
+      console.log(response.data)
+      if (response.data.isNewAccount === true) {
+        localStorage.setItem('new-info', response.data.accessToken);
+        window.location.href='/register';
+      } else {
+        localStorage.setItem('user-info', response.data.accessToken);
+        window.location.href='/welcome';
+      } 
     })
     .catch (err => {
       setWrongEmail(true);

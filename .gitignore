@@ -6,7 +6,8 @@
 .pnp.js
 .eslintcache
 .gitignore
-
+.env
+ngrock.exe
 # testing
 /coverage
 

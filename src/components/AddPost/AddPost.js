@@ -22,13 +22,14 @@ class AddPost extends Component {
     };
 
     uploadImage = (e) => {
+        const file = e.target.files[0] || "";
         try {
             const reader = new FileReader();
             reader.onload = () => {
                 if(reader.readyState === 2){
                     this.setState({
                         image: reader.result, 
-                        file: e.target.files[0],
+                        file: file,
                         description: this.state.description, 
                         readyForPost: false});
                 }
@@ -137,7 +138,7 @@ class AddPost extends Component {
                         // accept="audio/*,video/*,image/*"
                         accept="image/*"
                         style={{display: 'none'}}
-                        onChange={this.uploadImage}
+                        onChange={(e)=>{this.uploadImage(e)}}
                         ref={fileInput => this.fileInput = fileInput}
                     />
                 </div>

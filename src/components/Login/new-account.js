@@ -34,13 +34,21 @@ const NewAccount = () => {
           }
         })
       .then( response => {
-        localStorage.setItem('user-info', response.data.accessToken);
-        window.location.href='/setProfile';
+        console.log(response)
+        localStorage.setItem('new-info', response.data.accessToken);
+        // if (response.data.accessToken.isNewAccount) {
+          window.location.href='/register';
+        // }    
       })
       .catch (err => {
+        console.log(err);
+
         setWrongEmail(true);
         setWrongPassword(true);
       });
+    } else {
+      setWrongEmail(true);
+        setWrongPassword(true);
     }
     
   }; 

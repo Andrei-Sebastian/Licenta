@@ -1,9 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
+import axios from "axios";
+
 import './register.scss';
 import './test.css'
 import Layout from './layout';
-import profileImg from "../../images/profile.png"
 
+import profileImg from "../../images/profile.png"
 import maleImg from "../../images/male.png";
 import femaleImg from "../../images/female.png";
 import regularUserImg from "../../images/regular-user-role.png";
@@ -22,26 +24,49 @@ const Register = (props) => {
     const [address, setAddress] = useState('47.64496610136732, 26.255682705745027');
     const [phoneNumber, setPhoneNumber] = useState();
     const [gender, setGender] = useState("");
+
+    const [wFirstName, setWFirstName] = useState('');
+    const [wLastName, setWLastName] = useState('');
+    const [WMiddleName, setWMiddleName] = useState('');
+    // const [profilePhoto, setProfilePhoto] = useState('');
+    const [wRole, setWRole] = useState();
+    // const [address, setAddress] = useState('47.64496610136732, 26.255682705745027');
+    const [WPhoneNumber, setWPhoneNumber] = useState();
+    const [wGender, setWGender] = useState("");
+    const [canSubmit, setSubmit] = useState("");
     // const [profilePhoto, setprofilePhoto] = useState("");
     const [file, setFile] = useState("");
 
     useEffect(()=>{
         console.log(address);
         console.log("hree")
-    });
 
+        if(!localStorage.getItem("new-info")) {
+            window.location.href = "/login"
+        }
+    });
 
     const changeGender = (gender) => {
         setGender(gender);
     }
 
+    const hasNumber = (myString) => {
+        return /\d/.test(myString);
+    }
+
+    const justNumbers = (myString) => {
+      return /^[0-9]+$/.test(myString);
+    }
+
    const uploadImage = (e) => {
+       const f = e.target.files[0];
+       console.log(f, "here")
         try {
             const reader = new FileReader();
             reader.onload = () => {
                 if(reader.readyState === 2){
                     setProfilePhoto(reader.result);
-                    setFile(file);
+                    setFile(f);
                     console.log("here")
                 }
             }
@@ -57,28 +82,42 @@ const Register = (props) => {
     }
 
     // create new post and add in mongo
-    const onClickHandlePost = async () => {
+    const handleSubmit = async () => {
         // this.state.loading = true;
         // this.setState(this.state);
-        // const data = new FormData();
-        // data.append('file', this.state.file);
-        // data.append('upload_preset', 'folder_p');
-        // const res = await axios.post('https://api.cloudinary.com/v1_1/dm3pamnau/image/upload', data, {onUploadProgress: progressEvent => {
-        //     console.log(`Process: ${Math.round(progressEvent.loaded / progressEvent.total) * 100}%`)
-        // }});
-        // await axios.post(`http://localhost:8080/add/post`,
-        //     {
-        //         photo_url: res.data.secure_url,
-        //         description: this.state.description
-        //     },
-        //     {
-        //         headers: {
-        //             Authorization: localStorage.getItem("user-info"),
-        //         }
-        //     }
-        // );
+        console.log(gender)
+        const data = new FormData();
+        data.append('file', file);
+        data.append('upload_preset', 'folder_p');
+        console.log(file)
+        console.log(data)
+        const res = await axios.post('https://api.cloudinary.com/v1_1/dm3pamnau/image/upload', data, {onUploadProgress: progressEvent => {
+            console.log(`Process: ${Math.round(progressEvent.loaded / progressEvent.total) * 100}%`)
+        }});
+        console.log(res, "here")
+        let x = await axios.post(`http://localhost:8080/editProfile`,
+            {
+                name: lastName + " " + firstName + " " + middleName,
+                profilePhoto: res.data.secure_url,
+                address: address,
+                gender: gender,
+                phoneNumber: phoneNumber,
+                role: role
+            },
+            {
+                headers: {
+                    Authorization: localStorage.getItem("new-info"),
+                }
+            }
+        );
+        localStorage.setItem("user-info", localStorage.getItem("new-info"));
+        localStorage.removeItem("new-info");
+        window.location.href = "/welcome";
+        console.log(x)
         // this.state.loading = false;
         // this.setState(this.state);
+       
+        
     }
 
 
@@ -199,18 +238,19 @@ const Register = (props) => {
                             value="47.64496610136732, 26.255682705745027"
                             onChange={e => setAddress(e.target.value)} 
                         /> */}
-                        {/* <GoogleMaps onSelectedLocation={setLocation}/> */}
+                        <GoogleMaps onSelectedLocation={setLocation}/>
                          </div>
                     </div>
-
-                    <button 
+                    <div className="profile-button">
+                        <button 
                         variant="primary" 
                         type="submit"
                         className="submit-button"
-                        // onClick={handleSubmit}
+                        onClick={handleSubmit}
                     > 
                         Let's started
-                    </button>  
+                    </button> </div>
+                     
 
                 </Layout>
 
