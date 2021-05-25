@@ -115,6 +115,7 @@
       position: relative;
       align-items: center;
       text-align: center;
+      margin-top: 10px;
       /* top: 200px */
     }
     
@@ -128,6 +129,7 @@
     .login-forgot-password:hover {
       color: rgb(0, 0, 0);
       text-decoration: underline;
+
     }
     
     .sing-up-label {
@@ -152,6 +154,8 @@
     .login-forgot-password {
       text-align: center;
       padding-top: 10px;
+      cursor: pointer;
+      color: rgb(66, 66, 66);
     }
     
     .sing-up-div{

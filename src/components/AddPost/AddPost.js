@@ -61,8 +61,9 @@ class AddPost extends Component {
                 }
             }
         );
-        this.state.loading = false;
-        this.setState(this.state);
+        window.location.href = "/welcome";
+        // this.state.loading = false;
+        // this.setState(this.state);
     }
 
     addEmoji = e => {
