@@ -3,6 +3,7 @@ import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker } from "reac
 import Geocode from "react-geocode";
 import Autocomplete from 'react-google-autocomplete';
 import { Descriptions } from 'antd';
+import "./google-maps.scss"
 
 const { MarkerWithLabel } = require("react-google-maps/lib/components/addons/MarkerWithLabel");
 
@@ -268,7 +269,7 @@ class LocationSearchModal extends React.Component {
 
         return (
             <div style={{ padding: '1rem', margin: '0 auto', maxWidth: 1000 }}>
-                <Descriptions bordered>
+                <Descriptions bordered >
                     <Descriptions.Item label="City">{this.state.city}</Descriptions.Item>
                     <Descriptions.Item label="Area">{this.state.area}</Descriptions.Item>
                     <Descriptions.Item label="State">{this.state.state}</Descriptions.Item>

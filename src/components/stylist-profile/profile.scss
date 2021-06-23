@@ -1,0 +1,62 @@
+.menu {
+    /* background-color: #364450; */
+    width: 20%;
+    /* height: 100%; */
+    /* margin-top: 20px !important; */
+    /* margin-top: 0px; */
+    position: fixed;
+    /* border-right: 1px solid #AAB8B8; */
+    /* background-size: contain; */
+    margin-left: 10px;
+    /* position: absolute; */
+    /* top: 0px; */
+}
+
+.userNamee {
+    text-indent: 5px;
+    font-family: arial;
+    font-size: 15px;
+    padding-left: 10px;
+    color: rgb(36, 32, 32);
+    /* text-decoration: underline; */
+}
+
+.userProfile {
+    cursor: pointer;
+    padding: 10px;
+    /* border-bottom:  1px solid #AAB8B8; */
+    text-align:  left;
+}
+
+.userProfile:hover {
+    /* background-color: #404e5a; */
+    background-color: #BBC8C8;
+    color: whitesmoke;
+    border-radius: 5px;
+}
+
+.red {
+    color: red;
+}
+
+.prog {
+    background-color: white;
+    /* border: 1px solid black; */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-sizing: border-box;
+    text-align: left;
+}
+
+.progText {
+    cursor: pointer;
+    padding: 5px;
+    /* border-bottom:  1px solid #AAB8B8; */
+    text-align:  left;
+}
+
+@media only screen and (max-width: 1000px) {
+    .menu {
+      visibility: hidden;
+    }
+  }

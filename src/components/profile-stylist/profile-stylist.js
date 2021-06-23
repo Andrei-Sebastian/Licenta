@@ -1,13 +1,13 @@
 import React from 'react';
 
 import Layout from '../layout';
-import Schadule from './schedule';
+import Schedule from '../schedule/schedule';
 
 const profile = () => {
     return(
         <>
             <Layout/>
-            <Schadule/>
+            <Schedule/>
             <div>
                 <div>
                     <label>Nume</label>

@@ -7,13 +7,15 @@ import NewAccount from './components/Login/new-account';
 import ForgotPassword from './components/Login/forgot-password';
 import NewPassword from './components/Login/new-password';
 import AddPost from './components/AddPost/AddPost';
-import Schadule from './components/profile-stylist/profile-stylist';
+import Schedule from './components/profile-stylist/profile-stylist';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect
 } from "react-router-dom";
+import AdminPage from './components/welcome/admin-welcome';
+import StylistProfile from './components/stylist-profile/stylist-profile';
  
 
 class App extends Component{
@@ -50,12 +52,20 @@ class App extends Component{
               <AddPost />
             </Route>
 
-            <Route path="/schadule">
-              <Schadule />
+            <Route path="/schedule">
+              <Schedule />
             </Route>
 
             <Route path="/newAccount">
               <NewAccount />
+            </Route>
+
+            <Route path="/admin">
+              <AdminPage />
+            </Route>
+
+            <Route path="/stylistProfile">
+              <StylistProfile />
             </Route>
 
 
