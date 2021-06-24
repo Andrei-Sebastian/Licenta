@@ -70,3 +70,8 @@
 span {
   margin-left: 16px;
 } */
+
+.center-logo {
+  margin: 0 auto;
+  width: 160px;
+}

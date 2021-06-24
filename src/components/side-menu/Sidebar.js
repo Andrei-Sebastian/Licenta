@@ -6,10 +6,13 @@ import * as AiIcons from 'react-icons/ai';
 import { SidebarData } from './SidebarData';
 import SubMenu from './SubMenu';
 import { IconContext } from 'react-icons/lib';
+import CircularImage from '../CircularImage/CircularImage';
+import logo from '../../images/logo-b.png';
+import "./Navbar.css";
 
 const Nav = styled.div`
-  background: #15171c;
-  height: 80px;
+  background: #343a40;
+  height: 56px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -18,14 +21,14 @@ const Nav = styled.div`
 const NavIcon = styled(Link)`
   margin-left: 2rem;
   font-size: 2rem;
-  height: 80px;
+  height: 56px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 `;
 
 const SidebarNav = styled.nav`
-  background: #15171c;
+  background: #343a40;
   width: 250px;
   height: 100vh;
   display: flex;
@@ -53,6 +56,11 @@ const Sidebar = () => {
           <NavIcon to='#'>
             <FaIcons.FaBars onClick={showSidebar} />
           </NavIcon>
+
+          {/* <div className="center-logo" onClick={ () =>{ window.location.href="/welcome" }}> */}
+             <img className="center-logo" src={logo}  alt="Back to login"
+              loading="lazy"/>
+            {/* </div> */}
         </Nav>
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>

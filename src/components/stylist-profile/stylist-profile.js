@@ -1,19 +1,17 @@
 import React, { useEffect, useState }  from 'react';
-import Loading from '../Loading/Loading';
-import Layout from "../layout";
-import CircularImage from '../CircularImage/CircularImage';
-import LeftProfile from './left-profile';
 import "./profile.scss";
+import LayoutStylist from '../layout-hairstylist';
+import Demo from './left-profile';
 
 const StylistProfile = () =>  {
-    const [isLoading, setIsLoading] = useState(true);
-    useEffect(() => {
-        setIsLoading(false);
-    },[]);
       return (
-        <Layout>
-            <LeftProfile/>
-        </Layout>
+        <LayoutStylist>
+            <div className="my-schadule">
+                <h1>Appointments</h1>
+                <Demo/>
+            </div>
+            
+        </LayoutStylist>
     );
 }
 

@@ -7,6 +7,7 @@ import './AddPost.css';
 import './Emoji.css';
 import { Picker } from 'emoji-mart';
 import Layout from '../layout';
+import LayoutStylist from '../layout-hairstylist';
 
 class AddPost extends Component {
     state = {
@@ -104,7 +105,7 @@ class AddPost extends Component {
             return  <Redirect to='/login' />
         }
         return (
-            <Layout>
+            <LayoutStylist>
                 {/* <Navbar/> */}
                 <div className="newPost">
                     <div className="post">
@@ -143,7 +144,7 @@ class AddPost extends Component {
                         ref={fileInput => this.fileInput = fileInput}
                     />
                 </div>
-            </Layout>
+            </LayoutStylist>
         );
     }  
 }
