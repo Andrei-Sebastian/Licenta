@@ -3,12 +3,13 @@ import './Post.css';
 import Text from '../../LongText/LongText';
 import like from '../../../images/like.png';
 import liked from '../../../images/liked.png';
-
+import Delete from '../../../images/delete.png';
 
 const post = (props) => {
     return (
         <div className="post">
             <div className="aboutPost">
+                <div>
                 <img 
                     className="circular_image" 
                     alt="User profile" 
@@ -18,6 +19,15 @@ const post = (props) => {
                     height="300px"
                 />
                 <a className="userName" target="_blank" href='/welcome'>{props.name}</a>
+                </div>
+                
+                {
+                    props.canDelete && (
+                        <div title="Delete this post">
+                            <img className='delete-img' src={Delete} alt='Not Found' loading="lazy"/>
+                        </div>
+                    )
+                }
             </div>
             <div className="divImage" >
                 {

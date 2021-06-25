@@ -16,6 +16,7 @@ import {
 } from "react-router-dom";
 import AdminPage from './components/welcome/admin-welcome';
 import StylistProfile from './components/stylist-profile/stylist-profile';
+import MyPosts from './components/stylist-profile/my-posts';
  
 
 class App extends Component{
@@ -66,6 +67,10 @@ class App extends Component{
 
             <Route path="/stylistProfile">
               <StylistProfile />
+            </Route>
+
+            <Route path="/myPosts">
+              <MyPosts />
             </Route>
 
 

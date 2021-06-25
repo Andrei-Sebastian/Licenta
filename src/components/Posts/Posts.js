@@ -43,6 +43,7 @@ class posts extends Component {
                         postImage={post.photo_url}
                         postId={post.uid}
                         onClickHandle={() => this.onClickHandleLike(i)}
+                        canDelete={this.props.canDelete}
                     />
                 ))}
             </div>

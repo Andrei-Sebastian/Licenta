@@ -33,7 +33,7 @@ export const SidebarData = [
   },
   {
     title: 'My posts',
-    path: '/add/post',
+    path: '/myPosts',
     icon: <BsImage.BsImages />,
   },
   {

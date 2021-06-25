@@ -14,41 +14,98 @@ import {
   EditRecurrenceMenu,
   DragDropProvider 
 } from '@devexpress/dx-react-scheduler-material-ui';
+import axios from 'axios';
 
-
-const appointments = [];
 const Demo = () => {
 
-    const [appointment, setAppoiment] = useState([...appointments]);
+    const [appointment, setAppoiment] = useState([]);
     const [currentDate, setCurrentDate] = useState(new Date());
+
+    useEffect(() => {
+        const getData = async () => {
+            const app = await axios.get(`http://localhost:8080/getAppointment`,
+            {
+                headers: {
+                    Authorization: localStorage.getItem("user-info"),
+                }
+            });
+            setAppoiment(app.data);
+        }
+        getData();
+        return () => {
+            console.log('This will be logged on unmount');
+        };
+    }, []);
 
     const currentDateChange = (currentDate) => { setCurrentDate(currentDate); };
  
-    const commitChanges = ({ added, changed, deleted }) => {
-        console.log(added)
-        if(currentDate.getDate() <= new Date().getDate()) {
-            let  data  = appointment;
+    const commitChanges = async ({ added, changed, deleted }) => {
+        // console.log(changed)
+        // if(currentDate.getDate() <= new Date().getDate()) {
+        let  data  = [...appointment];
+        let object = {};
+
         if (added) {
-        const startingAddedId = data.length > 0 ? data[data.length - 1].id + 1 : 0;
-        data = [...data, { id: startingAddedId, ...added }];
+            object = { 
+                id: data.length > 0 ? data[data.length - 1].id + 1 : 0,
+                ...added
+            }
+            await axios.post(`http://localhost:8080/createAppointment`,
+            {
+                appointments: object
+            },
+            {
+                headers: {
+                    Authorization: localStorage.getItem("user-info"),
+                }
+            });
+
+            data.push(object);
+
+        } else if (changed) {
+            // data.map(appointment => (
+            //     changed[appointment.id] && (object = { ...appointment, ...changed[appointment.id] }) 
+            // ));
+
+            // await axios.post(`http://localhost:8080/editAppointment`,
+            // {
+            //     appointments: object
+            // },
+            // {
+            //     headers: {
+            //         Authorization: localStorage.getItem("user-info"),
+            //     }
+            // });
+            // console.log("here")
+
+            // data = data.map(appointment => (
+            //     changed[appointment.id] ? { ...appointment, ...changed[appointment.id] } : appointment));
+            // console.log(data)
+
+        } else if (deleted !== undefined) {
+            object = data.filter(appointment => appointment.id == deleted)[0];
+            await axios.post(`http://localhost:8080/deleteAppointment`,
+            {
+                appointments: object
+            },
+            {
+                headers: {
+                    Authorization: localStorage.getItem("user-info"),
+                }
+            });
+            data = data.filter(appointment => appointment.id !== deleted);
         }
-        if (changed) {
-        data = data.map(appointment => (
-            changed[appointment.id] ? { ...appointment, ...changed[appointment.id] } : appointment));
-        }
-        if (deleted !== undefined) {
-        data = data.filter(appointment => appointment.id !== deleted);
-        }
+        
         setAppoiment(data)
-        }
+        // }
         
     }
     const [addedAppointment, setAddedAppointment] = useState({});
     const onAddedAppointmentChange = React.useCallback((appointment) => {
         setAddedAppointment(appointment);
-        setIsAppointmentBeingCreated(true);
+        // setIsAppointmentBeingCreated(true);
       });
-      const [isAppointmentBeingCreated, setIsAppointmentBeingCreated] = React.useState(false);
+    //   const [isAppointmentBeingCreated, setIsAppointmentBeingCreated] = React.useState(false);
 
       
     return (
@@ -83,7 +140,7 @@ const Demo = () => {
             showDeleteButton
             />
             <AppointmentForm />
-            <DragDropProvider/>
+            {/* <DragDropProvider/> */}
         </Scheduler>
         </Paper>
     );
