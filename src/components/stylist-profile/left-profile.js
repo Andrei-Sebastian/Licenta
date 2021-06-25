@@ -112,7 +112,6 @@ const Demo = () => {
         <Paper>
         <Scheduler
             data={appointment}
-            height={600}
         >
             <ViewState
             currentDate={currentDate}
