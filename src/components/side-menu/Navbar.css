@@ -75,3 +75,10 @@ span {
   margin: 0 auto;
   width: 160px;
 }
+
+.jAhlMf {
+  width: 100%;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+}

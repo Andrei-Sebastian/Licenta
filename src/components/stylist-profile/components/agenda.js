@@ -16,7 +16,7 @@ import {
 } from '@devexpress/dx-react-scheduler-material-ui';
 import axios from 'axios';
 
-const Demo = () => {
+const Agenda = () => {
 
     const [appointment, setAppoiment] = useState([]);
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -146,5 +146,5 @@ const Demo = () => {
 
 }  
 
-export default Demo;
+export default Agenda;
 

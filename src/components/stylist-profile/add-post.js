@@ -3,10 +3,9 @@ import {Redirect} from 'react-router-dom';
 import axios from 'axios';
 import Loading from '../Loading/Loading';
 import TextArea from '../TextArea/TextArea';
-import './AddPost.css';
-import './Emoji.css';
+import './add-post/AddPost.css';
+import './add-post/Emoji.css';
 import { Picker } from 'emoji-mart';
-import Layout from '../layout';
 import LayoutStylist from '../layout-hairstylist';
 
 class AddPost extends Component {

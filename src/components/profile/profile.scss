@@ -1,0 +1,120 @@
+.profile-page {
+    width: 80%;
+    margin: 0 auto;
+    .top-profile {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        height: 325px;
+
+    .photo-name {
+        margin-top: 100px;
+    }
+
+        h2 {
+            font-size: 30px;
+        }
+
+        .cover-img {
+            background-color: brown;
+            height: 240px;
+            width: 100%;
+            border-radius: 10px;
+            background-image: url('../../images/cover.jpg');
+
+           
+        }
+    }
+
+    hr {
+        // width: 90%;
+    }
+
+    .content-profile {
+        display: flex;
+        // background-color: brown;
+        height: 20px;
+        margin: 0 auto;
+        justify-content: space-around;
+        margin-bottom: 50px;
+
+        .stylit-posts {
+        width: 600px;
+        z-index: 1;
+        }
+
+        .about-stylist {
+            margin-top: 30px;
+            // background-color: blue;
+            height: 20px;
+            width: 400px;
+            z-index: 1;
+
+            .stylist-data {
+                margin-bottom: 20px;
+                background-color: rgb(240, 235, 235);
+                border-radius: 10px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                box-sizing: border-box;
+                padding: 5px
+            }
+            
+            .review-component {
+                margin-bottom: 20px;
+                p {
+                    margin-left: 10px;
+                    margin-right: 10px;
+                }
+            }
+
+            .stylist-rate {
+                // margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+               
+            }
+
+            .about-data {
+                margin-top: 10px;
+                margin-left: 10px;
+            }
+
+            .review {
+                display: flex;
+            }
+
+            .user-review{
+                align-self: center;
+            }
+
+            .info-review {
+                label {
+                    font-size: 15px;
+                   margin-left: 5px;
+                   margin-right: 10px;
+                   align-self: center;
+                }
+            }
+            .all-reviews {
+                max-height: 300px;
+                overflow: auto;
+                ::-webkit-scrollbar {
+                    width: 1px;
+                  }
+                
+            }
+
+            .contact-data {
+                display: flex;
+                .contact-r {
+                    margin-left: 10px;
+                    color: rgb(103, 103, 103);
+                }
+            }
+        }
+    }
+
+    @media (max-width: 1250px) {
+        width: 98%;
+    }
+}

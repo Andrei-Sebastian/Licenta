@@ -6,7 +6,7 @@ import Register from './components/Login/register';
 import NewAccount from './components/Login/new-account';
 import ForgotPassword from './components/Login/forgot-password';
 import NewPassword from './components/Login/new-password';
-import AddPost from './components/AddPost/AddPost';
+import AddPost from './components/stylist-profile/add-post';
 import Schedule from './components/profile-stylist/profile-stylist';
 import {
   BrowserRouter as Router,
@@ -15,8 +15,9 @@ import {
   Redirect
 } from "react-router-dom";
 import AdminPage from './components/welcome/admin-welcome';
-import StylistProfile from './components/stylist-profile/stylist-profile';
+import Appointments from './components/stylist-profile/appointments';
 import MyPosts from './components/stylist-profile/my-posts';
+import Home from './components/stylist-profile/home';
  
 
 class App extends Component{
@@ -49,9 +50,7 @@ class App extends Component{
               <Welcome />
             </Route>
 
-            <Route path="/add/post">
-              <AddPost />
-            </Route>
+            
 
             <Route path="/schedule">
               <Schedule />
@@ -65,8 +64,18 @@ class App extends Component{
               <AdminPage />
             </Route>
 
-            <Route path="/stylistProfile">
-              <StylistProfile />
+
+
+            <Route path="/home">
+              <Home />
+            </Route>
+
+            <Route path="/appointments">
+              <Appointments />
+            </Route>
+
+            <Route path="/addPost">
+              <AddPost />
             </Route>
 
             <Route path="/myPosts">

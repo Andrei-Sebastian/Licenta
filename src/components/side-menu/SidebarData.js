@@ -8,7 +8,7 @@ import * as BsImage from 'react-icons/bs';
 export const SidebarData = [
   {
     title: 'Home',
-    path: '/stylistProfile',
+    path: '/home',
     icon: <AiIcons.AiFillHome />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
@@ -27,19 +27,19 @@ export const SidebarData = [
     ]
   },
   {
+    title: 'Appointments',
+    path: '/appointments',
+    icon: <FaIcons.FaCalendarAlt />
+  },
+  {
     title: 'Add post',
-    path: '/add/post',
+    path: '/addPost',
     icon: <BsImage.BsImage />,
   },
   {
     title: 'My posts',
     path: '/myPosts',
     icon: <BsImage.BsImages />,
-  },
-  {
-    title: 'Products',
-    path: '/products',
-    icon: <FaIcons.FaCartPlus />
   },
   {
     title: 'Team',

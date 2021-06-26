@@ -1,8 +1,6 @@
 import React, { useEffect, useState }  from 'react';
-import "./profile.scss";
 import LayoutStylist from '../layout-hairstylist';
 import axios from "axios";
-import Demo from './left-profile';
 import Posts from '../Posts/Posts';
 
 
