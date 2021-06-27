@@ -5,7 +5,13 @@ import Posts from "../Posts/Posts";
 
 import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
+import * as FaIcons from 'react-icons/ai';
+import * as BoxIcons from "react-icons/bi";
+import Edit from "../../images/edit.png"
+import PhoneInput from "react-phone-input-2";
+import TimePicker from 'react-time-picker';
 
 import "./profile.scss";
 
@@ -17,9 +23,9 @@ const Profile = () =>  {
     const [value, setValue] = React.useState(2);
     const [reviews, setReviews] = useState(
     [{name: "Iriciuc Andrei", rate: 5, text: "The greatest haircut that i seen in my life. Thx for good job."},
-    {name: "VAsile as", rate: 5, text: "The greatest haircut that i seen in my life. Thx for good job."},
-    {name: "VAsile as", rate: 5, text: "The greatest haircut that i seen in my life. Thx for good job."},
-    {name: "VAsile as", rate: 5, text: "The greatest haircut that i seen in my life. Thx for good job."}]);
+    {name: "Iriciuc Andrei", rate: 3, text: "The greatest haircut that i seen in my life. Thx for good job."},
+    {name: "Iriciuc Andrei", rate: 5, text: "The greatest haircut that i seen in my life. Thx for good job."},
+    {name: "Iriciuc Andrei", rate: 2, text: "The greatest haircut that i seen in my life. Thx for good job."}]);
 
     useEffect(() => {
         const getPosts = async() => {
@@ -36,6 +42,8 @@ const Profile = () =>  {
 
         getPosts();
     }, []);
+
+    const onChange = () => {}
 
     
     return (
@@ -56,7 +64,11 @@ const Profile = () =>  {
                     <div className="about-stylist">
                         <div className="stylist-data">
                             <div className="about-data">
-                                <Typography component="legend">About</Typography>
+                                <div className="title-about">
+                                    <Typography component="legend">About</Typography>
+                                    <div className="edit-title"/>
+                                </div>
+
                                 <hr/>
                                 <p>A gool haircut will make you another man! Call me and you will be happy, trust me!</p>
                             </div>
@@ -64,23 +76,62 @@ const Profile = () =>  {
 
                         <div className="stylist-data">
                             <div className="about-data">
-                                <Typography component="legend">Contact</Typography>
+                                <div className="title-about">
+                                    <Typography component="legend">Contact</Typography>
+                                    <div className="edit-title"/>
+                                </div>
                                 
                                 <hr/>
 
                                 <div className="contact-data">
-                                    <p>Address:</p>
+                                    <p><BoxIcons.BiMap />Address:</p>
                                     <p className="contact-r">str.univ, 4321, suceava</p>
                                 </div>
 
                                 <div className="contact-data">
-                                    <p>Phone:</p>
+                                    <p><BoxIcons.BiPhone />Phone:</p>
                                     <p className="contact-r">0745954056</p>
                                 </div>
 
                                 <div className="contact-data">
-                                    <p>Mail:</p>
+                                    <p><FaIcons.AiOutlineMail />Mail:</p>
                                     <p className="contact-r">andrei.seby45@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="stylist-data">
+                            <div className="about-data">
+                                <div className="title-about">
+                                    <Typography component="legend">Contact</Typography>
+                                    <div className="edit-title"/>
+                                </div>
+                                
+                                <hr/>
+
+                                <div className="contact-data">
+                                    <p><BoxIcons.BiMap />Address:</p>
+                                    <a href="" className="contact-r">str.univ, 4321, suceava</a>
+                                </div>
+
+                                <div className="contact-data">
+                                    <p><BoxIcons.BiPhone />Phone:</p>
+                                    <div className="contact-r">
+                                        <PhoneInput
+                                            placeholder="Enter phone number"
+                                            country={"ro"}
+                                            countryCodeEditable={false}
+                                            value={""}
+                                            onChange={()=>{}}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="contact-data">
+                                    <p><FaIcons.AiOutlineMail />Mail:</p>
+                                    <div className="contact-r">
+                                        <input className="text-field" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -113,6 +164,120 @@ const Profile = () =>  {
                             </div>
                         </div>
 
+                        <div className="stylist-data">
+                            <div className="about-data">
+                                <Typography component="legend">Schedule</Typography>
+                                <hr/>
+                                <div className="contact-data">
+                                    <div>
+                                        <p>Monday:</p>
+                                        <p>Tuesday:</p>
+                                        <p>Wednesday:</p>
+                                        <p>Thursday:</p>
+                                        <p>Friday:</p>
+                                        <p>Saturday:</p>
+                                        <p>Sunday:</p>
+                                    </div>
+
+                                    <div className="contact-r">
+                                    <div className='set-time'>
+                                        <TimePicker
+                                            className='picker'
+                                            onChange={onChange}
+                                            required="true"
+                                            disableClock
+                                        />
+                                        <TimePicker
+                                            onChange={onChange}
+                                            required="true"
+                                            disableClock
+                                        />  
+                                    </div>
+                                    
+                                    <div className='set-time'>
+                                        <TimePicker
+                                            onChange={onChange}
+                                            required="true"
+                                            disableClock
+                                        />
+                                        <TimePicker
+                                            onChange={onChange}
+                                            required="true"
+                                            disableClock
+                                        />  
+                                    </div>
+                                
+                                    <div className='set-time'>
+                                        <TimePicker
+                                            onChange={onChange}
+                                            required="true"
+                                            disableClock
+                                        />
+                                        <TimePicker
+                                            onChange={onChange}
+                                            required="true"
+                                            disableClock
+                                        />  
+                                    </div>
+                                    
+                                    <div className='set-time'>
+                                        <TimePicker
+                                            onChange={onChange}
+                                            required="true"
+                                            disableClock
+                                        />
+                                        <TimePicker
+                                            onChange={onChange}
+                                            required="true"
+                                            disableClock
+                                        />  
+                                    </div>
+                                    
+                                    <div className='set-time'>
+                                        <TimePicker
+                                            onChange={onChange}
+                                            required="true"
+                                            disableClock
+                                        />
+                                        <TimePicker
+                                            onChange={onChange}
+                                            required="true"
+                                            disableClock
+                                        />  
+                                    </div>
+
+                                    <div className='set-time'>
+                                        <TimePicker
+                                            onChange={onChange}
+                                            required="true"
+                                            disableClock
+                                        />
+                                        <TimePicker
+                                            onChange={onChange}
+                                            required="true"
+                                            disableClock
+                                        />  
+                                    </div>
+
+                                    <div className='set-time'>
+                                        <TimePicker
+                                            onChange={onChange}
+                                            required="true"
+                                            disableClock
+                                        />
+                                        <TimePicker
+                                            onChange={onChange}
+                                            required="true"
+                                            disableClock
+                                        />  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                       
+                                    </div>
                         <div className="stylist-data">
                             <div className="about-data">
                                 <Typography component="legend">Prices:</Typography>
