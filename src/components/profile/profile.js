@@ -14,18 +14,99 @@ import PhoneInput from "react-phone-input-2";
 import TimePicker from 'react-time-picker';
 
 import "./profile.scss";
+import Contact from './contact';
+import EditContact from './edit-contact';
+import TopProfile from './top-prfile';
+import Schedule from './schedule';
+import EditSchedule from './edit-schadule';
+import EditPrices from './edit-prices';
+import Prices from './prices';
+import Reviews from './reviews';
+import About from './about';
+import EditAbout from './edit-about';
+
+
+const obj = {
+    name: "Andrei Iricuc",
+    phone: "40745954056",
+    photo: "https://www.adobe.com/express/create/profile-picture/media_1bcd514348a568faed99e65f5249895e38b06c947.jpeg?width=2000&format=webply&optimize=medium",
+    email: "andrei.seby45@gmail.com",
+    description: "I like what I do!",
+    address: {
+        text: "Suceava, Romania",
+        lt: "",
+        lg: ""
+    },
+    schedule: [
+        {start: "08:30", end: "17:30"},
+        {start: "08:30", end: "17:30"},
+        {start: "08:30", end: "17:30"},
+        {start: "08:30", end: "17:30"},
+        {start: "08:30", end: "17:30"},
+        {start: "08:30", end: "17:30"},
+        {start: "08:30", end: "17:30"},
+    ],
+    prices: {
+        regular: "30",
+        newLook: "80",
+        modern: "50"
+    },
+    reviews: [
+        {
+            name: "Iriciuc Andrei", 
+            photo: "https://res.cloudinary.com/dm3pamnau/image/upload/v1624435809/folder_p/Iriciuc_Andrei_Sebastian__3_-removebg-preview__2_-removebg-preview_1_t8gaio.png", 
+            rate: 5, 
+            text: "The greatest haircut that i seen in my life. Thx for good job."
+        },
+        {
+            name: "Iriciuc Andrei", 
+            photo: "https://res.cloudinary.com/dm3pamnau/image/upload/v1624435809/folder_p/Iriciuc_Andrei_Sebastian__3_-removebg-preview__2_-removebg-preview_1_t8gaio.png", 
+            rate: 5, 
+            text: "The greatest haircut that i seen in my life. Thx for good job."
+        }
+    ],
+    rate: 5,
+    posts: [],
+    editable: true
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 const Profile = () =>  {
     const user = {url_photo:"https://scontent.fclj1-2.fna.fbcdn.net/v/t31.18172-8/963812_411054585662631_1773936117_o.jpg?_nc_cat=107&ccb=1-3&_nc_sid=174925&_nc_ohc=jkTOi8pY6h4AX8fy_tE&_nc_oc=AQkDQpdkbj0lwOviIKIZyBVKjBzS45jdB-xDIFAghbEv1vhRCXfqURFdsGKH2B-kKfyHMS74e-_SrHKreqDPvTrO&_nc_ht=scontent.fclj1-2.fna&oh=08d41e274d9c5ca9e2e6ec826152700a&oe=60DB92E6" ,name: "Iriciuc Andrei"}
+    
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("");
+    const [photo, setPhoto] = useState("");
+    const [phone, setPhone] = useState("");
+    const [address, setAddress] = useState({});
+
+    const [reviews, setReviews] = useState([]);
+    const [rate, setRate] = useState();
+
     const [posts, setPosts] = useState([]);
-    const [value, setValue] = React.useState(2);
-    const [reviews, setReviews] = useState(
-    [{name: "Iriciuc Andrei", rate: 5, text: "The greatest haircut that i seen in my life. Thx for good job."},
-    {name: "Iriciuc Andrei", rate: 3, text: "The greatest haircut that i seen in my life. Thx for good job."},
-    {name: "Iriciuc Andrei", rate: 5, text: "The greatest haircut that i seen in my life. Thx for good job."},
-    {name: "Iriciuc Andrei", rate: 2, text: "The greatest haircut that i seen in my life. Thx for good job."}]);
+
+    const [schedule, setSchedule] = useState([]);
+
+    const [prices, setPrices] = useState([]);
+
+    const [editAbout, setEditAbout] = useState(false);
+    const [editContact, setEditContact] = useState(false);
+    const [editSchadule, setEditSchadule] = useState(false);
+    const [editPrices, setEditPrices] = useState(false);
+    const [loaded, setLoaded] = useState(false);
+    const [editable, setEditable] = useState(false);
 
     useEffect(() => {
         const getPosts = async() => {
@@ -37,309 +118,114 @@ const Profile = () =>  {
             });
             console.log(post)
             setPosts(post.data);
-            setValue(reviews.reduce((acc, el) => acc + el.rate, 0)/reviews.length);
+
+            setName(obj.name);
+            setPhoto(obj.photo);
+            setPhone(obj.phone);
+            setEmail(obj.email);
+            setAddress(obj.address);
+
+            setReviews(obj.reviews);
+            setRate(obj.rate);
+            setSchedule(obj.schedule);
+            setPrices(obj.prices);
+            setEditable(obj.editable);
+            // setValue(reviews.reduce((acc, el) => acc + el.rate, 0)/reviews.length);
+
+
+            setLoaded(true);
         }
 
         getPosts();
     }, []);
 
-    const onChange = () => {}
-
     
     return (
             <div className="profile-page">
-                <div className="top-profile">
-                    <div className="cover-img">
-                        <div className="photo-name">
-                            <div>
-                                <CircularImage image={user.url_photo} style={{width: '180px', height: '180px', border: '2px solid #E0E8E8'}}/>
-                            </div>
-                            <h2> {user.name}</h2>
-                        </div>
-                        
-                    </div>
-                </div>
-                <hr/>
-                <div className="content-profile">
-                    <div className="about-stylist">
-                        <div className="stylist-data">
-                            <div className="about-data">
-                                <div className="title-about">
-                                    <Typography component="legend">About</Typography>
-                                    <div className="edit-title"/>
-                                </div>
+                {loaded ? 
+                    <React.Fragment>
 
-                                <hr/>
-                                <p>A gool haircut will make you another man! Call me and you will be happy, trust me!</p>
-                            </div>
-                        </div>
+                    <TopProfile name={name} photo={photo}/>
+                    <hr/>
+                    <div className="content-profile">
+                        <div className="about-stylist">
+                            {editAbout ? 
+                                <EditAbout 
+                                    text={obj.description} 
+                                    clickSave={(phone, mail) => {
+                                        // setEditContact(false);
+                                        console.log(phone, mail);
+                                        console.log("click")
+                                    }} 
+                                    clickClose={() => setEditAbout(false)}/> : 
+                                <About 
+                                    editable={editable}
+                                    text={obj.description} 
+                                    clickEdit={() => setEditAbout(true)}/>
+                            }
 
-                        <div className="stylist-data">
-                            <div className="about-data">
-                                <div className="title-about">
-                                    <Typography component="legend">Contact</Typography>
-                                    <div className="edit-title"/>
-                                </div>
-                                
-                                <hr/>
+                            {editContact ? 
+                                <EditContact 
+                                    address={address}
+                                    phone={phone}
+                                    mail={email}
+                                    clickSave={(address, phone, mail) => {
+                                        // setEditContact(false);
+                                        console.log(phone, mail);
+                                        console.log("click")
+                                    }} 
+                                    clickClose={() => setEditContact(false)}/> : 
+                                <Contact 
+                                    address={address}
+                                    phone={phone}
+                                    mail={email}
+                                    editable={editable}
+                                    clickEdit={() => setEditContact(true)}/>
+                            }
 
-                                <div className="contact-data">
-                                    <p><BoxIcons.BiMap />Address:</p>
-                                    <p className="contact-r">str.univ, 4321, suceava</p>
-                                </div>
+                            {editSchadule ? 
+                                <EditSchedule 
+                                    schedule={schedule}
+                                    clickSave={(schedule) => {
+                                        setSchedule(schedule);
+                                        setEditSchadule(false)
+                                    }} 
+                                    clickClose={() => setEditSchadule(false)}/> : 
+                                <Schedule 
+                                    schedule={schedule}
+                                    editable={editable}
+                                    clickEdit={() => setEditSchadule(true)}
+                                />
+                            }
 
-                                <div className="contact-data">
-                                    <p><BoxIcons.BiPhone />Phone:</p>
-                                    <p className="contact-r">0745954056</p>
-                                </div>
+                            {editPrices ? 
+                                <EditPrices 
+                                    prices={prices}
+                                    clickSave={(phone, mail) => {
+                                        // setEditContact(false);
+                                        console.log(phone, mail);
+                                        console.log("click")
+                                    }} 
+                                    clickClose={() => setEditPrices(false)}/> : 
+                                <Prices  
+                                    prices={prices}
+                                    editable={editable}
+                                    clickEdit={() => setEditPrices(true)}/>
+                            }
 
-                                <div className="contact-data">
-                                    <p><FaIcons.AiOutlineMail />Mail:</p>
-                                    <p className="contact-r">andrei.seby45@gmail.com</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="stylist-data">
-                            <div className="about-data">
-                                <div className="title-about">
-                                    <Typography component="legend">Contact</Typography>
-                                    <div className="edit-title"/>
-                                </div>
-                                
-                                <hr/>
-
-                                <div className="contact-data">
-                                    <p><BoxIcons.BiMap />Address:</p>
-                                    <a href="" className="contact-r">str.univ, 4321, suceava</a>
-                                </div>
-
-                                <div className="contact-data">
-                                    <p><BoxIcons.BiPhone />Phone:</p>
-                                    <div className="contact-r">
-                                        <PhoneInput
-                                            placeholder="Enter phone number"
-                                            country={"ro"}
-                                            countryCodeEditable={false}
-                                            value={""}
-                                            onChange={()=>{}}
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="contact-data">
-                                    <p><FaIcons.AiOutlineMail />Mail:</p>
-                                    <div className="contact-r">
-                                        <input className="text-field" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="stylist-data">
-                            <div className="about-data">
-                                <Typography component="legend">Schedule</Typography>
-                                <hr/>
-                                <div className="contact-data">
-                                    <div>
-                                        <p>Monday:</p>
-                                        <p>Tuesday:</p>
-                                        <p>Wednesday:</p>
-                                        <p>Thursday:</p>
-                                        <p>Friday:</p>
-                                        <p>Saturday:</p>
-                                        <p>Sunday:</p>
-                                    </div>
-
-                                    <div className="contact-r">
-                                        <p>08:00 - 18:00</p>
-                                        <p>08:00 - 18:00</p>
-                                        <p>08:00 - 18:00</p>
-                                        <p>08:00 - 18:00</p>
-                                        <p>08:00 - 18:00</p>
-                                        <p>08:00 - 18:00</p>
-                                        <p>08:00 - 18:00</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="stylist-data">
-                            <div className="about-data">
-                                <Typography component="legend">Schedule</Typography>
-                                <hr/>
-                                <div className="contact-data">
-                                    <div>
-                                        <p>Monday:</p>
-                                        <p>Tuesday:</p>
-                                        <p>Wednesday:</p>
-                                        <p>Thursday:</p>
-                                        <p>Friday:</p>
-                                        <p>Saturday:</p>
-                                        <p>Sunday:</p>
-                                    </div>
-
-                                    <div className="contact-r">
-                                    <div className='set-time'>
-                                        <TimePicker
-                                            className='picker'
-                                            onChange={onChange}
-                                            required="true"
-                                            disableClock
-                                        />
-                                        <TimePicker
-                                            onChange={onChange}
-                                            required="true"
-                                            disableClock
-                                        />  
-                                    </div>
-                                    
-                                    <div className='set-time'>
-                                        <TimePicker
-                                            onChange={onChange}
-                                            required="true"
-                                            disableClock
-                                        />
-                                        <TimePicker
-                                            onChange={onChange}
-                                            required="true"
-                                            disableClock
-                                        />  
-                                    </div>
-                                
-                                    <div className='set-time'>
-                                        <TimePicker
-                                            onChange={onChange}
-                                            required="true"
-                                            disableClock
-                                        />
-                                        <TimePicker
-                                            onChange={onChange}
-                                            required="true"
-                                            disableClock
-                                        />  
-                                    </div>
-                                    
-                                    <div className='set-time'>
-                                        <TimePicker
-                                            onChange={onChange}
-                                            required="true"
-                                            disableClock
-                                        />
-                                        <TimePicker
-                                            onChange={onChange}
-                                            required="true"
-                                            disableClock
-                                        />  
-                                    </div>
-                                    
-                                    <div className='set-time'>
-                                        <TimePicker
-                                            onChange={onChange}
-                                            required="true"
-                                            disableClock
-                                        />
-                                        <TimePicker
-                                            onChange={onChange}
-                                            required="true"
-                                            disableClock
-                                        />  
-                                    </div>
-
-                                    <div className='set-time'>
-                                        <TimePicker
-                                            onChange={onChange}
-                                            required="true"
-                                            disableClock
-                                        />
-                                        <TimePicker
-                                            onChange={onChange}
-                                            required="true"
-                                            disableClock
-                                        />  
-                                    </div>
-
-                                    <div className='set-time'>
-                                        <TimePicker
-                                            onChange={onChange}
-                                            required="true"
-                                            disableClock
-                                        />
-                                        <TimePicker
-                                            onChange={onChange}
-                                            required="true"
-                                            disableClock
-                                        />  
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                       
-                                    </div>
-                        <div className="stylist-data">
-                            <div className="about-data">
-                                <Typography component="legend">Prices:</Typography>
-                                <hr/>
-                                <div className="contact-data">
-                                    <div>
-                                        <p>Regular:</p>
-                                        <p>New look:</p>
-                                        <p>Modern haircut:</p>
-                                    </div>
-
-                                    <div className="contact-r">
-                                        <p>30 LEI</p>
-                                        <p>80 LEI</p>
-                                        <p>50 LEI</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <Reviews reviews={reviews} rate={rate}/>
                             
                         </div>
 
-                        <div className="stylist-data">
-
-                            {/* <Box component="fieldset" mb={3} borderColor="transparent"> */}
-                            <div className="stylist-rate about-data">
-                                <Typography component="legend">Reviews:</Typography>
-                                <Rating name="read-only" value={value} readOnly />
-                                <Typography component="legend">({value})</Typography>
-                            </div>
-                            <hr/>
-                            <div className="all-reviews">
-                            {
-                                reviews.length > 0 ? reviews.map(el =>{
-                                    return (
-                                        <div className="review-component">
-                                            <div className="review">
-                                                <div className="info-review">
-                                                    <CircularImage image={user.url_photo} style={{width: '30px', height: '30px', marginLeft: "10px"}}/>
-                                                    <label>{el.name}</label>
-                                                </div>
-                                                
-                                                <div className="user-review">
-                                                    <Rating name="read-only" size="small"  value={el.rate} readOnly />
-                                                </div>
-                                                <label>({el.rate})</label>
-
-                                                
-                                            </div>
-                                            {el.text && <p>{el.text}</p>}
-                                        </div>
-                                    );
-                                }) :
-                                <p>No review so far</p>
-                            }
-                        </div>
+                        <div className="stylit-posts">
+                            <Posts posts={posts} canDelete={editable}/>
                         </div>
                     </div>
+                    </React.Fragment>
 
-                    <div className="stylit-posts">
-                    <Posts posts={posts} canDelete={true}/>
-                    </div>
-                </div>
+                    : <p>Loading...</p>
+                }
+                
                
             </div>
     );

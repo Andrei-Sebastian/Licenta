@@ -146,4 +146,56 @@
     @media (max-width: 1250px) {
         width: 98%;
     }
+
+    .group-btn {
+        display: flex;
+        justify-content: space-evenly;
+        margin: 20px;
+
+        .save-btn {
+            background-color: rgb(197, 255, 197);
+            :hover {
+                background-color: rgb(142, 223, 142);
+            }
+        }
+    
+        .close-btn {
+            background-color: rgb(250, 199, 199);
+        }
+    
+        .profile-btn{
+            width: 100px;
+            height: 30px;
+            border: 1px solid rgb(167, 167, 167);
+            border-radius: 5px;
+        }
+    }
+
+    
+    
+}
+.info {
+    font-size: 12px;
+    margin: 0 auto;
+    text-align: center;
+    color: red;
+
+}
+
+.price-text {
+    width: 100px !important;
+    margin-left: 30px;
+}
+
+.lei {
+    margin-left: 10px;
+}
+.p-reviews {
+    font-size: 1rem;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.00938em;
+    margin-right: 10px;
+    margin-bottom: 0;
 }

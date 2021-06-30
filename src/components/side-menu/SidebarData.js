@@ -4,6 +4,7 @@ import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
 import * as RiIcons from 'react-icons/ri';
 import * as BsImage from 'react-icons/bs';
+import * as BiImage from 'react-icons/bi';
 
 export const SidebarData = [
   {
@@ -71,5 +72,10 @@ export const SidebarData = [
     title: 'Support',
     path: '/support',
     icon: <IoIcons.IoMdHelpCircle />
+  },
+  {
+    title: 'Log out',
+    path: '/login',
+    icon: <BiImage.BiLogOut />
   }
 ];
