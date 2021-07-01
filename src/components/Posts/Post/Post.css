@@ -23,7 +23,9 @@
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         box-sizing: border-box;
         /* min-height: 300px; this sets min height of component */
-        max-height: fit-content;       
+        max-height: fit-content;    
+        padding-bottom: 3px;
+   
     }
 
     .aboutPost {
@@ -38,7 +40,6 @@
     }
 
     .userName {
-        text-indent: 50px;
         font-family: arial;
         font-size: 20px;
         padding-left: 10px;
@@ -56,6 +57,22 @@
         .image {
             /* min-height: 200px;
             max-height: 300px; */
+        }
+    }
+
+    @media (min-width: 2250px) {
+        .post {
+            width: 900px;
+            max-height: 1300px;
+            /* min-height: 500px; */
+            /* max-height: 300px; */
+        }
+    }
+
+    @media (min-width: 2900px) {
+        .post {
+            width: 1200px;
+            max-height: 1500px;
         }
     }
 
@@ -108,4 +125,8 @@
 
     .delete-img {
         height: 20px;
+    }
+
+    .flex {
+        display: flex;
     }

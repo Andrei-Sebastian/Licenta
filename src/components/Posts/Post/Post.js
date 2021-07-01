@@ -9,22 +9,22 @@ const post = (props) => {
     return (
         <div className="post">
             <div className="aboutPost">
-                <div>
-                <img 
-                    className="circular_image" 
-                    alt="User profile" 
-                    src={props.profileImage} 
-                    loading="lazy"
-                    width="300px"
-                    height="300px"
-                />
-                <a className="userName" target="_blank" href='/welcome'>{props.name}</a>
+                <div className="flex" onClick={!props.canDelete && props.onClickProfile}>
+                    <img 
+                        className="circular_image" 
+                        alt="User profile" 
+                        src={props.profileImage} 
+                        loading="lazy"
+                        width="300px"
+                        height="300px"
+                    />
+                    <p className="userName" >{props.name}</p>
                 </div>
                 
                 {
                     props.canDelete && (
-                        <div title="Delete this post">
-                            <img className='delete-img' src={Delete} alt='Not Found' loading="lazy"/>
+                        <div title="Delete this post" onClick={props.clickDelete}>
+                            <img className='delete-img' src={Delete} alt='Not Found' loading="lazy" />
                         </div>
                     )
                 }

@@ -49,3 +49,16 @@
     }
 
 }
+
+.register-schedule{
+    display: flex;
+
+    p {
+        margin: 12px 0;
+        @media (max-width: 720px) {
+            margin: 50px 0 !important;
+        }
+    }
+
+   
+}

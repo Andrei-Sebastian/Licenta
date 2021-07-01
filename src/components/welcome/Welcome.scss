@@ -1,0 +1,139 @@
+.App {
+  text-align: center;
+  /* background-color: #8a9ebd; */
+  background-color: #E4E9E9
+}
+
+.red {
+  color: red;
+}
+
+.bolt {
+  font-weight: bold;
+}
+
+
+.right-menu {
+
+  max-height: 90%;
+  overflow: auto;
+  ::-webkit-scrollbar {
+      width: 1px;
+    }
+  position: fixed;
+  top: 60px;
+  right: 30px;
+
+  margin: 10px;
+  /* min-width: 300px; */
+  width: 25%;
+  height: auto;
+  background-color: #f0ebeb;
+    /* border: 1px solid black; */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-sizing: border-box;
+    text-align: left;
+
+    @media (max-width: 2250px) {
+      width: 30%;
+      right: 2px;
+  }
+    @media (max-width: 1720px) {
+      width: 30%;
+      right: 2px;
+  }
+
+
+
+  @media (max-width: 1600px) {
+    width: 27%;
+    right: 2px;
+}
+@media (max-width: 1450px) {
+  width: 25%;
+  right: 1px;
+}
+
+@media (max-width: 1300px) {
+  width: 24%;
+  right: 1px;
+}
+
+@media (max-width: 1240px) {
+  width: 22%;
+  right: 1px;
+}
+
+@media (max-width: 1170px) {
+  width: 20%;
+}
+
+@media (max-width: 1080px) {
+  display: none;
+}
+
+  .flex {
+    @media (max-width: 1625px) {
+      display: block;
+      text-align: center;
+  }
+  }
+ .right-menu-title {
+    padding-top: 10px;
+    text-align: center;
+    color: #292929;
+    font-size: 21px;
+    font-family: Georgia, Verdana, serif;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+
+  .a-recomand {
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    margin: 30px;
+    
+    @media (max-width: 1730px) {
+      margin: 30px 5px;
+
+  }
+
+  @media (max-width: 1450px) {
+    margin: 30px 2px;
+  }
+
+  @media (max-width: 1450px) {
+    display: block;
+    .div-follow {
+      text-align: center;
+    }
+  }
+
+    p {
+      font-size: 20px;
+      align-self: center;
+      margin-left: 8px;
+    }
+
+    .MuiRating-root {
+      align-self: center;
+    }
+
+    .follwo-btn {
+      width: 70px;
+      height: 30px;
+      align-self: center;
+      border: 1px solid rgb(194, 194, 194);
+      border-radius: 5px; 
+    }
+
+    .div-follow :hover {
+      background-color: rgb(147, 252, 147);
+    }
+  }
+}
+
+
+

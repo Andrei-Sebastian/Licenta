@@ -67,7 +67,8 @@ const obj = {
     ],
     rate: 5,
     posts: [],
-    editable: true
+    editable: true,
+    followers: []
 }
 
 
@@ -83,9 +84,7 @@ const obj = {
 
 
 
-const Profile = () =>  {
-    const user = {url_photo:"https://scontent.fclj1-2.fna.fbcdn.net/v/t31.18172-8/963812_411054585662631_1773936117_o.jpg?_nc_cat=107&ccb=1-3&_nc_sid=174925&_nc_ohc=jkTOi8pY6h4AX8fy_tE&_nc_oc=AQkDQpdkbj0lwOviIKIZyBVKjBzS45jdB-xDIFAghbEv1vhRCXfqURFdsGKH2B-kKfyHMS74e-_SrHKreqDPvTrO&_nc_ht=scontent.fclj1-2.fna&oh=08d41e274d9c5ca9e2e6ec826152700a&oe=60DB92E6" ,name: "Iriciuc Andrei"}
-    
+const Profile = ({data}) =>  {    
     const [name, setName] = useState("")
     const [email, setEmail] = useState("");
     const [photo, setPhoto] = useState("");
@@ -109,34 +108,19 @@ const Profile = () =>  {
     const [editable, setEditable] = useState(false);
 
     useEffect(() => {
-        const getPosts = async() => {
-            const post = await axios.get(`http://localhost:8080/myPosts`,
-            {
-                headers: {
-                    Authorization: localStorage.getItem("user-info"),
-                }
-            });
-            console.log(post)
-            setPosts(post.data);
-
-            setName(obj.name);
-            setPhoto(obj.photo);
-            setPhone(obj.phone);
-            setEmail(obj.email);
-            setAddress(obj.address);
-
-            setReviews(obj.reviews);
-            setRate(obj.rate);
-            setSchedule(obj.schedule);
-            setPrices(obj.prices);
-            setEditable(obj.editable);
-            // setValue(reviews.reduce((acc, el) => acc + el.rate, 0)/reviews.length);
-
-
-            setLoaded(true);
-        }
-
-        getPosts();
+        setPosts(data.posts);
+        setName(data.name);
+        setPhoto(data.photo);
+        setPhone(data.phone);
+        setEmail(data.email);
+        setAddress(data.address);
+        setReviews(obj.reviews);
+        setRate(obj.rate);
+        setSchedule(data.schedule);
+        setPrices(data.prices);
+        setEditable(data.editable);
+        // setValue(reviews.reduce((acc, el) => acc + el.rate, 0)/reviews.length);
+        setLoaded(true);
     }, []);
 
     

@@ -16,7 +16,7 @@ class TextArea extends Component {
 				rows={this.props.rows}
 				value={this.props.description}
 				placeholder='Enter your text here...'
-				className='textarea'
+				className={this.props.additionalClass ? 'textarea ' + this.props.additionalClass : 'textarea'}
 				onChange={e => this.props.onChange(e)}
                 onKeyDown={e => this.allowTab(e)}
 			/>

@@ -82,3 +82,11 @@ span {
     z-index: 3;
     top: 0;
 }
+
+.logout-img {
+  position: fixed;
+  top: 13px;
+  right: 10px;
+  z-index: 20;
+  cursor: pointer;
+}

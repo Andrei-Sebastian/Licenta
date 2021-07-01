@@ -14,6 +14,7 @@ import stylistImg from "../../images/stylist-role.png";
 
 import PhoneInput from "react-phone-input-2";
 import GoogleMaps from "../google-maps/google-maps";
+import TextArea from "../TextArea/TextArea";
 
 const Register = () => {
   const fileInput = useRef(null);
@@ -22,11 +23,17 @@ const Register = () => {
   const [middleName, setMiddleName] = useState("");
   const [profilePhoto, setProfilePhoto] = useState("");
   const [role, setRole] = useState();
-  const [address, setAddress] = useState(
-    "47.64496610136732, 26.255682705745027"
-  );
-  const [phoneNumber, setPhoneNumber] = useState();
+  const [address, setAddress] = useState({});
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [gender, setGender] = useState("");
+  const [about, setAbout] = useState("");
+  const [prices, setPrices] = useState({
+    regular: "",
+    newLook: "",
+    modern: ""
+  });
+
+  const [schedule, setSchedule] = useState({});
 
   const [t1, setT1] = useState("");
 
@@ -40,9 +47,6 @@ const Register = () => {
   const [file, setFile] = useState("");
 
   useEffect(() => {
-    console.log(address);
-    console.log("hree");
-
     if (!localStorage.getItem("new-info")) {
       window.location.href = "/login";
     }
@@ -83,17 +87,18 @@ const Register = () => {
     setAddress(location);
   };
 
+  const setScheduleData = (schedule) => {
+    setSchedule(schedule);
+  };
+
   // create new post and add in mongo
   const handleSubmit = async () => {
-    // this.state.loading = true;
-    // this.setState(this.state);
-    console.log(gender);
+    let res;
+    try {
     const data = new FormData();
     data.append("file", file);
     data.append("upload_preset", "folder_p");
-    console.log(file);
-    console.log(data);
-    const res = await axios.post(
+    res = await axios.post(
       "https://api.cloudinary.com/v1_1/dm3pamnau/image/upload",
       data,
       {
@@ -106,29 +111,56 @@ const Register = () => {
         },
       }
     );
-    console.log(res, "here");
-    let x = await axios.post(
-      `http://localhost:8080/editProfile`,
-      {
-        name: lastName + " " + firstName + " " + middleName,
-        profilePhoto: res.data.secure_url,
-        address: address,
-        gender: gender,
-        phoneNumber: phoneNumber,
-        role: role,
-      },
-      {
-        headers: {
-          Authorization: localStorage.getItem("new-info"),
+    } catch (e) {}
+
+    if (role === "stylist") {
+      await axios.post(
+        `http://localhost:8080/editProfile`,
+        {
+          name: lastName + " " + firstName + (middleName ? " " + middleName : ""),
+          profilePhoto: res ? res.data.secure_url : "",
+          address: address,
+          gender: gender,
+          phoneNumber: phoneNumber,
+          role: role,
+          about: about,
+          address: address,
+          schedule: schedule,
+          prices: prices,
         },
-      }
-    );
+        {
+          headers: {
+            Authorization: localStorage.getItem("new-info"),
+          },
+        }
+      );
+    } else {
+      await axios.post(
+        `http://localhost:8080/editProfile`,
+        {
+          name: lastName + " " + firstName + (middleName ? " " + middleName : ""),
+          profilePhoto: res ? res.data.secure_url : "",
+          address: address,
+          gender: gender,
+          phoneNumber: phoneNumber,
+          role: role,
+        },
+        {
+          headers: {
+            Authorization: localStorage.getItem("new-info"),
+          },
+        }
+      );
+    }
+
     localStorage.setItem("user-info", localStorage.getItem("new-info"));
+    localStorage.setItem("role", role);
     localStorage.removeItem("new-info");
-    window.location.href = "/welcome";
-    console.log(x);
-    // this.state.loading = false;
-    // this.setState(this.state);
+    if (role === "stylist") {
+      window.location.href = "/home";
+    } else {
+      window.location.href = "/welcome";
+    }
   };
 
   return (
@@ -265,12 +297,60 @@ const Register = () => {
             <GoogleMaps onSelectedLocation={setLocation} />
           </div>
         </div>
-        <hr />
 
         {role === "stylist" && <React.Fragment>
+          <hr />
+          <p className="layout-title">About you</p>
+          <TextArea 
+            additionalClass="text-dimension"
+            description={about}
+            rows={3}
+            onChange={(val) =>(setAbout(val.target.value))}
+          />
+
+          <hr />
           <p className="layout-title">Select your schedule</p>
-          <Schedule time={t1} onChange={(e)=> {setT1(e.target.value)}}/>
+          <Schedule setSchedule={setSchedule}/>
+
+          <hr />
+          <p className="layout-title">Prices</p>
+          <div className="prices-flex">
+            <div className="price-p">
+              <p>Regular:</p>
+              <p>New look:</p>
+              <p>Modern haircut:</p>
+            </div>
+            <div>
+              <input 
+                onChange={(e) => {
+                  console.log(e.target.value, prices)
+                  prices.regular = "" + e.target.value;
+                  setPrices(prices);
+              }}/>
+              <br/>
+              <input 
+              onChange={(e) => {
+                console.log(e.target.value, prices)
+                prices.newLook = "" + e.target.value;
+                setPrices(prices);
+            }}/>
+              <br/>
+              <input 
+              onChange={(e) => {
+                console.log(e.target.value, prices)
+                prices.modern = "" + e.target.value;
+                setPrices(prices);
+            }}/>
+            </div>
+
+            <div className="price-p">
+              <p>Lei</p>
+              <p>Lei</p>
+              <p>Lei</p>
+            </div>
+          </div> 
         </React.Fragment>}
+        <hr/>
 
         <div className="profile-button">
           <button

@@ -13,6 +13,16 @@
         width: 97%;
     }
 
+    @media (min-width: 2250px) {
+        width: 900px;
+        max-height: 1300px;
+    }
+
+    @media (min-width: 2900px) {
+        width: 1200px;
+        max-height: 1500px;
+    }
+
     div {
         padding: 5px 0 0 5px;
         // cursor: pointer;

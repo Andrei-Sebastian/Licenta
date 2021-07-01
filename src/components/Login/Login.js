@@ -48,7 +48,13 @@ const Login = () => {
         window.location.href='/register';
       } else {
         localStorage.setItem('user-info', response.data.accessToken);
-        window.location.href='/welcome';
+        localStorage.setItem('role', response.data.role);
+        console.log(response.data.role);
+        if (response.data.role === "stylist") {
+          window.location.href = "/home";
+        } else {
+          window.location.href = "/welcome";
+        }
       } 
     })
     .catch (err => {

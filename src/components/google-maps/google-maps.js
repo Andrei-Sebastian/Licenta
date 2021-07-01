@@ -56,6 +56,11 @@ class LocationSearchModal extends React.Component {
                                     city = this.getCity(addressArray),
                                     area = this.getArea(addressArray),
                                     state = this.getState(addressArray);
+                                    this.props.onSelectedLocation({
+                                        lt: position.coords.latitude,
+                                        lg: position.coords.longitude,
+                                        text: address
+                                });
                                 // console.log('city', city, area, state);
                                 this.setState({
                                     address: (address) ? address : '',
@@ -137,9 +142,7 @@ class LocationSearchModal extends React.Component {
     onMarkerDragEnd = (event) => {
         let newLat = event.latLng.lat(),
             newLng = event.latLng.lng();
-
-            // console.log("here in maps")
-                this.props.onSelectedLocation(event.latLng.lat() + "/" + event.latLng.lng());
+        
 
         Geocode.fromLatLng(newLat, newLng).then(
             response => {
@@ -148,6 +151,11 @@ class LocationSearchModal extends React.Component {
                     city = this.getCity(addressArray),
                     area = this.getArea(addressArray),
                     state = this.getState(addressArray);
+                this.props.onSelectedLocation({
+                        lt: event.latLng.lat(),
+                        lg: event.latLng.lng(),
+                        text: address
+                });
                 this.setState({
                     address: (address) ? address : '',
                     area: (area) ? area : '',

@@ -8,6 +8,7 @@ import SubMenu from './SubMenu';
 import { IconContext } from 'react-icons/lib';
 import CircularImage from '../CircularImage/CircularImage';
 import logo from '../../images/logo-b.png';
+import logout from '../../images/logout.png';
 import "./Navbar.css";
 
 const Nav = styled.div`
@@ -56,11 +57,7 @@ const Sidebar = () => {
           <NavIcon to='#'>
             <FaIcons.FaBars onClick={showSidebar} />
           </NavIcon>
-
-          {/* <div className="center-logo" onClick={ () =>{ window.location.href="/welcome" }}> */}
-             <img className="center-logo" src={logo}  alt="Back to login"
-              loading="lazy"/>
-            {/* </div> */}
+          <img className="center-logo" src={logo}  alt="Back to login" loading="lazy"/>
         </Nav>
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>
@@ -73,6 +70,17 @@ const Sidebar = () => {
           </SidebarWrap>
         </SidebarNav>
       </IconContext.Provider>
+      <img 
+        className="logout-img" 
+        src={logout}  
+        alt="Back to login" 
+        loading="lazy" 
+        onClick={() => {
+          localStorage.removeItem('user-info'); 
+          localStorage.removeItem("role");
+          window.location.href="/login"; 
+        }}/>
+
     </>
   );
 };

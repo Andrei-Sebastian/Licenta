@@ -18,3 +18,7 @@
 .textarea:focus {
 	outline: none;
 }
+
+.text-dimension {
+	width: 80% !important;
+}

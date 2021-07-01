@@ -1,4 +1,4 @@
-import './Welcome.css';
+import './Welcome.scss';
 import React, {Component}  from 'react';
 import Post from '../Posts/Posts';
 import Loading from '../Loading/Loading';
@@ -7,6 +7,7 @@ import TopWelcome from '../TopWelcome/top-welcome';
 import axios from 'axios';
 import {Redirect} from "react-router-dom";
 import Layout from "../layout";
+import RightMenu from './right-menu';
 
 class Welcome extends Component  {
     state = {
@@ -55,6 +56,7 @@ class Welcome extends Component  {
               <LeftMenu user={this.state.user} appointment={this.state.appointment}/>
               <TopWelcome user={this.state.user}/>
               <Post posts={this.state.posts}/>
+              <RightMenu/>
             </div>
           }
         </Layout>

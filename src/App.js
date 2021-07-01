@@ -1,4 +1,4 @@
-import React ,{Component} from 'react';
+import React ,{Component, useEffect, useState} from 'react';
 import Welcome from './components/welcome/Welcome';
 import Login from './components/Login/login';
 import SetProfile from './components/Login/set-profile';
@@ -18,14 +18,22 @@ import AdminPage from './components/welcome/admin-welcome';
 import Appointments from './components/stylist-profile/appointments';
 import MyPosts from './components/stylist-profile/my-posts';
 import Home from './components/stylist-profile/home';
+import Profile from './components/welcome/profile';
  
 
-class App extends Component{
-  render() {
+const App = () => {
+  const [role, setRole] = useState("");
+
+  useEffect(() => {
+    setRole(localStorage.getItem("role"));
+  })
+
     return (
       <Router>
           <Switch>
 
+          {!role && 
+          <>
             <Route path="/login">
               <Login />
             </Route>
@@ -46,26 +54,52 @@ class App extends Component{
                component={NewPassword}
             />
 
-            <Route path="/welcome">
-              <Welcome />
-            </Route>
-
-            
-
-            <Route path="/schedule">
-              <Schedule />
-            </Route>
-
             <Route path="/newAccount">
               <NewAccount />
             </Route>
 
+            {/* <Route>
+              <Redirect to="/login" />
+            </Route> */}
+          </>
+        } 
+
+        {role === "admin" && 
+          <>
             <Route path="/admin">
               <AdminPage />
             </Route>
 
+            <Route>
+              <Redirect to="/admin" />
+            </Route>
+          </>
+        }           
+
+        {role === "user" && 
+          <>
+            <Route path="/welcome">
+              <Welcome />
+            </Route>
+
+            <Route path="/profile">
+              <Profile />
+            </Route>
+
+          
+            <Route path="/schedule">
+              <Schedule />
+            </Route>
+
+            {/* <Route>
+              <Redirect to="/welcome" />
+            </Route> */}
+          </>
+        }
 
 
+        {role === "stylist" && 
+          <>
             <Route path="/home">
               <Home />
             </Route>
@@ -82,16 +116,15 @@ class App extends Component{
               <MyPosts />
             </Route>
 
-
-            <Route>
-              <Redirect to="/welcome" />
-            </Route>
+            {/* <Route>
+              <Redirect to="/home" />
+            </Route> */}
             
+          </>
+        }
           </Switch>
       </Router>
     );
-  }
- 
 }
 
 export default App;

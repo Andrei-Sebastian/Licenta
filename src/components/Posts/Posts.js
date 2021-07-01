@@ -29,6 +29,10 @@ class posts extends Component {
         });
     }
 
+    onClickProfile (uid) {
+        window.location.href = "/profile/" + uid;
+    }
+
     render() {
         return (
             <div className="posts">
@@ -43,6 +47,8 @@ class posts extends Component {
                         postImage={post.photo_url}
                         postId={post.uid}
                         onClickHandle={() => this.onClickHandleLike(i)}
+                        onClickProfile={() => this.onClickProfile(post.uid)}
+                        clickDelete={() => {console.log(post.nid)}}
                         canDelete={this.props.canDelete}
                     />
                 ))}

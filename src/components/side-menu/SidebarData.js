@@ -76,6 +76,6 @@ export const SidebarData = [
   {
     title: 'Log out',
     path: '/login',
-    icon: <BiImage.BiLogOut />
+    icon: <BiImage.BiLogOut/>
   }
 ];

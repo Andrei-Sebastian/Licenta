@@ -45,7 +45,7 @@ class navBarComponent extends Component {
 
               <Nav>
                   <Nav.Link onClick={()=>{ window.location.href="/schedule" }}>Schedule</Nav.Link>
-                  <Nav.Link onClick={()=>{window.location.reload(); localStorage.removeItem('user-info')}}>Log out</Nav.Link>
+                  <Nav.Link onClick={()=>{window.location.href="/login"; localStorage.removeItem('user-info'); localStorage.removeItem("role");}}>Log out</Nav.Link>
               </Nav>
 
             </Navbar.Collapse>

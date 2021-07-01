@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CircularImage from '../CircularImage/CircularImage';
 import Appointment from './Appointment/Appointment'; 
-import './LeftMenu.css';
+import './LeftMenu.scss';
 
 class LeftMenu extends Component {
 
