@@ -51,7 +51,7 @@ const Login = () => {
         localStorage.setItem('role', response.data.role);
         console.log(response.data.role);
         if (response.data.role === "stylist") {
-          window.location.href = "/home";
+          window.location.href = "/welcome";
         } else {
           window.location.href = "/welcome";
         }

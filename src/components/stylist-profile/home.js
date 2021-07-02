@@ -24,7 +24,7 @@ const Home = () =>  {
 
         getPosts();
 
-    })
+    }, [])
       return (
         <LayoutStylist>
             {

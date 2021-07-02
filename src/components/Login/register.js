@@ -157,7 +157,7 @@ const Register = () => {
     localStorage.setItem("role", role);
     localStorage.removeItem("new-info");
     if (role === "stylist") {
-      window.location.href = "/home";
+      window.location.href = "/welcome";
     } else {
       window.location.href = "/welcome";
     }

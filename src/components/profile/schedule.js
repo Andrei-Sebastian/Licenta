@@ -1,7 +1,5 @@
 import React, { useEffect, useState }  from 'react';
 import Typography from '@material-ui/core/Typography';
-import * as FaIcons from 'react-icons/ai';
-import * as BoxIcons from "react-icons/bi";
 
 
 

@@ -4,6 +4,7 @@ import Text from '../../LongText/LongText';
 import like from '../../../images/like.png';
 import liked from '../../../images/liked.png';
 import Delete from '../../../images/delete.png';
+import profileImage from '../../../images/profile.png';
 
 const post = (props) => {
     return (
@@ -13,7 +14,7 @@ const post = (props) => {
                     <img 
                         className="circular_image" 
                         alt="User profile" 
-                        src={props.profileImage} 
+                        src={props.profileImage ? props.profileImage : profileImage} 
                         loading="lazy"
                         width="300px"
                         height="300px"

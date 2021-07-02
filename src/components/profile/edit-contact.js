@@ -3,10 +3,11 @@ import Typography from '@material-ui/core/Typography';
 import * as FaIcons from 'react-icons/ai';
 import * as BoxIcons from "react-icons/bi";
 import PhoneInput from "react-phone-input-2";
+import Map from "../welcome/map"
 
 
 
-const EditContact = ({address, phone, mail, clickSave, clickClose}) =>  {
+const EditContact = ({lt, lg, address, phone, mail, clickSave, clickClose}) =>  {
     const [phonee, setPhone] = useState(phone);
     const [email, setMail] = useState(mail);
     return (
@@ -17,11 +18,6 @@ const EditContact = ({address, phone, mail, clickSave, clickClose}) =>  {
                 </div>
                 
                 <hr/>
-
-                <div className="contact-data">
-                    <p><BoxIcons.BiMap />Address:</p>
-                    <a href="" className="contact-r">{address.text}</a>
-                </div>
 
                 <div className="contact-data">
                     <div>
@@ -41,6 +37,14 @@ const EditContact = ({address, phone, mail, clickSave, clickClose}) =>  {
                     </div>
                 </div>
                 <p className="info">Not the email account!</p>
+
+                <div className="contact-data">
+                        <p><BoxIcons.BiMap />Address:</p>
+                        <p className="contact-r" >{address.text}</p>
+                    </div>
+                    <div className="show-map">
+                        <Map lt={lt} lg={lg} />
+                    </div>
 
                 <div className="group-btn">
                     <button className="save-btn profile-btn" onClick={() => {console.log(phonee);clickSave(phonee, email)}}>Save</button>

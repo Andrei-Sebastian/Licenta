@@ -9,23 +9,10 @@ import * as BiImage from 'react-icons/bi';
 export const SidebarData = [
   {
     title: 'Home',
-    path: '/home',
+    path: '/welcome',
     icon: <AiIcons.AiFillHome />,
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
-
-    subNav: [
-      {
-        title: 'appointments',
-        path: '#appointments',
-        icon: <IoIcons.IoIosPaper />
-      },
-      {
-        title: 'Approve',
-        path: '#revenue',
-        icon: <IoIcons.IoIosPaper />
-      }
-    ]
   },
   {
     title: 'Appointments',

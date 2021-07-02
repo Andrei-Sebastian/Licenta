@@ -16,19 +16,36 @@ import {
 } from '@devexpress/dx-react-scheduler-material-ui';
 import axios from 'axios';
 
-const Agenda = () => {
+const Agenda = ({user = false}) => {
 
     const [appointment, setAppoiment] = useState([]);
     const [currentDate, setCurrentDate] = useState(new Date());
+    const [uid, setUid] = useState();
 
     useEffect(() => {
         const getData = async () => {
-            const app = await axios.get(`http://localhost:8080/getAppointment`,
-            {
-                headers: {
-                    Authorization: localStorage.getItem("user-info"),
-                }
-            });
+            let uid = window.location.href.split("/")[window.location.href.split("/").length - 1];
+            setUid(uid);
+            let app;
+            if(user) {
+                app = await axios.get(`http://localhost:8080/getAppointment`,
+                { 
+                    params: {
+                        uid: uid
+                    },
+                    headers: {
+                        Authorization: localStorage.getItem("user-info"),
+                    }
+                });
+            } else {
+                app = await axios.get(`http://localhost:8080/getAppointment`,
+                {
+                    headers: {
+                        Authorization: localStorage.getItem("user-info"),
+                    }
+                });
+            }
+            
             setAppoiment(app.data);
         }
         getData();
@@ -45,21 +62,37 @@ const Agenda = () => {
         let  data  = [...appointment];
         let object = {};
 
-        if (added) {
+        if (added && new Date(added.startDate) > new Date()) {
+
             object = { 
                 id: data.length > 0 ? data[data.length - 1].id + 1 : 0,
-                ...added
+                ...added 
             }
-            await axios.post(`http://localhost:8080/createAppointment`,
-            {
-                appointments: object
-            },
-            {
-                headers: {
-                    Authorization: localStorage.getItem("user-info"),
-                }
-            });
+            let uid = window.location.href.split("/")[window.location.href.split("/").length - 1];
+            if (user) { 
+                await axios.post(`http://localhost:8080/createAppointment`,
+                {
+                    appointments: object,
+                    uid: uid
+                },
+                {
+                    headers: {
+                        Authorization: localStorage.getItem("user-info"),
+                    }
+                });
 
+            } else {
+                await axios.post(`http://localhost:8080/createAppointment`,
+                {
+                    appointments: object
+                },
+                {
+                    headers: {
+                        Authorization: localStorage.getItem("user-info"),
+                    }
+                });
+            }
+            
             data.push(object);
 
         } else if (changed) {
@@ -82,8 +115,9 @@ const Agenda = () => {
             //     changed[appointment.id] ? { ...appointment, ...changed[appointment.id] } : appointment));
             // console.log(data)
 
-        } else if (deleted !== undefined) {
+        } else if (deleted !== undefined && !user) {
             object = data.filter(appointment => appointment.id == deleted)[0];
+
             await axios.post(`http://localhost:8080/deleteAppointment`,
             {
                 appointments: object
@@ -117,12 +151,19 @@ const Agenda = () => {
             currentDate={currentDate}
             onCurrentDateChange={ currentDateChange}
             />
+        {user ?
         <EditingState
             onCommitChanges={commitChanges}
             addedAppointment={addedAppointment}
             onAddedAppointmentChange={onAddedAppointmentChange}
             // editingAppointment={()=>{console.log("here")}}
-            />
+            /> :
+            <EditingState
+            onCommitChanges={commitChanges}
+            addedAppointment={addedAppointment}
+            onAddedAppointmentChange={onAddedAppointmentChange}
+            // editingAppointment={()=>{console.log("here")}}
+            />}
             <EditRecurrenceMenu />
             <IntegratedEditing />
             <WeekView

@@ -3,7 +3,6 @@ import './CircularImage.css';
 import profileImage from '../../images/profile.png';
 
 class CircularImage extends Component {
-
     render () {
        return <img 
             className="circular_image" 

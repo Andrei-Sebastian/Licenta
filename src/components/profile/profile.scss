@@ -199,3 +199,30 @@
     margin-right: 10px;
     margin-bottom: 0;
 }
+
+.btn-div {
+    display: flex;
+    justify-content: space-around;
+    text-align: left;
+
+    button {
+        width: 150px;
+        height: 30px;
+        border: 1px solid rgb(189, 188, 188);
+        border-radius: 5px;
+    }
+
+    .btn-app {
+        width: 250px !important;
+    }
+}
+
+.show-map {
+    position: relative;
+    // z-index: 1000;
+    width: 370px;
+    height: 300px;
+    margin-bottom: 20px;
+    border: 1px solid gray;
+    
+}

@@ -24,6 +24,8 @@ import Prices from './prices';
 import Reviews from './reviews';
 import About from './about';
 import EditAbout from './edit-about';
+import Map from "../welcome/map";
+import AddPost from '../stylist-profile/add-post';
 
 
 const obj = {
@@ -99,6 +101,7 @@ const Profile = ({data}) =>  {
     const [schedule, setSchedule] = useState([]);
 
     const [prices, setPrices] = useState([]);
+    const [uidStylist, setUidStylist] = useState();
 
     const [editAbout, setEditAbout] = useState(false);
     const [editContact, setEditContact] = useState(false);
@@ -119,7 +122,7 @@ const Profile = ({data}) =>  {
         setSchedule(data.schedule);
         setPrices(data.prices);
         setEditable(data.editable);
-        // setValue(reviews.reduce((acc, el) => acc + el.rate, 0)/reviews.length);
+        setUidStylist(data.uidStylist);
         setLoaded(true);
     }, []);
 
@@ -130,7 +133,16 @@ const Profile = ({data}) =>  {
                     <React.Fragment>
 
                     <TopProfile name={name} photo={photo}/>
+                    
                     <hr/>
+                    {!editable &&
+                        <div className="btn-div">
+                            <button>Follow</button>
+                            <button className="btn-app" onClick={() => {window.location.href = "/takeappointment/" + uidStylist}}>Take an appointment</button>
+                            <button>Leave a feedback</button>
+                        </div>
+                    }
+                    
                     <div className="content-profile">
                         <div className="about-stylist">
                             {editAbout ? 
@@ -153,6 +165,8 @@ const Profile = ({data}) =>  {
                                     address={address}
                                     phone={phone}
                                     mail={email}
+                                    lt={address.lt} 
+                                    lg={address.lg}
                                     clickSave={(address, phone, mail) => {
                                         // setEditContact(false);
                                         console.log(phone, mail);
@@ -160,11 +174,14 @@ const Profile = ({data}) =>  {
                                     }} 
                                     clickClose={() => setEditContact(false)}/> : 
                                 <Contact 
+                                    lt={address.lt} 
+                                    lg={address.lg}
                                     address={address}
                                     phone={phone}
                                     mail={email}
                                     editable={editable}
-                                    clickEdit={() => setEditContact(true)}/>
+                                    clickEdit={() => setEditContact(true)}
+                                />
                             }
 
                             {editSchadule ? 
@@ -202,7 +219,11 @@ const Profile = ({data}) =>  {
                         </div>
 
                         <div className="stylit-posts">
-                            <Posts posts={posts} canDelete={editable}/>
+                            {(posts.length > 0 && editable)? 
+                                <Posts posts={posts} canDelete={editable}/> :
+                                <AddPost/>
+                            }
+                            
                         </div>
                     </div>
                     </React.Fragment>

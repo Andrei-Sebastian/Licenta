@@ -19,20 +19,28 @@ import Appointments from './components/stylist-profile/appointments';
 import MyPosts from './components/stylist-profile/my-posts';
 import Home from './components/stylist-profile/home';
 import Profile from './components/welcome/profile';
+import Map from './components/welcome/map';
+import Appointment from './components/welcome/appointment';
  
 
 const App = () => {
   const [role, setRole] = useState("");
+  const [user, setUser] = useState("");
 
   useEffect(() => {
     setRole(localStorage.getItem("role"));
+    setUser(localStorage.getItem("user-info"));
   })
 
     return (
       <Router>
           <Switch>
 
-          {!role && 
+          <Route path="/map">
+              <Map />
+            </Route>
+
+          {(!role || !user) && 
           <>
             <Route path="/login">
               <Login />
@@ -91,16 +99,18 @@ const App = () => {
               <Schedule />
             </Route>
 
-            {/* <Route>
-              <Redirect to="/welcome" />
-            </Route> */}
+            <Route path="/takeappointment">
+              <Appointment />
+            </Route>
+
+            
           </>
         }
 
 
         {role === "stylist" && 
           <>
-            <Route path="/home">
+            <Route path="/welcome">
               <Home />
             </Route>
 
@@ -117,11 +127,15 @@ const App = () => {
             </Route>
 
             {/* <Route>
-              <Redirect to="/home" />
+              <Redirect to="/welcome" />
             </Route> */}
             
           </>
         }
+
+            {/* <Route> */}
+              <Redirect to="/login" />
+            {/* </Route> */}
           </Switch>
       </Router>
     );
