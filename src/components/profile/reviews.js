@@ -5,10 +5,11 @@ import Posts from "../Posts/Posts";
 
 import Rating from '@material-ui/lab/Rating';
 import Typography from '@material-ui/core/Typography';
+import TextArea from '../TextArea/TextArea';
 
 
 
-const Reviews = ({reviews, rate}) =>  {
+const Reviews = ({reviews, rate, editable}) =>  {
     return (
         <div className="stylist-data">
             <div className="stylist-rate about-data">
@@ -41,6 +42,21 @@ const Reviews = ({reviews, rate}) =>  {
                 }) :
                 <p>No review so far</p>}
             </div>
+            {!editable && <div>
+                <hr/>
+                <div className="send-review">
+                    <div className="user-r info-review">
+                        <CircularImage image={reviews[0].photo} style={{width: '30px', height: '30px', marginLeft: "10px"}}/>
+                        <label>{reviews[0].name}</label>
+                        <Rating name="read-only" size="small"  value={reviews[0].rate} readOnly />
+                    </div>
+                    <TextArea />
+                    <div className="btn-re">
+                        <button className="btn-re">Send</button>
+                    </div>
+                </div>
+            </div>}
+           
         </div>
     );
 }

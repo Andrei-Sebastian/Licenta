@@ -7,6 +7,7 @@ import axios from 'axios';
 import {Redirect} from "react-router-dom";
 import Layout from "../layout";
 import Sidebar from "../side-menu/Sidebar"
+import Table from "./table";
 
 const AdminPage = () => {
 
@@ -54,6 +55,11 @@ const AdminPage = () => {
     return (
         <>
 <Sidebar/>
+<br/>
+<br/>
+<br/>
+<Table/>
+
         </>
     );
 }

@@ -6,7 +6,7 @@ import * as RiIcons from 'react-icons/ri';
 import * as BsImage from 'react-icons/bs';
 import * as BiImage from 'react-icons/bi';
 
-export const SidebarData = [
+export const SidebarDataStylist = [
   {
     title: 'Home',
     path: '/welcome',
@@ -30,39 +30,18 @@ export const SidebarData = [
     icon: <BsImage.BsImages />,
   },
   {
-    title: 'Team',
-    path: '/team',
-    icon: <IoIcons.IoMdPeople />
-  },
-  {
-    title: 'Messages',
-    path: '/messages',
-    icon: <FaIcons.FaEnvelopeOpenText />,
-
-    iconClosed: <RiIcons.RiArrowDownSFill />,
-    iconOpened: <RiIcons.RiArrowUpSFill />,
-
-    subNav: [
-      {
-        title: 'Message 1',
-        path: '/messages/message1',
-        icon: <IoIcons.IoIosPaper />
-      },
-      {
-        title: 'Message 2',
-        path: '/messages/message2',
-        icon: <IoIcons.IoIosPaper />
-      }
-    ]
-  },
-  {
     title: 'Support',
     path: '/support',
     icon: <IoIcons.IoMdHelpCircle />
-  },
-  {
-    title: 'Log out',
-    path: '/login',
-    icon: <BiImage.BiLogOut/>
   }
+];
+
+export const SidebarDataAdmin = [
+  {
+    title: 'Home',
+    path: '/welcome',
+    icon: <AiIcons.AiFillHome />,
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
+  },
 ];

@@ -5,6 +5,7 @@ import './appointment.scss';
 import barberImg from '../../../images/welcome/barber.svg'
 import CalendarImg from '../../../images/welcome/calendar.svg'
 import LocationImg from '../../../images/welcome/location-map.svg'
+import Map from "../../welcome/map"
 
 class Appointment extends Component {
 
@@ -57,7 +58,6 @@ class Appointment extends Component {
                     <strong>Location:</strong>
                     <label >{this.props.appointment.location ? this.props.appointment.location : "N/A"}</label>
                 </div>
-                <div></div>
             </div>
 
         </div>

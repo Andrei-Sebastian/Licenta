@@ -208,9 +208,12 @@
 
 .location-div {
     width: 80%;
-    height: 520px;
+    // height: 520px;
     // border: 1px solid black;
     margin: 0 auto;
+    @media (max-width: 600px) {
+        width: 98%;
+    }
 }
 
 

@@ -22,3 +22,9 @@
 .text-dimension {
 	width: 80% !important;
 }
+
+@media (max-width: 600px) {
+	.text-dimension {
+		width: 98% !important;
+	}
+}

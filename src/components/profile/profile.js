@@ -24,35 +24,10 @@ import Prices from './prices';
 import Reviews from './reviews';
 import About from './about';
 import EditAbout from './edit-about';
-import Map from "../welcome/map";
 import AddPost from '../stylist-profile/add-post';
 
 
 const obj = {
-    name: "Andrei Iricuc",
-    phone: "40745954056",
-    photo: "https://www.adobe.com/express/create/profile-picture/media_1bcd514348a568faed99e65f5249895e38b06c947.jpeg?width=2000&format=webply&optimize=medium",
-    email: "andrei.seby45@gmail.com",
-    description: "I like what I do!",
-    address: {
-        text: "Suceava, Romania",
-        lt: "",
-        lg: ""
-    },
-    schedule: [
-        {start: "08:30", end: "17:30"},
-        {start: "08:30", end: "17:30"},
-        {start: "08:30", end: "17:30"},
-        {start: "08:30", end: "17:30"},
-        {start: "08:30", end: "17:30"},
-        {start: "08:30", end: "17:30"},
-        {start: "08:30", end: "17:30"},
-    ],
-    prices: {
-        regular: "30",
-        newLook: "80",
-        modern: "50"
-    },
     reviews: [
         {
             name: "Iriciuc Andrei", 
@@ -61,16 +36,37 @@ const obj = {
             text: "The greatest haircut that i seen in my life. Thx for good job."
         },
         {
+            name: "George Vasile", 
+            photo: "https://res.cloudinary.com/dm3pamnau/image/upload/v1625224423/folder_p/ctrl_shift_r_hximga.jpg", 
+            rate: 3, 
+            text: "Was ok."
+        },
+        {
+            name: "Sandu Ion", 
+            photo: "https://res.cloudinary.com/dm3pamnau/image/upload/v1624732449/folder_p/154426303_277234057101525_2122568542774594641_n_nmyuf3.jpg", 
+            rate: 4, 
+            text: "Nothing new"
+        },
+        {
+            name: "Marcu Andrei", 
+            photo: "https://res.cloudinary.com/dm3pamnau/image/upload/v1622020516/folder_p/regular-user-role-removebg-preview_1_ajkkcf.png", 
+            rate: 5, 
+            text: "Thx for good job."
+        },
+        {
             name: "Iriciuc Andrei", 
             photo: "https://res.cloudinary.com/dm3pamnau/image/upload/v1624435809/folder_p/Iriciuc_Andrei_Sebastian__3_-removebg-preview__2_-removebg-preview_1_t8gaio.png", 
-            rate: 5, 
+            rate: 4, 
+            text: "The greatest haircut that i seen in my life. Thx for good job."
+        },
+        {
+            name: "Iriciuc Andrei", 
+            photo: "https://res.cloudinary.com/dm3pamnau/image/upload/v1624435809/folder_p/Iriciuc_Andrei_Sebastian__3_-removebg-preview__2_-removebg-preview_1_t8gaio.png", 
+            rate: 4, 
             text: "The greatest haircut that i seen in my life. Thx for good job."
         }
     ],
-    rate: 5,
-    posts: [],
-    editable: true,
-    followers: []
+    rate: 4,
 }
 
 
@@ -92,6 +88,7 @@ const Profile = ({data}) =>  {
     const [photo, setPhoto] = useState("");
     const [phone, setPhone] = useState("");
     const [address, setAddress] = useState({});
+    const [about, setAbout] = useState();
 
     const [reviews, setReviews] = useState([]);
     const [rate, setRate] = useState();
@@ -119,6 +116,7 @@ const Profile = ({data}) =>  {
         setAddress(data.address);
         setReviews(obj.reviews);
         setRate(obj.rate);
+        setAbout(data.about);
         setSchedule(data.schedule);
         setPrices(data.prices);
         setEditable(data.editable);
@@ -147,7 +145,7 @@ const Profile = ({data}) =>  {
                         <div className="about-stylist">
                             {editAbout ? 
                                 <EditAbout 
-                                    text={obj.description} 
+                                    text={about} 
                                     clickSave={(phone, mail) => {
                                         // setEditContact(false);
                                         console.log(phone, mail);
@@ -156,7 +154,7 @@ const Profile = ({data}) =>  {
                                     clickClose={() => setEditAbout(false)}/> : 
                                 <About 
                                     editable={editable}
-                                    text={obj.description} 
+                                    text={about} 
                                     clickEdit={() => setEditAbout(true)}/>
                             }
 
@@ -172,7 +170,7 @@ const Profile = ({data}) =>  {
                                         console.log(phone, mail);
                                         console.log("click")
                                     }} 
-                                    clickClose={() => setEditContact(false)}/> : 
+                                    clickClose={() => {setEditContact(false); console.log("here")}}/> : 
                                 <Contact 
                                     lt={address.lt} 
                                     lg={address.lg}
@@ -214,14 +212,15 @@ const Profile = ({data}) =>  {
                                     clickEdit={() => setEditPrices(true)}/>
                             }
 
-                            <Reviews reviews={reviews} rate={rate}/>
+                            <Reviews editable={editable} reviews={reviews} rate={rate}/>
                             
                         </div>
 
                         <div className="stylit-posts">
-                            {(posts.length > 0 && editable)? 
-                                <Posts posts={posts} canDelete={editable}/> :
-                                <AddPost/>
+                            {(posts.length <= 0 && editable)? 
+                                <AddPost/>:
+                                <Posts posts={posts} canDelete={editable}/> 
+                               
                             }
                             
                         </div>

@@ -3,7 +3,8 @@ import './Posts.css';
 import Post from './Post/Post';
 import axios from 'axios';
 
-class posts extends Component {
+
+class Posts extends Component {
     state = {posts: this.props.posts};
 
     onClickHandleLike(index) {
@@ -39,6 +40,7 @@ class posts extends Component {
                 {this.props.posts.map( (post, i) => (
                     <Post 
                         key={i}
+                        nid={post.nid}
                         name={post.name}
                         liked={post.liked}
                         numberOfLikes={post.likes}
@@ -48,7 +50,6 @@ class posts extends Component {
                         postId={post.uid}
                         onClickHandle={() => this.onClickHandleLike(i)}
                         onClickProfile={() => this.onClickProfile(post.uid)}
-                        clickDelete={() => {console.log(post.nid)}}
                         canDelete={this.props.canDelete}
                     />
                 ))}
@@ -58,4 +59,4 @@ class posts extends Component {
       
 };
 
-export default posts;
+export default Posts;

@@ -7,6 +7,7 @@ import './add-post/AddPost.css';
 import './add-post/Emoji.css';
 import { Picker } from 'emoji-mart';
 import LayoutStylist from '../layout-hairstylist';
+import UploadImg from "../../images/upload.PNG";
 
 class AddPost extends Component {
     state = {
@@ -116,7 +117,7 @@ class AddPost extends Component {
                                 <img className='image' src={this.state.image} alt='Not Found'/>
                                 <button className="choose-photo-button" onClick={() => this.fileInput.click()}>Choose another photo</button>
                             </div> : 
-                            <img className='image' style={{cursor: 'pointer'}} src='https://res.cloudinary.com/dm3pamnau/image/upload/v1613636290/folder_p/select-image_wl1bfc.webp' alt='Not Found' onClick={() => this.fileInput.click()}></img>
+                            <img className='image' style={{cursor: 'pointer'}} src={UploadImg} alt='Not Found' onClick={() => this.fileInput.click()}></img>
                         }
                         <div className="description">
                                 {this.state.showEmoji ? <span><Picker onSelect={this.addEmoji}/></span> : null}

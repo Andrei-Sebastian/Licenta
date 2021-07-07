@@ -6,7 +6,7 @@ import {
   // Form, 
   Nav, 
   // Link, 
-  // NavDropdown
+  NavDropdown
 } from 'react-bootstrap';
 // import {Redirect} from "react-router-dom";
 import './NavBar.css';
@@ -32,19 +32,18 @@ class navBarComponent extends Component {
                 <Nav.Link href="#pricing">Pricing</Nav.Link> */}
               </Nav>
 
-              {/* <Nav>
+              <Nav>
                 <NavDropdown id="collasible-nav-dropdown"> 
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                  {/* <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                   <Nav.Link onClick={()=>{this.setState({addPost: true})}}>Add post</Nav.Link>
-                  <Nav.Link onClick={()=>{window.location.reload(); localStorage.removeItem('user-info')}}>Log out</Nav.Link>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item onClick={()=>{window.location.reload(); localStorage.removeItem('user-info')}}>Log out</NavDropdown.Item>
+                  <Nav.Link onClick={()=>{ window.location.href="/support" }}>Support</Nav.Link>
+                  <NavDropdown.Divider /> */}
                 </NavDropdown>
-              </Nav> */}
+              </Nav>
 
               <Nav>
-                  <Nav.Link onClick={()=>{ window.location.href="/schedule" }}>Schedule</Nav.Link>
+                  <Nav.Link onClick={()=>{ window.location.href="/support" }}>Support</Nav.Link>
                   <Nav.Link onClick={()=>{window.location.href="/login"; localStorage.removeItem('user-info'); localStorage.removeItem("role");}}>Log out</Nav.Link>
               </Nav>
 

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
-import { SidebarData } from './SidebarData';
+import { SidebarDataAdmin, SidebarDataStylist } from './SidebarData';
 import SubMenu from './SubMenu';
 import { IconContext } from 'react-icons/lib';
 import CircularImage from '../CircularImage/CircularImage';
@@ -49,6 +49,17 @@ const Sidebar = () => {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
+  const [SidebarData, setData] = useState([]);
+
+
+  useEffect(() => {
+    let role = window.localStorage.getItem("role");
+    if (role === "stylist") {
+      setData([...SidebarDataStylist])
+    } else if (role === "admin") {
+      setData([...SidebarDataAdmin])
+    }
+  }, [])
 
   return (
     <>
@@ -57,7 +68,7 @@ const Sidebar = () => {
           <NavIcon to='#'>
             <FaIcons.FaBars onClick={showSidebar} />
           </NavIcon>
-          <img className="center-logo" src={logo}  alt="Back to login" loading="lazy"/>
+          <img className="center-logo" src={logo}  alt="Back to login" loading="lazy" onClick={() => {window.location.reload()}}/>
         </Nav>
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>

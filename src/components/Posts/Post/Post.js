@@ -1,14 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from "axios";
+
 import './Post.css';
+
 import Text from '../../LongText/LongText';
 import like from '../../../images/like.png';
 import liked from '../../../images/liked.png';
 import Delete from '../../../images/delete.png';
 import profileImage from '../../../images/profile.png';
+import Dialog from "../../dialog/dialog"
 
-const post = (props) => {
+const Post = (props) => {
+    const [dialog, setDialog] = useState(false);
     return (
         <div className="post">
+            <Dialog 
+                    show={dialog} 
+                    title="Do you want to delete this post?"
+                    clickClose={setDialog} 
+                    clickAccept={async () => {
+                        console.log("here",  props.nid)
+                        let params = {
+                            nid: props.nid
+                        }
+                        await axios.post(`http://localhost:8080/deletePost`,
+                            params,
+                            {
+                                headers: {
+                                    Authorization: localStorage.getItem("user-info"),
+                                }
+                            }
+                        );
+                        window.location.reload();
+                    }}
+                />
             <div className="aboutPost">
                 <div className="flex" onClick={!props.canDelete && props.onClickProfile}>
                     <img 
@@ -24,7 +49,7 @@ const post = (props) => {
                 
                 {
                     props.canDelete && (
-                        <div title="Delete this post" onClick={props.clickDelete}>
+                        <div title="Delete this post" onClick={() => setDialog(true)}>
                             <img className='delete-img' src={Delete} alt='Not Found' loading="lazy" />
                         </div>
                     )
@@ -63,4 +88,4 @@ const post = (props) => {
     )
 };
 
-export default post;
+export default Post;

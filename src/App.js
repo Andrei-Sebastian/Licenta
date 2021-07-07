@@ -1,6 +1,6 @@
 import React ,{Component, useEffect, useState} from 'react';
 import Welcome from './components/welcome/Welcome';
-import Login from './components/Login/login';
+import Login from './components/Login/Login';
 import SetProfile from './components/Login/set-profile';
 import Register from './components/Login/register';
 import NewAccount from './components/Login/new-account';
@@ -21,6 +21,7 @@ import Home from './components/stylist-profile/home';
 import Profile from './components/welcome/profile';
 import Map from './components/welcome/map';
 import Appointment from './components/welcome/appointment';
+import Support from './components/welcome/support';
  
 
 const App = () => {
@@ -30,18 +31,21 @@ const App = () => {
   useEffect(() => {
     setRole(localStorage.getItem("role"));
     setUser(localStorage.getItem("user-info"));
+    if (window.location.pathname === "/") {
+      window.location.href = "/login"
+    }
+    if (localStorage.getItem("role") == null || localStorage.getItem("user-info") == null) {
+      localStorage.removeItem("role");
+      localStorage.removeItem("user-info");
+    }
+
+    console.log(role, user)
   })
 
     return (
       <Router>
+          {(role == null || user == null) &&  
           <Switch>
-
-          <Route path="/map">
-              <Map />
-            </Route>
-
-          {(!role || !user) && 
-          <>
             <Route path="/login">
               <Login />
             </Route>
@@ -65,27 +69,27 @@ const App = () => {
             <Route path="/newAccount">
               <NewAccount />
             </Route>
-
-            {/* <Route>
+{/* 
+            <Route>
               <Redirect to="/login" />
             </Route> */}
-          </>
-        } 
+          </Switch>} 
 
-        {role === "admin" && 
-          <>
-            <Route path="/admin">
+        {(role === "admin" && user) &&
+          <Switch>
+            <Route path="/welcome">
               <AdminPage />
             </Route>
 
             <Route>
-              <Redirect to="/admin" />
+              <Redirect to="/welcome" />
             </Route>
-          </>
+
+          </Switch>
         }           
 
-        {role === "user" && 
-          <>
+        {(role === "user") && 
+          <Switch>
             <Route path="/welcome">
               <Welcome />
             </Route>
@@ -103,13 +107,15 @@ const App = () => {
               <Appointment />
             </Route>
 
-            
-          </>
+            {/* <Route>
+              <Redirect to="/welcome" />
+            </Route> */}
+         </Switch>
         }
 
 
         {role === "stylist" && 
-          <>
+          <Switch>
             <Route path="/welcome">
               <Home />
             </Route>
@@ -126,17 +132,16 @@ const App = () => {
               <MyPosts />
             </Route>
 
-            {/* <Route>
-              <Redirect to="/welcome" />
-            </Route> */}
-            
-          </>
-        }
+            <Route path="/support">
+              <Support />
+            </Route>
 
-            {/* <Route> */}
-              <Redirect to="/login" />
-            {/* </Route> */}
+            <Route>
+              <Redirect to="/welcome" />
+            </Route>
+            
           </Switch>
+        }
       </Router>
     );
 }

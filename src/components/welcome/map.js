@@ -1,38 +1,28 @@
 // import {GoogleApiWrapper} from 'google-maps-react';
-import React, {Component} from "react";
+import React, {useEffect, useState} from "react";
  
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-import { truncate } from "prelude-ls";
  
-export class MapContainer extends Component {
-    state = {
-      coords: { lat: 47.6464822, lng: 26.256426299999998},
-      loaded: false
-    };
+const MapContainer = ({lt, lg}) => {
+      const [coords, setCoords] = useState({ lat: 47.6464822, lng: 26.256426299999998});
+      const [loaded, setLoaded] = useState(false);
 
-    componentDidMount = () => {
-        const obj = {
-            lat: this.props.lt, 
-            lng: this.props.lg 
-        }
-        this.setState({
-            coords: obj,
-            loaded: true
-        });
-    }
+    useEffect(() => {
+      if (lt || lg)
+        setCoords({lat: lt, lng: lg})
+        setLoaded(true);
+    }, [])
    
-    render() {
       return (
-          <div>
-            {this.state.loaded && 
-                <Map google={window.google} initialCenter={this.state.coords}>
+          <div className="map-wrapp">
+            {loaded && 
+                <Map google={window.google} initialCenter={coords}>
                     <Marker />
                 </Map>
             }
           </div>
         
       )
-    }
   }
  
 export default GoogleApiWrapper({

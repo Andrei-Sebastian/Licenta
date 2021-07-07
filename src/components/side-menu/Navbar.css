@@ -74,6 +74,7 @@ span {
 .center-logo {
   margin: 0 auto;
   width: 160px;
+  cursor: pointer;
 }
 
 .jAhlMf {
