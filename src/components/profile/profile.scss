@@ -202,10 +202,13 @@
 
 .btn-div {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     text-align: left;
+    margin-bottom: 10px;
 
     button {
+        align-self: center;
+        margin-right: 10px;
         width: 150px;
         height: 30px;
         border: 1px solid rgb(189, 188, 188);
@@ -240,3 +243,50 @@
 .user-r {
     margin-bottom: 5px;
 }
+
+#w3review {
+        box-sizing: border-box;
+        border: none;
+        border-radius: 15px;
+        resize: none;
+        /* font-size: 20px; */
+        /* line-height: 24px; */
+        overflow: auto;
+        height: auto;
+        padding: 10px;
+        box-shadow: 0px 4px 10px -8px black;
+        // width: 560px;
+        margin-right: 10px;
+    .textarea::placeholder {
+        color: gainsboro;
+    }
+        
+    .textarea:focus {
+        outline: none;
+    }
+    
+
+}
+
+.div-follow-b {
+    align-self: center;
+    cursor: pointer;
+    border-radius: 50%;
+   
+    width: 42px;
+    height: 42px;
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .div-follow-green:hover {
+    background-color: rgb(147, 252, 147);
+    border: 1px solid rgb(195, 195, 195);
+  }
+
+  .div-follow-red:hover {
+    background-color: rgb(252, 147, 147);
+    border: 1px solid rgb(195, 195, 195);
+  }

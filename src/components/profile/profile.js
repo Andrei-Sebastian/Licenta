@@ -1,17 +1,6 @@
 import React, { useEffect, useState }  from 'react';
-import CircularImage from '../CircularImage/CircularImage';
 import axios from "axios";
 import Posts from "../Posts/Posts";
-
-import Rating from '@material-ui/lab/Rating';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import Box from '@material-ui/core/Box';
-import * as FaIcons from 'react-icons/ai';
-import * as BoxIcons from "react-icons/bi";
-import Edit from "../../images/edit.png"
-import PhoneInput from "react-phone-input-2";
-import TimePicker from 'react-time-picker';
 
 import "./profile.scss";
 import Contact from './contact';
@@ -25,6 +14,8 @@ import Reviews from './reviews';
 import About from './about';
 import EditAbout from './edit-about';
 import AddPost from '../stylist-profile/add-post';
+import AddImg from "../../images/add.png";
+import UnfollowImg from "../../images/unfollow.png";
 
 
 const obj = {
@@ -68,19 +59,6 @@ const obj = {
     ],
     rate: 4,
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 const Profile = ({data}) =>  {    
     const [name, setName] = useState("")
@@ -133,23 +111,48 @@ const Profile = ({data}) =>  {
                     <TopProfile name={name} photo={photo}/>
                     
                     <hr/>
-                    {!editable &&
-                        <div className="btn-div">
-                            <button>Follow</button>
-                            <button className="btn-app" onClick={() => {window.location.href = "/takeappointment/" + uidStylist}}>Take an appointment</button>
-                            <button>Leave a feedback</button>
-                        </div>
-                    }
+                    
                     
                     <div className="content-profile">
                         <div className="about-stylist">
+                        {!editable &&
+                        <div className="btn-div">
+                            <button className="btn-app" onClick={() => {window.location.href = "/takeappointment/" + uidStylist}}>Take an appointment</button>
+                            {false ? <div className="div-follow-b div-follow-green">
+                                <img 
+                                    title="Follow"
+                                    src={AddImg} 
+                                    onClick={() => {
+                                        // console.log(el.uid)
+                                    }}
+                                />
+                            </div>:
+                            <div className="div-follow-b div-follow-red">
+                                <img 
+                                    title="Unfollow"
+                                    src={UnfollowImg} 
+                                    onClick={() => {
+                                        // console.log(el.uid)
+                                    }}
+                                />
+                            </div>}
+                        </div>
+                    }
                             {editAbout ? 
                                 <EditAbout 
                                     text={about} 
-                                    clickSave={(phone, mail) => {
-                                        // setEditContact(false);
-                                        console.log(phone, mail);
-                                        console.log("click")
+                                    clickSave={async (textData) => {
+                                        await axios.post(`http://localhost:8080/edit`,
+                                        {
+                                            about: textData
+                                        },
+                                        {
+                                            headers: {
+                                                Authorization: localStorage.getItem("user-info"),
+                                            }
+                                        });
+                                        setAbout(textData);
+                                        setEditAbout(false);
                                     }} 
                                     clickClose={() => setEditAbout(false)}/> : 
                                 <About 
@@ -165,12 +168,22 @@ const Profile = ({data}) =>  {
                                     mail={email}
                                     lt={address.lt} 
                                     lg={address.lg}
-                                    clickSave={(address, phone, mail) => {
-                                        // setEditContact(false);
-                                        console.log(phone, mail);
-                                        console.log("click")
+                                    clickSave={async (phone, mail) => {
+                                        await axios.post(`http://localhost:8080/edit`,
+                                        {
+                                            phone: phone,
+                                            email: mail
+                                        },
+                                        {
+                                            headers: {
+                                                Authorization: localStorage.getItem("user-info"),
+                                            }
+                                        });
+                                        setPhone(phone);
+                                        setEmail(mail);
+                                        setEditContact(false);
                                     }} 
-                                    clickClose={() => {setEditContact(false); console.log("here")}}/> : 
+                                    clickClose={() => setEditContact(false)}/> : 
                                 <Contact 
                                     lt={address.lt} 
                                     lg={address.lg}
@@ -185,7 +198,16 @@ const Profile = ({data}) =>  {
                             {editSchadule ? 
                                 <EditSchedule 
                                     schedule={schedule}
-                                    clickSave={(schedule) => {
+                                    clickSave={async (schedule) => {
+                                        await axios.post(`http://localhost:8080/edit`,
+                                        {
+                                            schedule: schedule
+                                        },
+                                        {
+                                            headers: {
+                                                Authorization: localStorage.getItem("user-info"),
+                                            }
+                                        });
                                         setSchedule(schedule);
                                         setEditSchadule(false)
                                     }} 
@@ -200,10 +222,18 @@ const Profile = ({data}) =>  {
                             {editPrices ? 
                                 <EditPrices 
                                     prices={prices}
-                                    clickSave={(phone, mail) => {
-                                        // setEditContact(false);
-                                        console.log(phone, mail);
-                                        console.log("click")
+                                    clickSave={async (price) => {
+                                        await axios.post(`http://localhost:8080/edit`,
+                                        {
+                                            prices: price
+                                        },
+                                        {
+                                            headers: {
+                                                Authorization: localStorage.getItem("user-info"),
+                                            }
+                                        });
+                                        setPrices(price);
+                                        setEditPrices(false)
                                     }} 
                                     clickClose={() => setEditPrices(false)}/> : 
                                 <Prices  

@@ -205,7 +205,7 @@ const EnhancedTable = ({data}) => {
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [rows, setRows] = React.useState([
     createData(1,10, 'Bug', "I can't see my profile picture"),
     createData(2,4, 'Bug', "My appointment was deleted. Why?"),
@@ -215,7 +215,7 @@ const EnhancedTable = ({data}) => {
   ]);
 
   useEffect(() => {
-      if (data) {
+      if (data && data.length > 0) {
         setRows(data);
       }
   }, [])

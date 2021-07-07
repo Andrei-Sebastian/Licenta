@@ -47,7 +47,7 @@ const EditContact = ({lt, lg, address, phone, mail, clickSave, clickClose}) =>  
                     </div>
 
                 <div className="group-btn">
-                    <button className="save-btn profile-btn" onClick={() => {}}>Save</button>
+                    <button className="save-btn profile-btn" onClick={() => clickSave(phonee, email)}>Save</button>
                     <button className="close-btn profile-btn" onClick={clickClose}>Close</button>
                 </div>
             </div>

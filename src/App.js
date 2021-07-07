@@ -99,8 +99,8 @@ const App = () => {
             </Route>
 
           
-            <Route path="/schedule">
-              <Schedule />
+            <Route path="/support">
+              <Support />
             </Route>
 
             <Route path="/takeappointment">
@@ -108,7 +108,7 @@ const App = () => {
             </Route>
 
             {/* <Route>
-              <Redirect to="/welcome" />
+              <Redirect to="/" />
             </Route> */}
          </Switch>
         }

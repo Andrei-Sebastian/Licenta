@@ -44,7 +44,7 @@ class Appointment extends Component {
                         loading="lazy"
                     />
                     <strong>Hair-Stylist:</strong>
-                    <label >{this.props.appointment.name ? this.props.appointment.name : "N/A"}</label>
+                    <label >{this.props.appointment.nameStylist ? <a href={"profile/" + this.props.appointment.sid}>{this.props.appointment.nameStylist}</a> : "N/A"}</label>
                 </div>
                 <div>
                     <img 
@@ -56,7 +56,7 @@ class Appointment extends Component {
                         loading="lazy"
                     />
                     <strong>Location:</strong>
-                    <label >{this.props.appointment.location ? this.props.appointment.location : "N/A"}</label>
+                    <label >{this.props.appointment.location ? this.props.appointment.location.text : "N/A"}</label>
                 </div>
             </div>
 

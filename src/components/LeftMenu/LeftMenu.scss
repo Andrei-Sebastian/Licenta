@@ -72,6 +72,10 @@
     height: 300px;
     position: relative;
 
+    a {
+      color: black;
+    }
+
     .nav-prog {
       width: 98%;
     }
@@ -112,6 +116,10 @@
 
 .userName {
   align-self: center;
+
+  a{
+    color: black;
+  }
 }
 
 .flex-class {

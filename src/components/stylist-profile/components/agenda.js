@@ -62,38 +62,42 @@ const Agenda = ({user = false}) => {
         let  data  = [...appointment];
         let object = {};
 
-        if (added && new Date(added.startDate) > new Date()) {
-
-            object = { 
-                id: data.length > 0 ? data[data.length - 1].id + 1 : 0,
-                ...added 
-            }
-            let uid = window.location.href.split("/")[window.location.href.split("/").length - 1];
-            if (user) { 
-                await axios.post(`http://localhost:8080/createAppointment`,
-                {
-                    appointments: object,
-                    uid: uid
-                },
-                {
-                    headers: {
-                        Authorization: localStorage.getItem("user-info"),
-                    }
-                });
-
+        if (added) {
+            if (new Date(added.startDate) > new Date()) {
+                object = { 
+                    id: data.length > 0 ? data[data.length - 1].id + 1 : 0,
+                    ...added 
+                }
+                let uid = window.location.href.split("/")[window.location.href.split("/").length - 1];
+                if (user) { 
+                    await axios.post(`http://localhost:8080/createAppointment`,
+                    {
+                        appointments: object,
+                        uid: uid
+                    },
+                    {
+                        headers: {
+                            Authorization: localStorage.getItem("user-info"),
+                        }
+                    });
+    
+                } else {
+                    await axios.post(`http://localhost:8080/createAppointment`,
+                    {
+                        appointments: object
+                    },
+                    {
+                        headers: {
+                            Authorization: localStorage.getItem("user-info"),
+                        }
+                    });
+                }
+                
+                data.push(object);
             } else {
-                await axios.post(`http://localhost:8080/createAppointment`,
-                {
-                    appointments: object
-                },
-                {
-                    headers: {
-                        Authorization: localStorage.getItem("user-info"),
-                    }
-                });
+                alert("You can't add an appointment in past!!");
             }
-            
-            data.push(object);
+           
 
         } else if (changed) {
             // data.map(appointment => (
@@ -128,6 +132,8 @@ const Agenda = ({user = false}) => {
                 }
             });
             data = data.filter(appointment => appointment.id !== deleted);
+        } else if (deleted !== undefined && user) {
+            alert("You don't have acces to delete an appointment");
         }
         
         setAppoiment(data)

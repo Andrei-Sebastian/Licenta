@@ -16,7 +16,9 @@ import TimePicker from 'react-time-picker';
 
 
 const EditPrices = ({prices, clickSave, clickClose}) =>  {
-    const onChange = (e) => {}
+    const [priceR, setPriceR] = useState(prices.regular);
+    const [priceN, setPriceN] = useState(prices.newLook);
+    const [priceM, setPriceM] = useState(prices.modern);
 
     return (
         <div className="stylist-data">
@@ -31,11 +33,17 @@ const EditPrices = ({prices, clickSave, clickClose}) =>  {
                     </div>
 
                     <div>
-                        <input value={prices.regular} className="text-field price-text"/>
+                        <input value={priceR} className="text-field price-text" onChange={(e) => {
+                            setPriceR(e.target.value);
+                        }}/>
                         <br/>
-                        <input value={prices.newLook} className="text-field price-text"/>
+                        <input value={priceN} className="text-field price-text" onChange={(e) => {
+                            setPriceN(e.target.value);
+                        }}/>
                         <br/>
-                        <input value={prices.modern} className="text-field price-text"/>
+                        <input value={priceM} className="text-field price-text" onChange={(e) => {
+                            setPriceM(e.target.value);
+                        }}/>
                     </div>
 
                     <div className="lei">
@@ -47,7 +55,7 @@ const EditPrices = ({prices, clickSave, clickClose}) =>  {
             </div>
                             
             <div className="group-btn">
-                <button className="save-btn profile-btn" onClick={() => {}}>Save</button>
+                <button className="save-btn profile-btn" onClick={() => clickSave({modern: priceM, regular: priceR, newLook: priceN})}>Save</button>
                 <button className="close-btn profile-btn" onClick={clickClose}>Close</button>
             </div>        
         </div>
