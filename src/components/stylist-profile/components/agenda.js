@@ -70,6 +70,7 @@ const Agenda = ({user = false}) => {
                 }
                 let uid = window.location.href.split("/")[window.location.href.split("/").length - 1];
                 if (user) { 
+                    try {
                     await axios.post(`http://localhost:8080/createAppointment`,
                     {
                         appointments: object,
@@ -80,6 +81,10 @@ const Agenda = ({user = false}) => {
                             Authorization: localStorage.getItem("user-info"),
                         }
                     });
+                    data.push(object); 
+                    } catch (e) {
+                        alert("You already have an appointment!!")
+                    }
     
                 } else {
                     await axios.post(`http://localhost:8080/createAppointment`,
@@ -91,9 +96,9 @@ const Agenda = ({user = false}) => {
                             Authorization: localStorage.getItem("user-info"),
                         }
                     });
+                    data.push(object);
                 }
                 
-                data.push(object);
             } else {
                 alert("You can't add an appointment in past!!");
             }

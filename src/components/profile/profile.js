@@ -242,7 +242,7 @@ const Profile = ({data}) =>  {
                                     clickEdit={() => setEditPrices(true)}/>
                             }
 
-                            <Reviews editable={editable} reviews={reviews} rate={rate}/>
+                            <Reviews editable={editable} reviews={reviews} onChange={setReviews} rate={rate}/>
                             
                         </div>
 

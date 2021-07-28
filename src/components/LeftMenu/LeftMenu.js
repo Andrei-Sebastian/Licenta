@@ -14,8 +14,8 @@ class LeftMenu extends Component {
                 <hr />
                 <div className="">
                 <div className="flex-class">
-                    <CircularImage image={this.props.appointment.photoStylist} style={{width: '50px', height: '50px'}}/>
-                    <p className="userName"><a href={"/profile/" + this.props.appointment.sid}>{this.props.appointment.nameStylist}</a></p>
+                    <CircularImage image={"https://res.cloudinary.com/dm3pamnau/image/upload/v1625151107/folder_p/photo_2021-02-28_20-48-59_eek0l3.jpg"} style={{width: '50px', height: '50px'}}/>
+                    <p className="userName"><a href={"/profile/4"}>Sebastian Andrei</a></p>
                     <div className="rate">
                         <Rating name="read-only" size="small"  value={4.5} readOnly  precision={0.01}/>
                         <p>(4.5)</p>
